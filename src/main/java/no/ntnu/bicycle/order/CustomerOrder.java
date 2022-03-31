@@ -4,8 +4,7 @@ import no.ntnu.bicycle.product.Product;
 import no.ntnu.bicycle.customer.Customer;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDateTime;
 
 @Entity
 public class CustomerOrder {
@@ -13,8 +12,8 @@ public class CustomerOrder {
     @Id
     @GeneratedValue
     private int id;
-
     private String email;
+    private LocalDateTime dateAndTime;
 
     @ManyToOne(targetEntity = Customer.class)
     @JoinColumn
@@ -28,13 +27,24 @@ public class CustomerOrder {
     }
 
     public CustomerOrder(Integer id, String email) {
+        this.dateAndTime = LocalDateTime.now();
         this.id = id;
         this.email = email;
     }
 
-   // public Product getProduct() {return product;}
 
-    //public void setProduct(Product product) {this.product = product;}
+    public LocalDateTime getDateAndTime() {
+        return dateAndTime;
+    }
+
+    public void setDateAndTime(LocalDateTime dateAndTime) {
+        this.dateAndTime = dateAndTime;
+    }
+
+
+     public Product getProduct() {return product;}
+
+    public void setProduct(Product product) {this.product = product;}
 
     public Integer getId() {
         return id;

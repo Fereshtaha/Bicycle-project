@@ -1,8 +1,5 @@
 package no.ntnu.bicycle.product;
 
-import no.ntnu.bicycle.product.Product;
-import no.ntnu.bicycle.product.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -17,8 +14,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public static <T> List<T> iterableToList(Iterable<T> iterable) {
-        List<T> list = new LinkedList<>();
+    public List<Product> iterableToList(Iterable<Product> iterable) {
+        List<Product> list = new LinkedList<>();
         iterable.forEach(list::add);
         return list;
     }

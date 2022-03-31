@@ -1,8 +1,5 @@
 package no.ntnu.bicycle.customer;
 
-import no.ntnu.bicycle.customer.Customer;
-import no.ntnu.bicycle.customer.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
