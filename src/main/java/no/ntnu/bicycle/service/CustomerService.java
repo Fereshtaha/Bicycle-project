@@ -1,5 +1,7 @@
-package no.ntnu.bicycle.customer;
+package no.ntnu.bicycle.service;
 
+import no.ntnu.bicycle.model.Customer;
+import no.ntnu.bicycle.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

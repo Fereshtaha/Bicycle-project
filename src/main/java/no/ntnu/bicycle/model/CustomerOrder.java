@@ -12,6 +12,7 @@ public class CustomerOrder {
     @Id
     @GeneratedValue
     private int id;
+
     private String email;
     private LocalDateTime dateAndTime;
 

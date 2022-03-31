@@ -1,5 +1,7 @@
 package no.ntnu.bicycle.customer;
 
+import no.ntnu.bicycle.model.Customer;
+import no.ntnu.bicycle.repository.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

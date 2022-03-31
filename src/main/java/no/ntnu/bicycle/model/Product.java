@@ -1,4 +1,4 @@
-package no.ntnu.bicycle.product;
+package no.ntnu.bicycle.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
