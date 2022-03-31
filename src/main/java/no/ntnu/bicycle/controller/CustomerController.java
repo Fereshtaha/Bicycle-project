@@ -1,5 +1,7 @@
-package no.ntnu.bicycle.customer;
+package no.ntnu.bicycle.controller;
 
+import no.ntnu.bicycle.model.Customer;
+import no.ntnu.bicycle.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

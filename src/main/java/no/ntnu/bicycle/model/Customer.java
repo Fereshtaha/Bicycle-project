@@ -1,4 +1,4 @@
-package no.ntnu.bicycle.customer;
+package no.ntnu.bicycle.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

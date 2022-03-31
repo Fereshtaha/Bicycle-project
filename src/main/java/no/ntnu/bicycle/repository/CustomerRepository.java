@@ -1,6 +1,6 @@
-package no.ntnu.bicycle.customer;
+package no.ntnu.bicycle.repository;
 
-import no.ntnu.bicycle.customer.Customer;
+import no.ntnu.bicycle.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

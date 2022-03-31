@@ -1,5 +1,7 @@
-package no.ntnu.bicycle.order;
+package no.ntnu.bicycle.service;
 
+import no.ntnu.bicycle.model.CustomerOrder;
+import no.ntnu.bicycle.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;

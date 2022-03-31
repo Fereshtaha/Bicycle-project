@@ -1,11 +1,6 @@
-package no.ntnu.bicycle.order;
-
-import no.ntnu.bicycle.product.Product;
-import no.ntnu.bicycle.customer.Customer;
+package no.ntnu.bicycle.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class CustomerOrder {
