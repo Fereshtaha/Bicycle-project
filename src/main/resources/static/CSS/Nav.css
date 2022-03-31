@@ -1,0 +1,177 @@
+Body{
+ margin: 0;
+}
+
+button{
+  cursor: pointer;
+}
+
+.top{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  font-size: 12px;
+  color: white;
+  background-color: black;
+  height: 30px;
+}
+
+.Handlekurv{
+margin-right: 20px;
+}
+
+.Header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  height: 84px;
+  position: fixed;
+  z-index: 99;
+}
+
+
+.Header a{
+  text-decoration: none;
+  color: black;
+}
+
+
+/*.Header a:hover{
+  color: #717171;
+}*/
+
+
+#Logo{
+  width: 200px;
+
+}
+
+.isScrolled{
+  transition: all 0.5s ease;
+  background-color: white;
+}
+.isScrolledEmmidietly{
+  background-color: white;
+}
+
+#Salg{
+  color: red;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+.dropbtn:hover{
+  opacity: 70%;
+}
+
+#LogoImage{
+  width: 6.5em;
+  margin: auto;
+}
+
+
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropbtn{
+  width: 80px;
+  padding: 15px;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover ,.Header a:hover{
+  color: #717171;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  left: 0;
+  z-index: 1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  height: 250px;
+}
+
+/* Style links inside the columns */
+.column a {
+  float: none;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/*!* Add a background color on hover *!
+.column a:hover {
+  border-bottom: 2px solid #000;
+}*/
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    height: auto;
+  }
+  .top{
+    display: none;
+  }
+}
