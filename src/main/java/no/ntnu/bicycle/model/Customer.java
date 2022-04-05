@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 public class Customer {
@@ -23,20 +24,14 @@ public class Customer {
 
     }
 
-    public Customer(int id, String name, String email, LocalDate dob, Integer age) {
-        this.id = id;
+    public Customer(String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
-    }
+        LocalDate today = LocalDate.now(); // Today's date is 10th Jan 2022
+        Period p = Period.between(dob, today);
+        this.age = p.getYears();
 
-    public Customer(String name, String email, LocalDate dob, Integer age) {
-        this.id = 0;
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
-        this.age = age;
     }
 
     /**
