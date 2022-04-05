@@ -9,8 +9,6 @@ public class CustomerOrder {
     @GeneratedValue
     private int id;
 
-    private String email;
-
     @ManyToOne(targetEntity = Customer.class)
     @JoinColumn
     private Customer customer;
@@ -37,14 +35,7 @@ public class CustomerOrder {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    
     public Customer getCustomer() {
         return customer;
     }
