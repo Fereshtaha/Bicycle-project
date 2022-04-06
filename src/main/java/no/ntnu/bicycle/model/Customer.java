@@ -34,6 +34,11 @@ public class Customer {
 
     }
 
+    /**
+     * Getters and setters
+     * @return values
+     */
+
     @JsonIgnore
     public boolean isValid() {
         return !"".equals(name) && age >0;

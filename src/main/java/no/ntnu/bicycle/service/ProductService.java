@@ -16,8 +16,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public static <T> List<T> iterableToList(Iterable<T> iterable) {
-        List<T> list = new LinkedList<>();
+    public List<Product> iterableToList(Iterable<Product> iterable) {
+        List<Product> list = new LinkedList<>();
         iterable.forEach(list::add);
         return list;
     }
