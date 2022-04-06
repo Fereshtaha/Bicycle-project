@@ -17,8 +17,32 @@ button{
   height: 30px;
 }
 
-.Handlekurv{
-margin-right: 20px;
+.shoppingCartButton{
+  margin-right: 20px;
+  height: 32px;
+  width: 32px;
+  background-image: url("../Images/shopping-bag-svgrepo-com.svg");
+  text-indent: -99999px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 32px 32px;
+}
+
+.loginButton{
+  margin-right: 20px;
+  height: 32px;
+  width: 32px;
+  background-image: url("../Images/login-svgrepo-com.svg");
+  text-indent: -99999px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 32px 32px;
+}
+
+.header_right_icons{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .Header{
@@ -52,6 +76,9 @@ margin-right: 20px;
 .isScrolled{
   transition: all 0.5s ease;
   background-color: white;
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
 }
 .isScrolledEmmidietly{
   background-color: white;
@@ -72,7 +99,7 @@ a {
 
 #LogoImage{
   width: 6.5em;
-  margin: auto;
+  margin: auto auto auto 30px;
 }
 
 

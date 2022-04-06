@@ -1,0 +1,101 @@
+p{
+    color: #1C1F21;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+* {box-sizing:border-box}
+
+.login{
+    max-width: 400px;
+    margin: 0 auto;
+    width: auto;
+
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    vertical-align: baseline;
+}
+
+.login h2{
+    text-align: center;
+    width: 100%;
+}
+
+.login p{
+    text-align: center;
+    width: 100%;
+}
+
+.checkout-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login form{
+    width: 100%;
+}
+
+form .row{
+    margin-bottom: 20px;
+    position: relative;
+}
+
+form label{
+    margin-bottom: 7px;
+    display: inline-block;
+}
+
+form input{
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #c5c5c5;
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.submitLoginBtn{
+    margin-bottom: 7px;
+    width: 100%;
+    border-radius: 4px;
+    text-align: center;
+    padding: 14px 25px 13px;
+    border: 0;
+    cursor: default;
+    text-transform: uppercase;
+    background-color: lightblue;
+    font-weight: bold;
+    font-size: .8125em;
+}
+
+.submitLoginBtn:disabled{
+    color: #c5c5c5;
+    background-color: #f5f5f5;
+}
+
+.submitLoginBtn:hover{
+    opacity: 80%;
+}
+
+.error{
+    display: none;
+}
+
+.errorActive{
+    display: block;
+    color: red;
+}
+
+.input-error{
+    border-color: red;
+}
+
+.login a{
+    color:  #565656;
+    font-size: 14px;
+}
