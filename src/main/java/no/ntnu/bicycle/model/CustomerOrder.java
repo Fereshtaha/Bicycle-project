@@ -1,7 +1,4 @@
-package no.ntnu.bicycle.order;
-
-import no.ntnu.bicycle.product.Product;
-import no.ntnu.bicycle.customer.Customer;
+package no.ntnu.bicycle.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -54,29 +51,10 @@ public class CustomerOrder {
 
     public void setProduct(Product product) {this.product = product;}
 
-    public Integer getId() {
-    public int getId() {
+    public Integer getId()
+     {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }
