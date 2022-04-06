@@ -79,6 +79,12 @@ public class Customer {
         this.age = age;
     }
 
+    public void updateAge(){
+        LocalDate today = LocalDate.now();
+        Period p = Period.between(this.dob, today);
+        this.age = p.getYears();
+    }
+
     @Override
     public String toString() {
         return "Customer{" +

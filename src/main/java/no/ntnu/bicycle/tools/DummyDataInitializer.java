@@ -37,7 +37,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             return;
         }
         logger.info("Importing data...");
-        Customer sebbern = new Customer("Sebastian Nilsen","påsan@mail.no", LocalDate.of(2001, Month.APRIL,19));
+        Customer sebbern = new Customer("Sebastian Nilsen","snilse@mail.no", LocalDate.of(2001, Month.APRIL,19));
         Customer anne = new Customer("Anne Ruud","anne.ruud@mail.no", LocalDate.of(1994, Month.SEPTEMBER,05));
 
         customerRepository.saveAll(List.of(sebbern,anne));

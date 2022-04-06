@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Keep Rolling Rolling Rolling</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Title</title>
     <link rel="stylesheet" href="../CSS/footer.css">
     <link rel="stylesheet" href="../CSS/Nav.css">
     <link rel="stylesheet" href="../CSS/login.css">
-    <script src="../scripts/login.js" defer></script>
     <script src="../scripts/nav.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
 </head>
 <body>
 <header class="Header" id="header">
@@ -48,31 +45,50 @@
         <a class="shoppingCartButton" href="/handlekurv">HANDLEKURV</a>
     </div>
 </header>
-
 <section class="login">
-    <h2>Login</h2>
+    <h2>Sign up</h2>
     <br>
-    <p><a href="/create-user" class="small-link">Create a new account <u>here</u></a></p>
     <div class="checkout-container">
         <form id="login-form">
             <div class="row">
-                <label>E-mail</label>
-                <input onfocusout="checkEmail()" oninput="checkEmail()" class="" type="email" value="" name="email" id="form-input-email">
+                <label>Account email address</label>
+                <input oninput="checkEmail()" class="" type="email" value="" name="email" id="form-input-email">
                 <small class="error" id="emptyEmailFieldErrorText">Please fill out this field</small>
                 <small class="error" id="patternEmailFieldErrorText">Please enter a valid email</small>
             </div>
             <div class="row ">
                 <label>Password</label>
-                <input onfocusout="checkPassword()" oninput="checkPassword()" class="" type="password" value="" name="password" id="password">
+                <input oninput="checkPassword()" class="" type="password" value="" name="password" id="password">
                 <small class="error" id="emptyPasswordFieldErrorText">Please fill out this field</small>
                 <small class="error" id="patternErrorText">Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</small>
             </div>
+            <div class="row ">
+                <label>Repeat password</label>
+                <input oninput="checkPasswordMatch()" class="" type="password" value="" id="passwordRepeat">
+                <small class="error" id="noPasswordMatch">The passwords need to match</small>
+                <small class="error" id="emptyRepeatPasswordFieldErrorText">Please fill out this field</small>
+            </div>
             <div class="row">
-                <button onclick="login()" disabled="" type="submit" class="submitLoginBtn" id="submitLogin">Logg inn</button>
+                <label>First name</label>
+                <input oninput="checkFirstName()" class="" type="text" value="" name="firstName" id="form-input-firstName">
+                <small class="error" id="emptyFirstNameFieldErrorText">Please fill out this field</small>
+            </div>
+            <div class="row">
+                <label>Last name</label>
+                <input oninput="checkLastName()" class="" type="text" value="" name="lastName" id="form-input-lastName">
+                <small class="error" id="emptyLastNameFieldErrorText">Please fill out this field</small>
+            </div>
+            <div class="row">
+                <label>Phone</label>
+                <input oninput="checkPhone()" class="" type="text" value="" name="phone" id="form-input-phone">
+                <small class="error" id="emptyPhoneFieldErrorText">Please fill out this field</small>
+                <small class="error" id="phoneFieldErrorRegex">Please enter a valid phone number</small>
+            </div>
+            <div class="row">
+                <button onclick="createUser()" disabled="" type="submit" class="submitLoginBtn" id="submitLogin">Sign up</button>
             </div>
         </form>
     </div>
-    <p style=""><a href="/forgot-password" class="small-link">Glemt passord?</a></p>
 </section>
 <footer class="section-p1">
     <div class="col">
@@ -126,3 +142,5 @@
 </footer>
 </body>
 </html>
+
+
