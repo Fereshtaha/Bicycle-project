@@ -3,10 +3,10 @@ package no.ntnu.bicycle;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class BikeApplicationTests {
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 
