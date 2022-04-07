@@ -42,7 +42,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             return;
         }
         logger.info("Importing data...");
-        Customer sebastian = new Customer("Sebastian Nilsen","$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","snilse@mail.no", LocalDate.of(2001, Month.APRIL,19));
+        Customer sebastian = new Customer("Sebastian Nilsen","$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","sebasn@stud.ntnu.no", LocalDate.of(2001, Month.APRIL,19));
         Customer anne = new Customer("Anne Ruud", "$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","anne.ruud@mail.no",LocalDate.of(1994, Month.SEPTEMBER, 5));
 
         Role user = new Role("ROLE_USER");
