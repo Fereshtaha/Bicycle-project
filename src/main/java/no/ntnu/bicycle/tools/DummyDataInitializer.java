@@ -49,6 +49,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         Role admin = new Role("ROLE_ADMIN");
 
         sebastian.addRole(admin);
+        sebastian.addRole(user);
         anne.addRole(user);
 
         roleRepository.saveAll(List.of(user,admin));

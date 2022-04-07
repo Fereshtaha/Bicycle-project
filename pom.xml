@@ -13,9 +13,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bike project</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>11.0.14.1</java.version>
-	</properties>
+    <properties>
+        <java.version>11.0.14.1</java.version>
+		<maven.compiler.release>7</maven.compiler.release>
+    </properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
