@@ -1,10 +1,21 @@
 package no.ntnu.bicycle.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class OrderDetails {
+    @Id
+    @GeneratedValue
     private int orderNumber;
     private int productCode;
     private int quantityOrdered;
     private int priceEach;
+
+    public OrderDetails() {
+    }
 
     public OrderDetails(int orderNumber, int productCode, int quantityOrdered, int priceEach) {
         this.orderNumber = orderNumber;

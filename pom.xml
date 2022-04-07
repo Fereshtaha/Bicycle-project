@@ -13,10 +13,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bike project</name>
 	<description>Demo project for Spring Boot</description>
-    <properties>
+	<properties>
+		<java.version>17</java.version>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
+    <!--<properties>
         <java.version>11.0.14.1</java.version>
 		<maven.compiler.release>8</maven.compiler.release>
-    </properties>
+    </properties>-->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,6 +55,7 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -59,4 +64,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

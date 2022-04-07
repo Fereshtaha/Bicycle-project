@@ -1,15 +1,23 @@
 package no.ntnu.bicycle.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-public class Payments {
-
+@Entity
+public class Payment {
+    @Id
+    @GeneratedValue
     private int customerNumber;
     private int checkNumber;
     private LocalDateTime paymentDate;
     private int amount;
 
-    public Payments(int customerNumber, int checkNumber, LocalDateTime paymentDate, int amount) {
+    public Payment() {
+    }
+
+    public Payment(int customerNumber, int checkNumber, LocalDateTime paymentDate, int amount) {
         this.customerNumber = customerNumber;
         this.checkNumber = checkNumber;
         this.paymentDate = paymentDate;
