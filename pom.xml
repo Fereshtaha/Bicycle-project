@@ -14,8 +14,8 @@
 	<name>bike project</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
-		<maven.compiler.target>17</maven.compiler.target>
+		<java.version>11</java.version>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
     <!--<properties>
         <java.version>11.0.14.1</java.version>
