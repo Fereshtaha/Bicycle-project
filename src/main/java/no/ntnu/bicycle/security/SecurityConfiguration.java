@@ -1,23 +1,33 @@
 package no.ntnu.bicycle.security;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-    protected void configure(AuthenticationManagerBuilder authentication) throws Exception{
-        authentication.inMemoryAuthentication()
+
+
+    @Autowired
+    UserDetailsService userDetailsService;
+
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userDetailsService);
+        /*authentication.inMemoryAuthentication()
                 .withUser("fereshtaahmadi")
                 .password("$2a$12$/NoknpFFPDlzL3kBryJfsur0yeYC2JFqAs7Fd79ypMP6PN/mtSYmC") // == bcrypt("Nunchucks")
                 .roles("USER")
                 .and()
                 .withUser("sebasn@stud.ntnu.no")
                 .password("$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa") // == bcrypt("Passord1")
-                .roles("USER","ADMIN");
+                .roles("USER","ADMIN");*/
     }
 
 
@@ -27,6 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasRole("USER")
+                .antMatchers("/account").hasAnyRole("USER","ADMIN")
                 .antMatchers("/").permitAll()
                 .and()
                 .formLogin().loginPage("/login").usernameParameter("email").passwordParameter("password")

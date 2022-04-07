@@ -3,9 +3,11 @@ package no.ntnu.bicycle.tools;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.model.CustomerOrder;
 import no.ntnu.bicycle.model.Product;
+import no.ntnu.bicycle.model.Role;
 import no.ntnu.bicycle.repository.CustomerRepository;
 import no.ntnu.bicycle.repository.OrderRepository;
 import no.ntnu.bicycle.repository.ProductRepository;
+import no.ntnu.bicycle.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -28,6 +30,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     private final Logger logger = Logger.getLogger("DummyInit");
 
     @Override
@@ -37,18 +42,26 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             return;
         }
         logger.info("Importing data...");
-        Customer sebbern = new Customer("Sebastian Nilsen","snilse@mail.no", LocalDate.of(2001, Month.APRIL,19));
-        Customer anne = new Customer("Anne Ruud","anne.ruud@mail.no", LocalDate.of(1994, Month.SEPTEMBER,05));
+        Customer sebastian = new Customer("Sebastian Nilsen","$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","snilse@mail.no", LocalDate.of(2001, Month.APRIL,19));
+        Customer anne = new Customer("Anne Ruud", "$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","anne.ruud@mail.no",LocalDate.of(1994, Month.SEPTEMBER, 5));
 
-        customerRepository.saveAll(List.of(sebbern,anne));
+        Role user = new Role("ROLE_USER");
+        Role admin = new Role("ROLE_ADMIN");
 
-        Product blue_helmet = new Product("Blue helmet",199);
-        Product white_helmet = new Product("White helmet",199);
+        sebastian.addRole(admin);
+        anne.addRole(user);
 
-        productRepository.saveAll(List.of(blue_helmet,white_helmet));
+        roleRepository.saveAll(List.of(user,admin));
 
-        CustomerOrder order1 = new CustomerOrder(sebbern,blue_helmet);
-        CustomerOrder order2 = new CustomerOrder(anne,white_helmet);
+        customerRepository.saveAll(List.of(sebastian,anne));
+
+        Product blueHelmet = new Product("Blue helmet",199);
+        Product whiteHelmet = new Product("White helmet",199);
+
+        productRepository.saveAll(List.of(blueHelmet,whiteHelmet));
+
+        CustomerOrder order1 = new CustomerOrder(sebastian,blueHelmet);
+        CustomerOrder order2 = new CustomerOrder(anne,whiteHelmet);
 
         orderRepository.saveAll(List.of(order1,order2));
 

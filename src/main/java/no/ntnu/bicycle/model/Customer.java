@@ -5,16 +5,26 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity
+@Entity(name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String email;
+    private String password;
     private LocalDate dob;
     private Integer age;
+    private boolean active = true;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "customer_role",
+            joinColumns = @JoinColumn(name="customer_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    private Set<Role> roles = new LinkedHashSet<>();
 
     //@OneToMany
     //@JsonIgnore
@@ -24,10 +34,11 @@ public class Customer {
 
     }
 
-    public Customer(String name, String email, LocalDate dob) {
+    public Customer(String name, String password, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
+        this.password = password;
         LocalDate today = LocalDate.now(); // Today's date is 10th Jan 2022
         Period p = Period.between(dob, today);
         this.age = p.getYears();
@@ -48,6 +59,14 @@ public class Customer {
         return id;
     }
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -62,6 +81,14 @@ public class Customer {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setEmail(String email) {
@@ -90,6 +117,14 @@ public class Customer {
         this.age = p.getYears();
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -99,6 +134,15 @@ public class Customer {
                 ", dob=" + dob +
                 ", age=" + age +
                 '}';
+    }
+
+    /**
+     * Add a role to the user
+     *
+     * @param role Role to add
+     */
+    public void addRole(Role role) {
+        roles.add(role);
     }
 
     /**
