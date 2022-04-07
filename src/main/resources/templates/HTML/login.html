@@ -53,16 +53,16 @@
     <br>
     <p><a href="/create-user" class="small-link">Create a new account <u>here</u></a></p>
     <div class="checkout-container">
-        <form id="login-form">
+        <form id="login-form" method="post" action="/login">
             <div class="row">
-                <label>E-mail</label>
-                <input onfocusout="checkEmail()" oninput="checkEmail()" class="" type="email" value="" name="email" id="form-input-email">
+                <label for="form-input-email">E-mail</label>
+                <input onfocusout="checkEmail()" oninput="checkEmail()" class="" type="email" value="" name="email" id="form-input-email" required autofocus>
                 <small class="error" id="emptyEmailFieldErrorText">Please fill out this field</small>
                 <small class="error" id="patternEmailFieldErrorText">Please enter a valid email</small>
             </div>
             <div class="row ">
-                <label>Password</label>
-                <input onfocusout="checkPassword()" oninput="checkPassword()" class="" type="password" value="" name="password" id="password">
+                <label for="password">Password</label>
+                <input onfocusout="checkPassword()" oninput="checkPassword()" class="" type="password" value="" name="password" id="password" required>
                 <small class="error" id="emptyPasswordFieldErrorText">Please fill out this field</small>
                 <small class="error" id="patternErrorText">Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</small>
             </div>

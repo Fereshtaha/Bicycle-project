@@ -21,4 +21,14 @@ public class HomeController {
 
         return "index";
     }
+    @GetMapping("/user")
+    public String getLoginSuccessUser(Model model) {
+
+        return "HTML/loginSuccessUser";
+    }
+    @GetMapping("/admin")
+    public String getLoginSuccessAdmin(Model model) {
+
+        return "HTML/loginSuccessAdmin";
+    }
 }

@@ -42,7 +42,6 @@ function checkEmail(){
         emailField.classList.remove("input-error");
     }
     makeButtonClickableForLogin();
-    makeButtonClickableForCreateUser();
 }
 
 function checkPassword(){
@@ -59,7 +58,6 @@ function checkPassword(){
         passwordField.classList.remove("input-error");
     }
     makeButtonClickableForLogin();
-    makeButtonClickableForCreateUser();
 }
 
 function checkFirstName(){
