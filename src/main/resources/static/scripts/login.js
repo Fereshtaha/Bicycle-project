@@ -6,6 +6,7 @@ const repeatPasswordField = document.getElementById("passwordRepeat");
 const firstNameField = document.getElementById("form-input-firstName");
 const lastNameField = document.getElementById("form-input-lastName");
 const phoneField = document.getElementById("form-input-phone");
+const birthdayField = document.getElementById("birthday");
 
 const errorEmailEmpty = document.getElementById("emptyEmailFieldErrorText");
 const errorEmailPattern = document.getElementById("patternEmailFieldErrorText");
@@ -20,12 +21,58 @@ const errorRepeatPasswordEmpty = document.getElementById("emptyRepeatPasswordFie
 const errorNoPasswordMatch = document.getElementById("noPasswordMatch");
 const errorNoRegexMatchPhone = document.getElementById("phoneFieldErrorRegex");
 
+const errorEmptyBirthday = document.getElementById("birthday");
+
 function login(){
     console.log("logged in");
 }
 
-function createUser(){
-    console.log("user created")
+
+
+const asyncRequest = new XMLHttpRequest();
+asyncRequest.onload = onResponseReceived;
+
+function createUser() {
+    const formData = new FormData();
+    formData.append("firstName", document.getElementById("form-input-firstName").value);
+    formData.append("lastName", document.getElementById("form-input-lastName").value);
+    formData.append("email", document.getElementById("form-input-email").value);
+    formData.append("dob", document.getElementById("birthday").value);
+    formData.append("phone", document.getElementById("form-input-phone").value);
+    formData.append("password", document.getElementById("password").value);
+    formData.append("role","ROLE_USER");
+    asyncRequest.open("POST", "localhost:8080/customers");
+    asyncRequest.send(formData);
+}
+
+/**
+ * This function will be called when the status of HTTP response updates.
+ * Typically, when the response has come completely, but for large responses this method could be called several
+ * times during the download of the response. We therefore need to check the .readyState and .status properties.
+ */
+function onResponseReceived() {
+    if (asyncRequest.readyState === XMLHttpRequest.DONE) {
+        if (asyncRequest.status === 200) {
+            console.log("POST successful");
+        } else {
+            console.error("Error " + asyncRequest.status);
+        }
+    }
+}
+
+
+
+
+function checkBirthday(){
+    if (!birthdayField.value || birthdayField.value === ""){
+        errorEmptyBirthday.classList.add("errorActive");
+        birthdayField.classList.add("input-error");
+        console.log(birthdayField.value);
+    }else{
+        errorEmptyBirthday.classList.remove("errorActive");
+        birthdayField.classList.remove("input-error");
+    }
+    makeButtonClickableForCreateUser();
 }
 
 function checkEmail(){
@@ -126,7 +173,7 @@ function makeButtonClickableForLogin(){
 }
 
 function makeButtonClickableForCreateUser(){
-    if (passwordField.value && emailField.value && firstNameField.value && lastNameField.value && phoneField.value && repeatPasswordField.value){
+    if (passwordField.value && emailField.value && firstNameField.value && lastNameField.value && phoneField.value && repeatPasswordField.value && birthdayField.value){
         if ((/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(passwordField.value)) && (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(emailField.value))){
             if (repeatPasswordField.value === passwordField.value){
                 if (/^\d+$/.test(phoneField.value)){

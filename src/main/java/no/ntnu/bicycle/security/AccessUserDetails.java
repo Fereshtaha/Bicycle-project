@@ -1,7 +1,6 @@
 package no.ntnu.bicycle.security;
 
 import no.ntnu.bicycle.model.Customer;
-import no.ntnu.bicycle.model.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class AccessUserDetails implements UserDetails {
     private final String username;
@@ -21,15 +19,11 @@ public class AccessUserDetails implements UserDetails {
         this.username = customer.getEmail();
         this.password = customer.getPassword();
         this.isActive = customer.isActive();
-        this.convertRoles(customer.getRoles());
+        String role = customer.getRole();
+        authorities.add(new SimpleGrantedAuthority(role));
     }
 
-    private void convertRoles(Set<Role> roles) {
-        authorities.clear();
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
-    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -65,4 +59,5 @@ public class AccessUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

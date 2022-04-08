@@ -3,11 +3,9 @@ package no.ntnu.bicycle.tools;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.model.CustomerOrder;
 import no.ntnu.bicycle.model.Product;
-import no.ntnu.bicycle.model.Role;
 import no.ntnu.bicycle.repository.CustomerRepository;
 import no.ntnu.bicycle.repository.OrderRepository;
 import no.ntnu.bicycle.repository.ProductRepository;
-import no.ntnu.bicycle.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -30,8 +28,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
 
     private final Logger logger = Logger.getLogger("DummyInit");
 
@@ -42,17 +38,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             return;
         }
         logger.info("Importing data...");
-        Customer sebastian = new Customer("Sebastian Nilsen","$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","sebasn@stud.ntnu.no", LocalDate.of(2001, Month.APRIL,19));
-        Customer anne = new Customer("Anne Ruud", "$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","anne.ruud@mail.no",LocalDate.of(1994, Month.SEPTEMBER, 5));
+        Customer sebastian = new Customer("Sebastian", "Nilsen", "sebasn@stud.ntnu.no","2001-04-19",94658622,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","ROLE_ADMIN");
+        Customer anne = new Customer("Anne", "Ruud", "anne.ruud@mail.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa","ROLE_USER");
 
-        Role user = new Role("ROLE_USER");
-        Role admin = new Role("ROLE_ADMIN");
-
-        sebastian.addRole(admin);
-        sebastian.addRole(user);
-        anne.addRole(user);
-
-        roleRepository.saveAll(List.of(user,admin));
 
         customerRepository.saveAll(List.of(sebastian,anne));
 

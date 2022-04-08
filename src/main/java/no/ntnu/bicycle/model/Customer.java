@@ -9,22 +9,21 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity(name = "customers")
+
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private int id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
     private LocalDate dob;
+    private int phone;
     private Integer age;
     private boolean active = true;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "customer_role",
-            joinColumns = @JoinColumn(name="customer_id"),
-            inverseJoinColumns = @JoinColumn(name="role_id")
-    )
-    private Set<Role> roles = new LinkedHashSet<>();
+    private String role;
 
     //@OneToMany
     //@JsonIgnore
@@ -34,15 +33,17 @@ public class Customer {
 
     }
 
-    public Customer(String name, String password, String email, LocalDate dob) {
-        this.name = name;
+    public Customer(String firstName,String lastName,String email, String dob, int phone,String password,String role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.dob = dob;
+        this.dob = LocalDate.parse(dob);
+        this.phone = phone;
         this.password = password;
+        this.role = role;
         LocalDate today = LocalDate.now(); // Today's date is 10th Jan 2022
-        Period p = Period.between(dob, today);
+        Period p = Period.between(LocalDate.parse(dob), today);
         this.age = p.getYears();
-
     }
 
     /**
@@ -52,31 +53,50 @@ public class Customer {
 
     @JsonIgnore
     public boolean isValid() {
-        return !"".equals(name) && age >0;
+        return !"".equals(firstName) && age >0;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+
+    public int getPhone() {
+        return phone;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+
+    public String getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -99,8 +119,8 @@ public class Customer {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
+    public void setDob(String dob) {
+        this.dob = LocalDate.parse(dob);
     }
 
     public Integer getAge() {
@@ -125,25 +145,20 @@ public class Customer {
         this.active = active;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", age=" + age +
+                            "id=" + id +
+                            ", firstName='" + firstName + '\'' +
+                            ", lastName='" + lastName + '\'' +
+                            ", email='" + email + '\'' +
+                            ", dob=" + dob +
+                            ", phone=" + phone +
+                            ", age=" + age +
+                            ", password=" + password +
                 '}';
-    }
+    }*/
 
-    /**
-     * Add a role to the user
-     *
-     * @param role Role to add
-     */
-    public void addRole(Role role) {
-        roles.add(role);
-    }
 
     /**
      * Adding an order to all the orders

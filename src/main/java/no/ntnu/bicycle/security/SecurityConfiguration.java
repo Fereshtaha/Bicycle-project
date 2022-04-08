@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         // Set up the authorization requests, starting from most restrictive at the top, to least restrictive on bottom
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/user").hasAnyRole("USER","ADMIN")
                 .antMatchers("/account").hasAnyRole("USER","ADMIN")
                 .antMatchers("/").permitAll()
                 .and()

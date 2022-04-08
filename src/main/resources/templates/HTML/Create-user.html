@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../CSS/footer.css">
     <link rel="stylesheet" href="../CSS/Nav.css">
     <link rel="stylesheet" href="../CSS/login.css">
@@ -48,12 +49,33 @@
     <h2>Sign up</h2>
     <br>
     <div class="checkout-container">
-        <form id="login-form">
+        <form id="create-user-form">
+            <div class="row">
+                <label>First name</label>
+                <input oninput="checkFirstName()" class="" type="text" value="" name="firstName" id="form-input-firstName">
+                <small class="error" id="emptyFirstNameFieldErrorText">Please fill out this field</small>
+            </div>
+            <div class="row">
+                <label>Last name</label>
+                <input oninput="checkLastName()" class="" type="text" value="" name="lastName" id="form-input-lastName">
+                <small class="error" id="emptyLastNameFieldErrorText">Please fill out this field</small>
+            </div>
             <div class="row">
                 <label>Account email address</label>
                 <input oninput="checkEmail()" class="" type="email" value="" name="email" id="form-input-email">
                 <small class="error" id="emptyEmailFieldErrorText">Please fill out this field</small>
                 <small class="error" id="patternEmailFieldErrorText">Please enter a valid email</small>
+            </div>
+            <div class="row">
+                <label>Birthday</label>
+                <input oninput="checkBirthday()" type="date" id="birthday" placeholder="DD-MM-YYYY" name="dob">
+                <small class="error" id="emptyBirthdayFieldErrorText">Please fill out this field</small>
+            </div>
+            <div class="row">
+                <label>Phone</label>
+                <input oninput="checkPhone()" class="" type="text" value="" name="phone" id="form-input-phone">
+                <small class="error" id="emptyPhoneFieldErrorText">Please fill out this field</small>
+                <small class="error" id="phoneFieldErrorRegex">Please enter a valid phone number</small>
             </div>
             <div class="row ">
                 <label>Password</label>
@@ -66,22 +88,6 @@
                 <input oninput="checkPasswordMatch()" class="" type="password" value="" id="passwordRepeat">
                 <small class="error" id="noPasswordMatch">The passwords need to match</small>
                 <small class="error" id="emptyRepeatPasswordFieldErrorText">Please fill out this field</small>
-            </div>
-            <div class="row">
-                <label>First name</label>
-                <input oninput="checkFirstName()" class="" type="text" value="" name="firstName" id="form-input-firstName">
-                <small class="error" id="emptyFirstNameFieldErrorText">Please fill out this field</small>
-            </div>
-            <div class="row">
-                <label>Last name</label>
-                <input oninput="checkLastName()" class="" type="text" value="" name="lastName" id="form-input-lastName">
-                <small class="error" id="emptyLastNameFieldErrorText">Please fill out this field</small>
-            </div>
-            <div class="row">
-                <label>Phone</label>
-                <input oninput="checkPhone()" class="" type="text" value="" name="phone" id="form-input-phone">
-                <small class="error" id="emptyPhoneFieldErrorText">Please fill out this field</small>
-                <small class="error" id="phoneFieldErrorRegex">Please enter a valid phone number</small>
             </div>
             <div class="row">
                 <button onclick="createUser()" disabled="" type="submit" class="submitLoginBtn" id="submitLogin">Sign up</button>

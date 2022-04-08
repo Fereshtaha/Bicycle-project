@@ -11,7 +11,7 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
-@RequestMapping("customers")
+@RequestMapping("/customers")
 public class CustomerController {
     @Autowired
     CustomerService customerService;
