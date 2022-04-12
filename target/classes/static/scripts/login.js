@@ -27,24 +27,6 @@ function login(){
     console.log("logged in");
 }
 
-
-
-const asyncRequest = new XMLHttpRequest();
-asyncRequest.onload = onResponseReceived;
-
-function createUser() {
-    const formData = new FormData();
-    formData.append("firstName", document.getElementById("form-input-firstName").value);
-    formData.append("lastName", document.getElementById("form-input-lastName").value);
-    formData.append("email", document.getElementById("form-input-email").value);
-    formData.append("dob", document.getElementById("birthday").value);
-    formData.append("phone", document.getElementById("form-input-phone").value);
-    formData.append("password", document.getElementById("password").value);
-    formData.append("role","ROLE_USER");
-    asyncRequest.open("POST", "localhost:8080/customers");
-    asyncRequest.send(formData);
-}
-
 /**
  * This function will be called when the status of HTTP response updates.
  * Typically, when the response has come completely, but for large responses this method could be called several

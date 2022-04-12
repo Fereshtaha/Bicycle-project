@@ -2,6 +2,7 @@ package no.ntnu.bicycle.service;
 
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.repository.CustomerRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,6 +33,9 @@ public class CustomerService {
         if (customer != null && customer.isValid()) {
             Customer existingCustomer = findCustomerById(customer.getId());
             if (existingCustomer == null) {
+                customer.setPassword(new BCryptPasswordEncoder().encode(customer.getPassword()));
+                customer.updateAge();
+                customer.setRoleAsUser();
                 customerRepository.save(customer);
                 added = true;
             }

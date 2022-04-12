@@ -78,8 +78,12 @@ public class Customer {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleAsUser() {
+        this.role = "ROLE_USER";
+    }
+
+    public void setRoleAsAdmin() {
+        this.role = "ROLE_ADMIN";
     }
 
 

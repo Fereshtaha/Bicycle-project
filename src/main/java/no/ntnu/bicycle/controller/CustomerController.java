@@ -33,7 +33,7 @@ public class CustomerController {
         return response;
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<String> registerNewCustomer(@RequestBody Customer customer) {
         ResponseEntity<String> response;
         if (customerService.addNewCustomer(customer)) {
