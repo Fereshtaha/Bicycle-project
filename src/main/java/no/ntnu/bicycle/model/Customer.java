@@ -53,7 +53,7 @@ public class Customer {
 
     @JsonIgnore
     public boolean isValid() {
-        return !"".equals(firstName) && age >0;
+        return !"".equals(firstName);
     }
 
     public int getId() {

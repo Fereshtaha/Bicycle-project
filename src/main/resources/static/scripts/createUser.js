@@ -10,7 +10,7 @@ $(document).ready(function(){
         // send ajax
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/customers",
+            url: "localhost:8080/customers",
             data: formData,
             dataType: "json",
             contentType : "application/json",
