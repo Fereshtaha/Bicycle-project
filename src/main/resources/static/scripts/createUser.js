@@ -1,5 +1,5 @@
 const asyncRequest = new XMLHttpRequest();
-asyncRequest.onload = onResponseReceived;
+asyncRequest.onreadystatechange = onResponseReceived;
 
 
 function createUser() {
@@ -12,11 +12,11 @@ function createUser() {
         phone: document.getElementById("form-input-phone").value
     }
     let formData = JSON.stringify(data);
-    console.log(formData);
     asyncRequest.open("POST", "http://localhost:8080/customers");
     asyncRequest.setRequestHeader("Accept", "application/json");
     asyncRequest.setRequestHeader("Content-Type", "application/json");
     asyncRequest.send(formData);
+
 }
 
 /**
@@ -25,12 +25,15 @@ function createUser() {
  * times during the download of the response. We therefore need to check the .readyState and .status properties.
  */
 function onResponseReceived() {
-    if (asyncRequest.readyState === XMLHttpRequest.DONE) {
-        if (asyncRequest.status === 200) {
-            console.log("New customer was created")
-        } else {
-            console.error("Error " + asyncRequest.status);
+    if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status == 200) { // handle success
+            console.log("Successful request, redirecting now...")
+            location.href = "/account";
+        } else{
+            console.log("Request was unsuccessful");
+            console.log("Status code is: " + this.status)
         }
     }
+
 }
 
