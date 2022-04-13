@@ -1,5 +1,6 @@
 package no.ntnu.bicycle.tools;
 
+import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.model.CustomerOrder;
 import no.ntnu.bicycle.model.Product;
@@ -28,6 +29,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private EmailSenderService emailSenderService;
+
 
     private final Logger logger = Logger.getLogger("DummyInit");
 
@@ -54,7 +58,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
         orderRepository.saveAll(List.of(order1,order2));
 
-
+        emailSenderService.sendEmail("sebasn@stud.ntnu.no","test of mail service class", "This is a test for mail service class. below is a test for html <b> halla </b>");
 
     }
 
