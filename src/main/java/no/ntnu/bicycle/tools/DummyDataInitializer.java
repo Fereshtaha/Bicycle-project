@@ -58,7 +58,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
         orderRepository.saveAll(List.of(order1,order2));
 
-        emailSenderService.sendEmail("sebasn@stud.ntnu.no","test of mail service class", "This is a test for mail service class. below is a test for html <b> halla </b>");
+        //emailSenderService.sendEmail("sebasn@stud.ntnu.no","test of mail service class", "This is a test for mail service class. below is a test for html <b> halla </b>");
 
     }
 
