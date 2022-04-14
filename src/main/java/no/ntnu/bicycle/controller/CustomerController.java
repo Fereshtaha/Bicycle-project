@@ -15,11 +15,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
-    @Autowired
+
     CustomerService customerService;
 
     @Autowired
     EmailSenderService emailSenderService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping
     public List<Customer> getCustomer() {

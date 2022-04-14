@@ -2,7 +2,6 @@ package no.ntnu.bicycle.security;
 
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,8 +11,12 @@ import java.util.Optional;
 
 @Service
 public class AccessUserService implements UserDetailsService {
-    @Autowired
+
     CustomerRepository customerRepository;
+
+    public AccessUserService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -21,7 +24,7 @@ public class AccessUserService implements UserDetailsService {
         if (customer.isPresent()) {
             return new AccessUserDetails(customer.get());
         } else {
-            throw new UsernameNotFoundException("User " + email + " not found");
+            throw new UsernameNotFoundException("Customer " + email + " not found");
         }
     }
 }

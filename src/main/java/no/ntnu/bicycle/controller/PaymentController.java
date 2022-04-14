@@ -1,8 +1,7 @@
 package no.ntnu.bicycle.controller;
 
 import no.ntnu.bicycle.model.Payment;
-import no.ntnu.bicycle.service.PaymentsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import no.ntnu.bicycle.service.PaymentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +12,22 @@ import java.util.List;
 @RestController
 @RequestMapping("payment")
 public class PaymentController {
-    @Autowired
-    PaymentsService paymentsService;
+
+    PaymentService paymentService;
+
+    public PaymentController(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
 
     @GetMapping
-    public List<Payment> getPayment() {return paymentsService.getAllPayments();}
+    public List<Payment> getPayment() {return paymentService.getAllPayments();}
 
     @GetMapping("{id}")
     public ResponseEntity<Payment> getOnePayment(@PathParam("payment")
                                                  @PathVariable("id")
-                                                 int paymentId){
+                                                 int paymentNumber){
         ResponseEntity<Payment> response;
-        Payment payment = paymentsService.findPaymentsById(paymentId);
+        Payment payment = paymentService.findPaymentsById(paymentNumber);
         if (payment != null) {
             response = new ResponseEntity<>(payment, HttpStatus.OK);
         } else {
@@ -36,7 +39,7 @@ public class PaymentController {
     @PostMapping
     public ResponseEntity<String> registerNewPayment(@RequestBody Payment payment) {
         ResponseEntity<String> response;
-        if (paymentsService.addNewPayment(payment)) {
+        if (paymentService.addNewPayment(payment)) {
             response = new ResponseEntity<>(HttpStatus.OK);
         } else {
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -47,14 +50,14 @@ public class PaymentController {
     @DeleteMapping("/{id}")
     public void deletePayment(@PathVariable("id")
                               int paymentId) {
-        paymentsService.deletePayment(paymentId);
+        paymentService.deletePayment(paymentId);
     }
 
     @PutMapping("/{id}")
 
     public ResponseEntity<String> update(@PathVariable int id,
                                          @RequestBody Payment payment) {
-        String errorMessage = paymentsService.updatePayments(id, payment);
+        String errorMessage = paymentService.updatePayments(id, payment);
         ResponseEntity<String> response;
         if (errorMessage == null) {
             response = new ResponseEntity<>(HttpStatus.OK);

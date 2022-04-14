@@ -16,18 +16,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Autowired
     UserDetailsService userDetailsService;
 
+    public SecurityConfiguration(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService);
-        /*authentication.inMemoryAuthentication()
-                .withUser("fereshtaahmadi")
-                .password("$2a$12$/NoknpFFPDlzL3kBryJfsur0yeYC2JFqAs7Fd79ypMP6PN/mtSYmC") // == bcrypt("Nunchucks")
+        auth.inMemoryAuthentication()
+                .withUser("ferreh@live.no")
+                .password("$2a$12$ZFqFytg20hQt3RFA6144x./Nis7s1sFd4G3b0OK8qmKqWKSi8QmVW") // == bcrypt("Yolo1234")
                 .roles("USER")
                 .and()
                 .withUser("sebasn@stud.ntnu.no")
                 .password("$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa") // == bcrypt("Passord1")
-                .roles("USER","ADMIN");*/
+                .roles("USER","ADMIN");
     }
 
 
@@ -40,7 +43,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/account").hasAnyRole("USER","ADMIN")
                 .antMatchers("/").permitAll()
                 .and()
-                .formLogin().loginPage("/login").usernameParameter("email").passwordParameter("password")
+                .formLogin().loginPage("/login")
+                .usernameParameter("email")
+                .passwordParameter("password")
                 .and()
                 .logout().logoutUrl("/logout");
 

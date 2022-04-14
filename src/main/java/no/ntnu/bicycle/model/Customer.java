@@ -50,6 +50,7 @@ public class Customer {
         LocalDate today = LocalDate.now(); // Today's date is 10th Jan 2022
         Period p = Period.between(LocalDate.parse(dob), today);
         this.age = p.getYears();
+
     }
 
     /**
@@ -167,7 +168,6 @@ public class Customer {
                             ", password=" + password +
                 '}';
     }*/
-
 
     /**
      * Adding an order to all the orders

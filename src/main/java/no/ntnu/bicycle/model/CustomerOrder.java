@@ -1,5 +1,8 @@
 package no.ntnu.bicycle.model;
 
+import no.ntnu.bicycle.model.Product;
+
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -13,12 +16,14 @@ public class CustomerOrder {
     private String email;
     private LocalDateTime dateAndTime;
 
-    @ManyToOne(targetEntity = Customer.class)
-    @JoinColumn
+   // @ManyToOne(targetEntity = Customer.class)
+   // @JoinColumn
+    @Transient
     private Customer customer;
 
 
-    @ManyToOne
+    //@ManyToOne
+    @Transient
     private Product product;
 
 
