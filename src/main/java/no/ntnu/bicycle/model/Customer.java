@@ -1,11 +1,17 @@
 package no.ntnu.bicycle.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import no.ntnu.bicycle.mail.EmailSenderService;
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.PasswordGenerator;
+import org.springframework.mail.MailException;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Entity(name = "customers")

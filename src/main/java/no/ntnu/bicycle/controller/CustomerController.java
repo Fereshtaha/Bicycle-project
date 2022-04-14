@@ -67,6 +67,7 @@ public class CustomerController {
             }
         } else {
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            System.out.println("Customer doesnt exist");
         }
         return response;
     }
