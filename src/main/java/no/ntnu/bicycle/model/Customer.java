@@ -73,7 +73,6 @@ public class Customer {
         this.id = id;
     }
 
-
     public String getRole() {
         return role;
     }

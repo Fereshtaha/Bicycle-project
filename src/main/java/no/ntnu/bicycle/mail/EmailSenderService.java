@@ -1,6 +1,7 @@
 package no.ntnu.bicycle.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -11,11 +12,11 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
-public class EmailSenderService {
+public class EmailSenderService{
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendEmail(String toEmail, String subject, String body){
+    public void sendEmail(String toEmail, String subject, String body) throws MailException {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("keep.rolling.rolling.rolling16@gmail.com");

@@ -1,7 +1,11 @@
 package no.ntnu.bicycle.service;
 
+import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.repository.CustomerRepository;
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.PasswordGenerator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +31,11 @@ public class CustomerService {
         return customer.orElse(null);
     }
 
+    public Customer findCustomerByEmail(String email) {
+        Optional<Customer> customer = customerRepository.findByEmail(email);
+        return customer.orElse(null);
+    }
+
 
     public boolean addNewCustomer(Customer customer) {
         boolean added = false;
@@ -41,6 +50,23 @@ public class CustomerService {
             }
         }
         return added;
+    }
+
+    public String resetPassword(String email){
+        PasswordGenerator passwordGenerator = new PasswordGenerator();
+        CharacterRule alphabets = new CharacterRule(EnglishCharacterData.Alphabetical);
+        CharacterRule digits = new CharacterRule(EnglishCharacterData.Digit);
+        String generatedPassword = passwordGenerator.generatePassword(10,alphabets,digits);
+
+        if (customerRepository.findByEmail(email).isPresent()) {
+            Customer customer = customerRepository.findByEmail(email).get();
+
+            customer.setPassword(new BCryptPasswordEncoder().encode(generatedPassword));
+        }else{
+            generatedPassword = null;
+        }
+
+        return generatedPassword;
     }
 
     public boolean deleteCustomer(int customerId) {

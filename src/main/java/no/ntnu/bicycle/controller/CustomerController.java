@@ -1,10 +1,12 @@
 package no.ntnu.bicycle.controller;
 
+import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -15,6 +17,9 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    EmailSenderService emailSenderService;
 
     @GetMapping
     public List<Customer> getCustomer() {
@@ -43,6 +48,30 @@ public class CustomerController {
         }
         return response;
     }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> resetPassword(@RequestBody String email) {
+        ResponseEntity<String> response = null;
+        Customer customer = customerService.findCustomerByEmail(email);
+        if (customer != null) {
+            String generatedPassword = customerService.resetPassword(email);
+            if (generatedPassword != null){
+                try{
+                    emailSenderService.sendEmail(email, "Password reset", "You're new password is: " + generatedPassword);
+                    response = new ResponseEntity<>(HttpStatus.OK);
+                }catch (MailException e){
+                    e.printStackTrace();
+                    response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+
+            }
+        } else {
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
+
+
 
     @DeleteMapping("/{id}")
     public void deleteCustomer(@PathVariable("id") int customerId) {
