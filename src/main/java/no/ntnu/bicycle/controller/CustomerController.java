@@ -53,7 +53,7 @@ public class CustomerController {
         return response;
     }
 
-    @PostMapping("/forgot-password")
+    @PostMapping(value = "/reset-password", consumes = "application/json")
     public ResponseEntity<String> resetPassword(@RequestBody String email) {
         ResponseEntity<String> response = null;
         Customer customer = customerService.findCustomerByEmail(email);

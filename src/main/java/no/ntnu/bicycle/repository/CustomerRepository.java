@@ -18,7 +18,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
      * @param email email to look for
      * @return th euser that natcged this email
      */
-    @Query(value = "SELECT * FROM 'user' WHERE email = :email", nativeQuery = true)
+    @Query(value = "SELECT * FROM 'customer' WHERE email = :email", nativeQuery = true)
     Optional<Customer> findByEmail(@Param("email") String email);
 
 }

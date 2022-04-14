@@ -57,11 +57,10 @@ public class CustomerService {
         CharacterRule alphabets = new CharacterRule(EnglishCharacterData.Alphabetical);
         CharacterRule digits = new CharacterRule(EnglishCharacterData.Digit);
         String generatedPassword = passwordGenerator.generatePassword(10,alphabets,digits);
+        Optional<Customer> customer = customerRepository.findByEmail(email);
 
-        if (customerRepository.findByEmail(email).isPresent()) {
-            Customer customer = customerRepository.findByEmail(email).get();
-
-            customer.setPassword(new BCryptPasswordEncoder().encode(generatedPassword));
+        if (customer.isPresent()) {
+            customer.get().setPassword(new BCryptPasswordEncoder().encode(generatedPassword));
         }else{
             generatedPassword = null;
         }
