@@ -1,4 +1,4 @@
-package no.ntnu.bicycle.controller;
+package no.ntnu.bicycle.controller.rest;
 
 import no.ntnu.bicycle.model.Payment;
 import no.ntnu.bicycle.service.PaymentService;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("payment")
 public class PaymentController {
 
-    PaymentService paymentService;
+    private PaymentService paymentService;
 
     public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;

@@ -21,7 +21,8 @@ public class Customer {
     private int phone;
     private Integer age;
     private boolean active = true;
-    private String role;
+    @Enumerated
+    private Role role;
 
     //@OneToMany
     //@JsonIgnore
@@ -31,13 +32,14 @@ public class Customer {
 
     }
 
-    public Customer(String firstName,String lastName,String email, String dob, int phone,String password,String role) {
+    public Customer(String firstName,String lastName,String email, String dob, int phone,String password,Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dob = LocalDate.parse(dob);
         this.phone = phone;
         this.password = password;
+
         this.role = role;
         LocalDate today = LocalDate.now(); // Today's date is 10th Jan 2022
         Period p = Period.between(LocalDate.parse(dob), today);
@@ -72,16 +74,8 @@ public class Customer {
         this.id = id;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
-    }
-
-    public void setRoleAsUser() {
-        this.role = "ROLE_USER";
-    }
-
-    public void setRoleAsAdmin() {
-        this.role = "ROLE_ADMIN";
     }
 
 

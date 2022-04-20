@@ -49,7 +49,6 @@ public class CustomerService {
             if (existingCustomer == null) {
                 customer.setPassword(new BCryptPasswordEncoder().encode(customer.getPassword()));
                 customer.updateAge();
-                customer.setRoleAsUser();
                 customerRepository.save(customer);
                 added = true;
             }

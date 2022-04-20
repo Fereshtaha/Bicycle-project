@@ -1,4 +1,4 @@
-package no.ntnu.bicycle.controller;
+package no.ntnu.bicycle.controller.rest;
 
 import no.ntnu.bicycle.model.OrderDetails;
 import no.ntnu.bicycle.service.OrderDetailsService;

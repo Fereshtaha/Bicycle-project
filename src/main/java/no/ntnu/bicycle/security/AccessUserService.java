@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class AccessUserService implements UserDetailsService {
 
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     public AccessUserService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;

@@ -1,4 +1,4 @@
-package no.ntnu.bicycle.controller;
+package no.ntnu.bicycle.controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

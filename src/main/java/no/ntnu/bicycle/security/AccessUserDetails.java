@@ -1,6 +1,7 @@
 package no.ntnu.bicycle.security;
 
 import no.ntnu.bicycle.model.Customer;
+import no.ntnu.bicycle.model.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,14 +20,14 @@ public class AccessUserDetails implements UserDetails {
         this.username = customer.getEmail();
         this.password = customer.getPassword();
         this.isActive = customer.isActive();
-        String role = customer.getRole();
-        authorities.add(new SimpleGrantedAuthority(role));
+        Role role = customer.getRole();
+        authorities.add(new SimpleGrantedAuthority(role.toString()));
     }
 
 
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
