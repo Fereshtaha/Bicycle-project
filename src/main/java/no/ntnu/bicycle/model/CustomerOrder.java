@@ -1,6 +1,5 @@
 package no.ntnu.bicycle.model;
 
-import no.ntnu.bicycle.model.Product;
 
 
 import javax.persistence.*;

@@ -23,24 +23,29 @@ public class CustomerService {
     }
 
     public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+        return (List<Customer>) customerRepository.findAll();
     }
 
-    public Customer findCustomerById(int id) {
-        Optional<Customer> customer = customerRepository.findById(id);
-        return customer.orElse(null);
+    public Customer findCustomerById(Long id) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isEmpty()) {
+            //todo: Sett inn exception
+        }
+
+
+        return optionalCustomer.get();
     }
 
     public Customer findCustomerByEmail(String email) {
         Optional<Customer> customer = customerRepository.findByEmail(email);
-        return customer.orElse(null);
+        return customer.get();
     }
 
 
     public boolean addNewCustomer(Customer customer) {
         boolean added = false;
         if (customer != null && customer.isValid()) {
-            Customer existingCustomer = findCustomerById(customer.getId());
+            Customer existingCustomer = findCustomerById((long) customer.getId());
             if (existingCustomer == null) {
                 customer.setPassword(new BCryptPasswordEncoder().encode(customer.getPassword()));
                 customer.updateAge();
@@ -69,7 +74,7 @@ public class CustomerService {
     }
 
     public boolean deleteCustomer(int customerId) {
-        Optional<Customer> customer = customerRepository.findById(customerId);
+        Optional<Customer> customer = customerRepository.findById((long) customerId);
         if (customer.isPresent()) {
             customerRepository.delete(customer.get());
         }
@@ -79,7 +84,7 @@ public class CustomerService {
     @Transactional
     public String updateCustomer(int customerId, Customer customer) {
      String errorMessage = null;
-     Customer existingCustomer = findCustomerById(customerId);
+     Customer existingCustomer = findCustomerById((long) customerId);
      if (existingCustomer == null) {
          errorMessage = "No customer with id " + customerId + "exists";
      } else if (customer == null || !customer.isValid()) {

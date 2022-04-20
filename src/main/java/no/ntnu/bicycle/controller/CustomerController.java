@@ -18,11 +18,11 @@ public class CustomerController {
 
     CustomerService customerService;
 
-    @Autowired
     EmailSenderService emailSenderService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, EmailSenderService emailSenderService) {
         this.customerService = customerService;
+        this.emailSenderService = emailSenderService;
     }
 
     @GetMapping
@@ -31,7 +31,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getOneCustomer(@PathParam("costumer") @PathVariable("id") int customerId){
+    public ResponseEntity<Customer> getOneCustomer(@PathParam("costumer") @PathVariable("id") Long customerId){
         ResponseEntity<Customer> response;
         Customer customer = customerService.findCustomerById(customerId);
         if (customer != null) {
