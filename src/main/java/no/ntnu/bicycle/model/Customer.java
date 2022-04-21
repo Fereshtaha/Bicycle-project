@@ -57,6 +57,10 @@ public class Customer {
         return !"".equals(firstName);
     }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public long getId() {
         return id;
     }

@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/customers")
@@ -55,9 +57,7 @@ public class CustomerController {
 
     @PostMapping(value = "/reset-password", consumes = "application/json")
     public ResponseEntity<String> resetPassword(@RequestBody String emailObject) {
-        System.out.println(emailObject);
         String[] stringArray = emailObject.split("\"" );
-        System.out.println(stringArray[3]);
         String email = stringArray[3];
         ResponseEntity<String> response = null;
         Customer customer = customerService.findCustomerByEmail(email);
@@ -71,12 +71,36 @@ public class CustomerController {
                     e.printStackTrace();
                     response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
-
             }
         } else {
-            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
             System.out.println("Customer doesnt exist");
         }
+        return response;
+    }
+
+    @PostMapping(value = "/update-password", consumes = "application/json")
+    public ResponseEntity<String> updatePassword(@RequestBody String emailAndNewAndOldPassword){
+        ResponseEntity<String> response;
+
+        String[] stringArray = emailAndNewAndOldPassword.split("\"" );
+
+        String email = stringArray[3];
+        String oldPassword = stringArray[7];
+        String newPassword = stringArray[11];
+        Customer customer = customerService.findCustomerByEmail(email);
+        if (customer.isValid()){
+             if(new BCryptPasswordEncoder().matches(oldPassword, customer.getPassword())){
+                customer.setPassword(new BCryptPasswordEncoder().encode(newPassword));
+                response = new ResponseEntity<>(HttpStatus.OK);
+                customerService.updateCustomer(customer.getId(),customer);
+            }else{
+                 response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+             }
+        }else{
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         return response;
     }
 
