@@ -12,7 +12,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -57,7 +57,7 @@ public class Customer {
         return !"".equals(firstName);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -70,7 +70,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

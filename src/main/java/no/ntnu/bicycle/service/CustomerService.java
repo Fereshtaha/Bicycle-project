@@ -26,8 +26,8 @@ public class CustomerService {
         return (List<Customer>) customerRepository.findAll();
     }
 
-    public Customer findCustomerById(Long id) {
-        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+    public Customer findCustomerById(long id) {
+        Optional<Customer> optionalCustomer = customerRepository.findById((long) id);
         if (optionalCustomer.isEmpty()) {
             //todo: Sett inn exception
         }
@@ -37,6 +37,7 @@ public class CustomerService {
     }
 
     public Customer findCustomerByEmail(String email) {
+        System.out.println(email);
         Optional<Customer> customer = customerRepository.findByEmail(email);
         return customer.get();
     }
@@ -45,7 +46,7 @@ public class CustomerService {
     public boolean addNewCustomer(Customer customer) {
         boolean added = false;
         if (customer != null && customer.isValid()) {
-            Customer existingCustomer = findCustomerById((long) customer.getId());
+            Customer existingCustomer = findCustomerById(customer.getId());
             if (existingCustomer == null) {
                 customer.setPassword(new BCryptPasswordEncoder().encode(customer.getPassword()));
                 customer.updateAge();
@@ -65,6 +66,7 @@ public class CustomerService {
 
         if (customer.isPresent()) {
             customer.get().setPassword(new BCryptPasswordEncoder().encode(generatedPassword));
+            updateCustomer(customer.get().getId(),customer.get());
         }else{
             generatedPassword = null;
         }
@@ -81,9 +83,9 @@ public class CustomerService {
     }
 
     @Transactional
-    public String updateCustomer(int customerId, Customer customer) {
+    public String updateCustomer(long customerId, Customer customer) {
      String errorMessage = null;
-     Customer existingCustomer = findCustomerById((long) customerId);
+     Customer existingCustomer = findCustomerById(customerId);
      if (existingCustomer == null) {
          errorMessage = "No customer with id " + customerId + "exists";
      } else if (customer == null || !customer.isValid()) {

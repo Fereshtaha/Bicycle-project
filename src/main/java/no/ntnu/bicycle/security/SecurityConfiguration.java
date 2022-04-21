@@ -32,11 +32,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        final String admin = "ADMIN";
+        final String user = "USER";
         // Set up the authorization requests, starting from most restrictive at the top, to least restrictive on bottom
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("USER","ADMIN")
-                .antMatchers("/account").hasAnyRole("USER","ADMIN")
+                .antMatchers("/admin").hasRole(admin)
+                .antMatchers("/user").hasAnyRole(user,admin)
+                .antMatchers("/account").hasAnyRole(user,admin)
                 .antMatchers("/").permitAll()
                 .and()
                 .formLogin()
@@ -46,8 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .passwordParameter("password")
                 .and()
                 .logout().logoutUrl("/logout")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true);
+                //.deleteCookies("JSESSIONID")
+                //.invalidateHttpSession(true)
+        ;
     }
 
     /**

@@ -31,7 +31,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getOneCustomer(@PathParam("costumer") @PathVariable("id") Long customerId){
+    public ResponseEntity<Customer> getOneCustomer(@PathParam("costumer") @PathVariable("id") int customerId){
         ResponseEntity<Customer> response;
         Customer customer = customerService.findCustomerById(customerId);
         if (customer != null) {
@@ -54,7 +54,11 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/reset-password", consumes = "application/json")
-    public ResponseEntity<String> resetPassword(@RequestBody String email) {
+    public ResponseEntity<String> resetPassword(@RequestBody String emailObject) {
+        System.out.println(emailObject);
+        String[] stringArray = emailObject.split("\"" );
+        System.out.println(stringArray[3]);
+        String email = stringArray[3];
         ResponseEntity<String> response = null;
         Customer customer = customerService.findCustomerByEmail(email);
         if (customer != null) {

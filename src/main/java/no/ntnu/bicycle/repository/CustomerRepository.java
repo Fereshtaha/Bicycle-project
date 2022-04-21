@@ -3,9 +3,11 @@ package no.ntnu.bicycle.repository;
 import no.ntnu.bicycle.model.Customer;
 import org.hibernate.sql.Select;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -21,4 +23,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     @Query(value = "SELECT * FROM public.customer where email = :email", nativeQuery = true)
     Optional<Customer> findByEmail(@Param("email") String email);
 
+    Optional<Customer> findByEmailEqualsIgnoreCase(@NonNull String email);
 }
