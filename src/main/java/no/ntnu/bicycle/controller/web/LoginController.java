@@ -21,7 +21,7 @@ public class LoginController {
 
     @GetMapping("/loginOk")
     //or hasRole('ADMIN'
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public String getSuccessfulLoginURL(Authentication authentication) {
         System.out.println(authentication);
         if (authentication != null) {

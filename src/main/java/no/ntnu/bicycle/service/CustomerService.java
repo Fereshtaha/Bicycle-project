@@ -1,6 +1,5 @@
 package no.ntnu.bicycle.service;
 
-import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.model.Role;
 import no.ntnu.bicycle.repository.CustomerRepository;
@@ -29,13 +28,12 @@ public class CustomerService {
     }
 
     public Customer findCustomerById(long id) {
-        Optional<Customer> optionalCustomer = customerRepository.findById((long) id);
-        if (optionalCustomer.isEmpty()) {
-            //todo: Sett inn exception
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        return optionalCustomer.orElse(null);
+        /*if (optionalCustomer.isEmpty()) {
+            throw new IllegalArgumentException("Cannot find the customer");
         }
-
-
-        return optionalCustomer.get();
+        return optionalCustomer.get();*/
     }
 
     public Customer findCustomerByEmail(String email) {

@@ -16,4 +16,19 @@ public class AboutController {
 
         return "HTML/Om-oss";
     }
+
+    @GetMapping("/customer-service")
+    public String getCustomerService(Model model) {
+        return "HTML/Customer-Service";
+    }
+
+    @GetMapping("/delivery-information")
+    public String getDelivaryInfo(Model model) {
+        return "HTML/Delivery-information";
+    }
+
+    @GetMapping("/terms-policy")
+    public String getTermsPolicy(Model model) {
+        return "HTML/Terms-policy";
+    }
 }

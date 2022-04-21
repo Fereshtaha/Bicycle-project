@@ -49,10 +49,11 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
         logger.info("Importing test data...");
         Customer sebastian = new Customer("Sebastian", "Nilsen", "sebasn@stud.ntnu.no","2001-04-19",94658622,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_ADMIN);
-        Customer anne = new Customer("Anne", "Ruud", "anne.ruud@mail.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa",Role.ROLE_USER);
+        Customer anne = new Customer("Anne", "Ruud", "fereshta@live.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa",Role.ROLE_USER);
+        Customer marita = new Customer("Marita", "Yo", "maritayo@mail.no", "2000-06-11", 929394949, "$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_USER);
 
 
-        customerRepository.saveAll(List.of(sebastian,anne));
+        customerRepository.saveAll(List.of(sebastian,anne, marita));
 
         Product blueHelmet = new Product("Blue helmet",199);
         Product whiteHelmet = new Product("White helmet",199);

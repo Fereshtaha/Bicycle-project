@@ -1,0 +1,44 @@
+p{
+    color: #1C1F21;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+.terms-policy {
+    max-width: 700px;
+    margin: 0 auto;
+    width: auto;
+
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    vertical-align: baseline;
+}
+
+.terms-policy h2{
+    text-align:center;
+    width:100%;
+}
+
+.terms-policy h1{
+    font-size:20px;
+}
+
+.info {
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+
+
+@media (max-width: 45.99rem) {
+    .info {
+        border-left: none;
+        padding: 1rem 0.75;
+        margin-top: 0;
+    }
+}
+

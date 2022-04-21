@@ -3,7 +3,6 @@ package no.ntnu.bicycle.controller.rest;
 import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
@@ -17,7 +16,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
-
     CustomerService customerService;
 
     EmailSenderService emailSenderService;
@@ -52,6 +50,7 @@ public class CustomerController {
         } else {
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        System.out.println(response);
         return response;
     }
 
@@ -65,7 +64,7 @@ public class CustomerController {
             String generatedPassword = customerService.resetPassword(email);
             if (generatedPassword != null){
                 try{
-                    emailSenderService.sendEmail(email, "Password reset", "You're new password is: " + generatedPassword);
+                    emailSenderService.sendEmail(email, "Password reset", "Your new password is: " + generatedPassword);
                     response = new ResponseEntity<>(HttpStatus.OK);
                 }catch (MailException e){
                     e.printStackTrace();

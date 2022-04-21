@@ -7,7 +7,6 @@ import java.time.Period;
 
 
 @Entity(name = "customer")
-
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
