@@ -6,11 +6,14 @@ import no.ntnu.bicycle.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -59,7 +62,8 @@ public class CustomerController {
         String[] stringArray = emailObject.split("\"" );
         String email = stringArray[3];
         ResponseEntity<String> response = null;
-        Customer customer = customerService.findCustomerByEmail(email);
+        try {
+            Customer customer = customerService.findCustomerByEmail(email);
         if (customer != null) {
             String generatedPassword = customerService.resetPassword(email);
             if (generatedPassword != null){
@@ -75,6 +79,9 @@ public class CustomerController {
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
             System.out.println("Customer doesnt exist");
         }
+        }catch (NoSuchElementException e){
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return response;
     }
 
@@ -84,20 +91,25 @@ public class CustomerController {
 
         String[] stringArray = emailAndNewAndOldPassword.split("\"" );
 
-        String email = stringArray[3];
-        String oldPassword = stringArray[7];
-        String newPassword = stringArray[11];
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+
+        String oldPassword = stringArray[3];
+        String newPassword = stringArray[7];
         Customer customer = customerService.findCustomerByEmail(email);
         if (customer.isValid()){
              if(new BCryptPasswordEncoder().matches(oldPassword, customer.getPassword())){
                 customer.setPassword(new BCryptPasswordEncoder().encode(newPassword));
                 response = new ResponseEntity<>(HttpStatus.OK);
                 customerService.updateCustomer(customer.getId(),customer);
+                 System.out.println("Password updated");
             }else{
                  response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                 System.err.println("Error: Password not updated, password doesnt match");
              }
         }else{
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            System.err.println("Error: Password not updated, user not found");
         }
 
         return response;
