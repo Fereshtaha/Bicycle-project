@@ -56,12 +56,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     /**
      * This method is called to decide what encryption to use for password checking
-     *
      * @return The password encryptor
      */
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

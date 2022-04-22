@@ -3,6 +3,7 @@ package no.ntnu.bicycle.service;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.model.Role;
 import no.ntnu.bicycle.repository.CustomerRepository;
+import no.ntnu.bicycle.security.SecurityConfiguration;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
@@ -28,8 +29,8 @@ public class CustomerService {
     }
 
     public Customer findCustomerById(long id) {
-        Optional<Customer> optionalCustomer = customerRepository.findById(id);
-        return optionalCustomer.orElse(null);
+        Optional<Customer> customer = customerRepository.findById(id);
+        return customer.get();
         /*if (optionalCustomer.isEmpty()) {
             throw new IllegalArgumentException("Cannot find the customer");
         }

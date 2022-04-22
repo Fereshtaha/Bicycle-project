@@ -87,10 +87,13 @@ footer .follow i:hover, footer a:hover{
     color: #088178;
 }
 
-footer .copyright{
+.copyright{
     width: 100%;
     text-align: center;
+    grid-column:1/5;
+
 }
+
 
 @media screen and (max-width: 900px) {
     footer{

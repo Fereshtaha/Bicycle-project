@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="Header" id="header" th:fragment="header">
+    <div class="navbar">
+        <div class="dropdown" id="dropDownOnHover">
+            <img class="dropbtn" id="hamburger" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png" alt="">
+            <div class="dropdown-content" id="dropdown-contentID">
+                <div class="row">
+                    <div class="column">
+                        <a href="HTML/ProductPage.html"><b>ALL PRODUCTS</b></a>
+                        <a href="">Link 1</a>
+                        <a href="">Link 2</a>
+                        <a href="">Link 3</a>
+                    </div>
+                    <div class="column">
+                        <a href="#"><b>PERSONALISATION</b></a>
+                        <a href="">Link 1</a>
+                        <a href="">Link 2</a>
+                        <a href="">Link 3</a>
+                    </div>
+                    <div class="column">
+                        <a href="#"><b>INFO</b></a>
+                        <a href="/about-us">Om oss</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/" ><img id="LogoImage" src="Images/KRRR-Logo.png" alt="Rolling, Rolling, Rolling"></a>
+    <div class="header_right_icons">
+        <a class="accountButton" href="/account">ACCOUNT</a>
+        <a class="shoppingCartButton" href="/handlekurv">HANDLEKURV</a>
+    </div>
+</header>
+
+
+</body>
+</html>

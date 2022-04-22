@@ -1,6 +1,9 @@
 package no.ntnu.bicycle.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -31,7 +34,23 @@ public class Customer {
 
     }
 
-    public Customer(String firstName,String lastName,String email, String dob, int phone,String password,Role role) {
+    @JsonCreator
+    public Customer(@JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName, @JsonProperty("email") String email,
+                    @JsonProperty("dob") String dob, @JsonProperty("phone") int phone, @JsonProperty("password") String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = LocalDate.parse(dob);
+        this.phone = phone;
+        this.password = password;
+        LocalDate today = LocalDate.now(); // Today's date is 10th Jan 2022
+        Period p = Period.between(LocalDate.parse(dob), today);
+        this.age = p.getYears();
+        this.role = Role.ROLE_USER;
+    }
+
+
+    public Customer(String firstName, String lastName, String email, String dob, int phone, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -45,6 +64,7 @@ public class Customer {
         this.age = p.getYears();
 
     }
+
 
     /**
      * Getters and setters
