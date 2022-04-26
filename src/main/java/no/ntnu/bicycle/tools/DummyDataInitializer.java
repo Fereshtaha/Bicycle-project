@@ -1,10 +1,7 @@
 package no.ntnu.bicycle.tools;
 
 import no.ntnu.bicycle.mail.EmailSenderService;
-import no.ntnu.bicycle.model.Customer;
-import no.ntnu.bicycle.model.CustomerOrder;
-import no.ntnu.bicycle.model.Product;
-import no.ntnu.bicycle.model.Role;
+import no.ntnu.bicycle.model.*;
 import no.ntnu.bicycle.repository.CustomerRepository;
 import no.ntnu.bicycle.repository.OrderRepository;
 import no.ntnu.bicycle.repository.ProductRepository;
@@ -52,6 +49,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         Customer anne = new Customer("Anne", "Ruud", "anneruud@mail.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa",Role.ROLE_USER);
         //Customer fereshta = new Customer("Fereshta", "Ahmadi", "fereshta@stud.ntnu.no", "2000-06-11", 929394949, "$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_USER);
 
+        BillingAndShippingAddress adresse1 = new BillingAndShippingAddress("adresse1","Sebastian","Nilsen","Fiolveien 1b","NORWAY","1395","Hvalstad","94198166");
+
+        sebastian.setAddress(adresse1);
 
         customerRepository.saveAll(List.of(sebastian,anne));
 

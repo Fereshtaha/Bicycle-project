@@ -9,7 +9,7 @@
 
 <footer class="section-p1" th:fragment="footer">
     <div class="col">
-        <img src="Images/KRRR-Logo.png" class="logo" alt="logo">
+        <img th:src="@{/Images/KRRR-Logo.png}" class="logo" alt="logo">
         <h4>Contact</h4>
         <p><strong>Address: </strong>Laardsvegen 2, 6009 Aalesund</p>
         <p><strong>Phone: </strong>98765432</p>
@@ -49,11 +49,11 @@
         <h4>Install App</h4>
         <p>From App Store or Google Play</p>
         <div class="row">
-            <img class="apps" src="Images/apple-app-store-badge.png" alt="">
-            <img class="apps" src="Images/app-store-icon-play-store-icon-google-logo.png" alt="">
+            <img class="apps" th:src="@{/Images/apple-app-store-badge.png}" alt="">
+            <img class="apps" th:src="@{/Images/app-store-icon-play-store-icon-google-logo.png}" alt="">
         </div>
         <p>Secured Payment Gateways</p>
-        <img class="payments" src="Images/stripe-payment-icon-copy.png" alt="">
+        <img class="payments" th:src="@{/Images/stripe-payment-icon-copy.png}" alt="">
     </div>
 
     <div class="copyright">

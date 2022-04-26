@@ -1,0 +1,125 @@
+#user-profile{
+    display: flex;
+    max-width: 840px;
+    padding-bottom: 128px;
+    padding-top: 128px;
+    margin: auto;
+    width: calc(100% - 80px);
+}
+
+.small-header{
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 30px;
+    text-transform: uppercase;
+    color: rgb(0, 128, 255)
+}
+
+.big-header{
+    font-size: 24px;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #d0d0d0;
+    color: rgb(0, 128, 255)
+}
+
+.user-profile-nav-link{
+    padding: 0 0 15px 25px;
+}
+
+#user-profile-nav{
+    width: 39.3%;
+}
+#user-profile-info{
+    width: 60.7%;
+}
+
+.user-profile-nav-link a{
+    font-size: 14px;
+    color: #565656;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.user-profile-nav-link a:hover{
+    border-bottom: solid black 1px;
+}
+
+#user-profile-nav h3{
+    font-size: 14px;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 1.33;
+    color: rgb(0, 128, 255)
+}
+
+#user-profile-nav-link-logout a{
+    font-size: 14px;
+    color: #565656;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#user-profile-nav-link-logout a:hover{
+    border-bottom: solid black 1px;
+}
+
+hr{
+    margin: 10px 0 25px;
+    width: 220px;
+}
+
+form .row{
+    margin-bottom: 20px;
+    position: relative;
+}
+
+form label{
+    margin-bottom: 7px;
+    display: inline-block;
+    font-size: .813em;
+    text-transform: lowercase;
+    color: #565656;
+}
+
+form label:first-letter{
+    text-transform: capitalize;
+}
+#updateAccountButton{
+    padding-top: 20px;
+}
+
+#updateAccountButton button{
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    padding: 14px 25px 13px;
+    font-weight: 400;
+    font-size: .8125em;
+    border: 0;
+    text-transform: uppercase;
+    width: 100%;
+    background-color: lightblue;
+    cursor: default;
+}
+
+#updateAccountButton button:disabled{
+    color: #c5c5c5;
+    background-color: #f5f5f5;
+    cursor:not-allowed;
+}
+
+form input{
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #c5c5c5;
+    padding: 12px;
+    border-radius: 4px;
+}
+
+form input.disabled{
+    cursor:not-allowed;
+    background-color: #f5f5f5;
+}

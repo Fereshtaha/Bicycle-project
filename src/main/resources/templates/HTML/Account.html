@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="CSS/Nav.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/account.css">
+    <script src="../scripts/nav.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1814d6f297.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="Header" id="header" th:replace="components/header :: header">
+</header>
+
+<section id="user-profile">
+    <div id="user-profile-nav">
+        <h3>MY ACCOUNT</h3>
+        <div class="user-profile-nav-link"><a style="font-weight: bold" href="">Personal information</a></div>
+        <div class="user-profile-nav-link"><a href="account/address">Address</a></div>
+        <h3>ORDER INFORMATION</h3>
+        <div class="user-profile-nav-link"><a href="">Order history</a></div>
+        <hr>
+        <div id="user-profile-nav-link-logout"><a href="/logout">Logout</a></div>
+    </div>
+    <div id="user-profile-info">
+        <h1 class="big-header">Personal information</h1>
+        <form action="">
+            <h2 class="small-header">Name</h2>
+            <div class="row">
+                <label>First name</label>
+                <input disabled="disabled" type="text" name="firstName" id="form-input-firstName" class="disabled">
+            </div>
+            <div class="row">
+                <label>Last name</label>
+                <input disabled="disabled" type="text" name="lastName" id="form-input-lastName" class="disabled">
+            </div>
+            <h2 class="small-header">Login information</h2>
+            <div class="row">
+                <label>Email</label>
+                <input disabled="disabled" type="email" name="email" id="form-input-email" class="disabled">
+            </div>
+            <div class="row">
+                <label>Old password</label>
+                <input type="password" name="password" id="form-input-oldPassword">
+            </div>
+            <div class="row">
+                <label>New password</label>
+                <input type="password" name="newPassword" id="form-input-newPassword">
+            </div>
+            <div class="row">
+                <label>Repeat password</label>
+                <input type="password" name="repeatPassword" id="form-input-repeatPassword">
+            </div>
+            <div class="row" id="updateAccountButton"><button type="submit" disabled="">Update changes</button></div>
+        </form>
+
+    </div>
+</section>
+
+<footer class="section-p1" th:replace="components/footer :: footer">
+</footer>
+</body>
+</html>
