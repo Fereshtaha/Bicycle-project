@@ -8,57 +8,55 @@
 
 
 <footer class="section-p1" th:fragment="footer">
-    <div class="col">
-        <img th:src="@{/Images/KRRR-Logo.png}" class="logo" alt="logo">
-        <h4>Contact</h4>
-        <p><strong>Address: </strong>Laardsvegen 2, 6009 Aalesund</p>
-        <p><strong>Phone: </strong>98765432</p>
-        <div class="Follow us">
-            <h4>Follow us</h4>
-            <h4 class="icon">
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-pinterest"></i>
-                <i class="fa-brands fa-tiktok"></i>
+    <div class="footer-grid">
+        <div class="col">
+            <img th:src="@{/Images/KRRR-Logo.png}" class="logo" alt="logo">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong>Laardsvegen 2, 6009 Aalesund</p>
+            <p><strong>Phone: </strong>98765432</p>
+            <div class="Follow us">
+                <h4>Follow us</h4>
+                <h4 class="icon">
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-pinterest"></i>
+                    <i class="fa-brands fa-tiktok"></i>
 
-            </h4>
+                </h4>
+            </div>
+        </div>
+        <div class="col">
+            <h4>More information</h4>
+            <a href="/about-us">About us</a>
+            <a href="/customer-service">Customer service</a>
+            <a href="/delivery-information">Delivery information</a>
+            <a href="/terms-policy">Terms & Policy</a>
+            <a href="#">Contact Us</a>
         </div>
 
-
-    </div>
-    <div class="col">
-        <h4>More information</h4>
-        <a href="/about-us">About us</a>
-        <a href="/customer-service">Customer service</a>
-        <a href="/delivery-information">Delivery information</a>
-        <a href="/terms-policy">Terms & Policy</a>
-        <a href="#">Contact Us</a>
-    </div>
-
-    <div class="col">
-        <h4>My Account</h4>
-        <a href="#">Sign in</a>
-        <a href="#">View Cart</a>
-        <a href="#">My Wishlist</a>
-        <a href="#">Track My Order</a>
-        <a href="#">Help</a>
-    </div>
-
-    <div class="col install">
-        <h4>Install App</h4>
-        <p>From App Store or Google Play</p>
-        <div class="row">
-            <img class="apps" th:src="@{/Images/apple-app-store-badge.png}" alt="">
-            <img class="apps" th:src="@{/Images/app-store-icon-play-store-icon-google-logo.png}" alt="">
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign in</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
         </div>
-        <p>Secured Payment Gateways</p>
-        <img class="payments" th:src="@{/Images/stripe-payment-icon-copy.png}" alt="">
-    </div>
 
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img class="apps" th:src="@{/Images/apple-app-store-badge.png}" alt="">
+                <img class="apps" th:src="@{/Images/app-store-icon-play-store-icon-google-logo.png}" alt="">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img class="payments" th:src="@{/Images/stripe-payment-icon-copy.png}" alt="">
+        </div>
+    </div>
     <div class="copyright">
         <p>@ 2022, Group 16 - Bicycle Project</p>
-
     </div>
 </footer>
 </body>

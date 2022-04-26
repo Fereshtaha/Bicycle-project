@@ -8,91 +8,12 @@
     <link rel="stylesheet" href="../CSS/footer.css">
 </head>
 <body>
-<header class="Header" id="header">
-    <div class="navbar">
-        <div class="dropdown" id="dropDownOnHover">
-            <img class="dropbtn" id="hamburger" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/2048px-Hamburger_icon.svg.png" alt="">
-            <div class="dropdown-content" id="dropdown-contentID">
-                <div class="row">
-                    <div class="column">
-                        <a href="#"><b>ALL PRODUCTS</b></a>
-                        <a href="">Link 1</a>
-                        <a href="">Link 2</a>
-                        <a href="">Link 3</a>
-                    </div>
-                    <div class="column">
-                        <a href="#"><b>PERSONALISATION</b></a>
-                        <a href="">Link 1</a>
-                        <a href="">Link 2</a>
-                        <a href="">Link 3</a>
-                    </div>
-                    <div class="column">
-                        <a href="#"><b>INFO</b></a>
-                        <a href="Om-oss.html">Om oss</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="../index.html" ><img id="LogoImage" src="../../../../../../../Group-website/Images/KRRR-Logo.png" alt="Rolling, Rolling, Rolling"></a>
-    <div class="header_right_icons">
-        <a class="accountButton" href="/account">ACCOUNT</a>
-        <a class="shoppingCartButton" href="/handlekurv">HANDLEKURV</a>
-    </div>
+<header class="Header" id="header" th:replace="components/header :: header">
 </header>
 
 <div id="productsToBeFilledFromDB"></div>
 
-<footer class="section-p1">
-    <div class="col">
-        <img src="../../../../../../../Group-website/Images/KRRR-Logo.png" class="logo" alt="logo">
-        <h4>Contact</h4>
-        <p><strong>Address: </strong>Laardsvegen 2, 6009 Aalesund</p>
-        <p><strong>Phone: </strong>9810290128232923</p>
-        <div class="Follow us">
-            <h4>Follow us</h4>
-            <h4 class="icon">
-                <i class="fa-brands fa-twitter"></i>
-
-            </h4>
-        </div>
-
-
-    </div>
-    <div class="col">
-        <h4>About</h4>
-        <a href="#">About us</a>
-        <a href="#">Delivery information</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Condition</a>
-        <a href="#">Contact Us</a>
-    </div>
-
-    <div class="col">
-        <h4>My Account</h4>
-        <a href="#">Sign in</a>
-        <a href="#">View Cart</a>
-        <a href="#">My Wishlist</a>
-        <a href="#">Track My Order</a>
-        <a href="#">Help</a>
-    </div>
-
-    <div class="col install">
-        <h4>Install App</h4>
-        <p>From App Store or Google Play</p>
-        <div class="row">
-            <img class="apps" src="../../../../../../../Group-website/Images/apple-app-store-badge.png" alt="">
-            <img class="apps" src="../../../../../../../Group-website/Images/app-store-icon-play-store-icon-google-logo.png" alt="">
-        </div>
-        <p>Secured Payment Gateways</p>
-        <img class="payments" src="../../../../../../../Group-website/Images/stripe-payment-icon-copy.png" alt="">
-    </div>
-
-    <div class="copyright">
-        <p>@ 2022, Group 16 - Bicycle Project</p>
-
-    </div>
-</footer>
+<footer class="section-p1" th:replace="components/footer :: footer"></footer>
 
 
 </body>

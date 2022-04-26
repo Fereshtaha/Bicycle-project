@@ -17,9 +17,6 @@
 }
 
 footer{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
     padding: 40px;
     justify-content: center;
     align-content: center;
@@ -81,6 +78,8 @@ footer .install .row img{
 
 footer .install img{
     margin: 10px 0 15px 0;
+    width: 70%;
+    min-width: 120px;
 }
 
 footer .follow i:hover, footer a:hover{
@@ -94,12 +93,24 @@ footer .follow i:hover, footer a:hover{
 
 }
 
+.footer-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
 
 @media screen and (max-width: 900px) {
-    footer{
+    .footer-grid{
         grid-template-columns: 1fr 1fr;
     }
     .logo{
         display: none;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .footer-grid{
+        grid-template-columns: 1fr;
     }
 }
