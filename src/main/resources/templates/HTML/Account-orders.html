@@ -27,36 +27,16 @@
         <div id="user-profile-nav-link-logout"><a href="/logout">Logout</a></div>
     </div>
     <div id="user-profile-info">
-        <h1 class="big-header">Personal information</h1>
-        <form action="">
-            <h2 class="small-header">Name</h2>
-            <div class="row">
-                <label>First name</label>
-                <input disabled="disabled" type="text" name="firstName" id="form-input-firstName" class="disabled">
-            </div>
-            <div class="row">
-                <label>Last name</label>
-                <input disabled="disabled" type="text" name="lastName" id="form-input-lastName" class="disabled">
-            </div>
-            <h2 class="small-header">Login information</h2>
-            <div class="row">
-                <label>Email</label>
-                <input disabled="disabled" type="email" name="email" id="form-input-email" class="disabled">
-            </div>
-            <div class="row">
-                <label>Old password</label>
-                <input type="password" name="password" id="form-input-oldPassword">
-            </div>
-            <div class="row">
-                <label>New password</label>
-                <input type="password" name="newPassword" id="form-input-newPassword">
-            </div>
-            <div class="row">
-                <label>Repeat password</label>
-                <input type="password" name="repeatPassword" id="form-input-repeatPassword">
-            </div>
-            <div class="row" id="updateAccountButton"><button type="submit" disabled="">Update changes</button></div>
-        </form>
+        <h1 class="big-header">Order history</h1>
+        <div class="row">
+            <select name="mobile-menu" id="mobile-menu-input" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                <option value="/account">Personal information</option>
+                <option value="/account/address">Address</option>
+                <option selected value="/account/orders">Order history</option>
+                <option value="/logout">Logout</option>
+            </select>
+        </div>
+        <div>No orders found</div>
 
     </div>
 </section>
