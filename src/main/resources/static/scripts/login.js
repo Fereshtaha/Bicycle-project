@@ -9,11 +9,6 @@ const errorEmailPattern = document.getElementById("patternEmailFieldErrorText");
 const errorPasswordEmpty = document.getElementById("emptyPasswordFieldErrorText");
 const errorPasswordPattern = document.getElementById("patternErrorText");
 
-
-function login(){
-    console.log("logged in");
-}
-
 /**
  * This function will be called when the status of HTTP response updates.
  * Typically, when the response has come completely, but for large responses this method could be called several
@@ -29,6 +24,19 @@ function onResponseReceived() {
     }
 }
 
+const queryString = window.location.search;
+let responseMessage = document.getElementById("successMessageContainer");
+if (queryString === "?error"){
+    console.log("vis error melding");
+    responseMessage.removeAttribute("hidden");
+    responseMessage.classList.add("errorResponse");
+    responseMessage.innerHTML = "<p id='successMessageText'>Invalid credentials, please try again!</p>";
+}if (queryString === "?logout"){
+    console.log("vis error melding");
+    responseMessage.removeAttribute("hidden");
+    responseMessage.classList.add("successResponse");
+    responseMessage.innerHTML = "<p id='successMessageText'>Successfully logged out!</p>";
+}
 
 
 function checkEmail(){

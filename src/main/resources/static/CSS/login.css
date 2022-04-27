@@ -99,3 +99,26 @@ form input{
     color:  #565656;
     font-size: 14px;
 }
+
+.errorResponse{
+    background-color: #ffcccb;
+    border: 1px solid #ff726f;
+}
+
+.successResponse{
+    background-color: #d3ffb9;
+    border: 1px solid #51c409;
+}
+
+#successMessageText{
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    margin: 0;
+
+}
+
+#successMessageContainer{
+    border-radius: 4px;
+    margin: 0 0 15px;
+}
