@@ -1,10 +1,9 @@
 package no.ntnu.bicycle.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "address")
 public class BillingAndShippingAddress {
     @Id
     @GeneratedValue
@@ -17,6 +16,8 @@ public class BillingAndShippingAddress {
     private String postalCode;
     private String city;
     private String phone;
+    @OneToOne(mappedBy = "address")
+    private Customer customer;
 
     public BillingAndShippingAddress(String addressName, String firstName, String lastName, String address, String country, String postalCode, String city, String phone) {
         this.addressName = addressName;

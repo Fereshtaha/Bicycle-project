@@ -28,7 +28,6 @@ function onResponseReceived() {
             console.log("Status code is: " + this.status)
         }
     }
-
 }
 
 

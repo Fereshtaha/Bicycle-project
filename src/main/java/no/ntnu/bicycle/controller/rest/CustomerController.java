@@ -1,6 +1,7 @@
 package no.ntnu.bicycle.controller.rest;
 
 import no.ntnu.bicycle.mail.EmailSenderService;
+import no.ntnu.bicycle.model.BillingAndShippingAddress;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.service.CustomerService;
 import org.springframework.http.HttpStatus;
@@ -45,6 +46,46 @@ public class CustomerController {
         return response;
     }
 
+    @GetMapping("/authenticated-customer")
+    public ResponseEntity<Customer> getOneCustomerByEmail(){
+        ResponseEntity<Customer> response;
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String customerEmail = auth.getName();
+            Customer customer = customerService.findCustomerByEmail(customerEmail);
+
+            if (customer != null) {
+                response = new ResponseEntity<>(customer, HttpStatus.OK);
+            } else {
+                response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (NoSuchElementException e){
+            response = new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        return response;
+    }
+
+    @GetMapping("/authenticated-address")
+    public ResponseEntity<BillingAndShippingAddress> getAddressOfCustomerByEmail(){
+        ResponseEntity<BillingAndShippingAddress> response;
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String customerEmail = auth.getName();
+            Customer customer = customerService.findCustomerByEmail(customerEmail);
+
+            if (customer != null) {
+                response = new ResponseEntity<>(customer.getAddress(), HttpStatus.OK);
+            } else {
+                response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (NoSuchElementException e){
+            response = new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        return response;
+    }
+
     @PostMapping(consumes = "application/json")
     public ResponseEntity<String> registerNewCustomer(@RequestBody Customer customer) {
         ResponseEntity<String> response;
@@ -53,7 +94,6 @@ public class CustomerController {
         } else {
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        System.out.println(response);
         return response;
     }
 
@@ -100,8 +140,8 @@ public class CustomerController {
         if (customer.isValid()){
              if(new BCryptPasswordEncoder().matches(oldPassword, customer.getPassword())){
                 customer.setPassword(new BCryptPasswordEncoder().encode(newPassword));
-                response = new ResponseEntity<>(HttpStatus.OK);
                 customerService.updateCustomer(customer.getId(),customer);
+                 response = new ResponseEntity<>(HttpStatus.OK);
                  System.out.println("Password updated");
             }else{
                  response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -111,7 +151,6 @@ public class CustomerController {
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
             System.err.println("Error: Password not updated, user not found");
         }
-
         return response;
     }
 

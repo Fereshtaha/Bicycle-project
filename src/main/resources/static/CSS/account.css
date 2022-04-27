@@ -155,3 +155,16 @@ select{
         display: block;
     }
 }
+
+.error{
+    display: none;
+}
+
+.errorActive{
+    display: block;
+    color: red;
+}
+
+.input-error{
+    border-color: red;
+}

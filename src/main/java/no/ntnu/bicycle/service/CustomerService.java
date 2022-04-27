@@ -38,7 +38,6 @@ public class CustomerService {
     }
 
     public Customer findCustomerByEmail(String email) {
-        System.out.println(email);
         Optional<Customer> customer = customerRepository.findByEmail(email);
         return customer.get();
     }

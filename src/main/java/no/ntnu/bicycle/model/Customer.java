@@ -26,7 +26,8 @@ public class Customer {
     private int phone;
     private Integer age;
     private boolean active = true;
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private BillingAndShippingAddress address;
     @Enumerated
     private Role role;

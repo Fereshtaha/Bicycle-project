@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>KRRR - orders</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/Images/KRRR-Logo.png}">
     <link rel="stylesheet" th:href="@{/CSS/Nav.css}">
     <link rel="stylesheet" th:href="@{/CSS/footer.css}">
     <link rel="stylesheet" th:href="@{/CSS/account.css}">
@@ -19,7 +20,7 @@
 <section id="user-profile">
     <div id="user-profile-nav">
         <h3>MY ACCOUNT</h3>
-        <div class="user-profile-nav-link"><a th:href="@{/account}">Personal information</a></div>
+        <div class="user-profile-nav-link"><a th:href="@{/account}">Account information</a></div>
         <div class="user-profile-nav-link"><a th:href="@{/account/address}">Address</a></div>
         <h3>ORDER INFORMATION</h3>
         <div class="user-profile-nav-link"><a style="font-weight: bold" th:href="@{/account/orders}">Order history</a></div>
@@ -30,7 +31,7 @@
         <h1 class="big-header">Order history</h1>
         <div class="row">
             <select name="mobile-menu" id="mobile-menu-input" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                <option value="/account">Personal information</option>
+                <option value="/account">Account information</option>
                 <option value="/account/address">Address</option>
                 <option selected value="/account/orders">Order history</option>
                 <option value="/logout">Logout</option>

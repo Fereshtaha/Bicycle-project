@@ -45,11 +45,11 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         }
 
         logger.info("Importing test data...");
-        Customer sebastian = new Customer("Sebastian", "Nilsen", "sebasn@stud.ntnu.no","2001-04-19",94658622,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_ADMIN);
+        Customer sebastian = new Customer("Sebastian", "Nilsen", "sebasn@stud.ntnu.no","2001-04-19",94198166,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_ADMIN);
         Customer anne = new Customer("Anne", "Ruud", "anneruud@mail.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa",Role.ROLE_USER);
         //Customer fereshta = new Customer("Fereshta", "Ahmadi", "fereshta@stud.ntnu.no", "2000-06-11", 929394949, "$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_USER);
 
-        BillingAndShippingAddress adresse1 = new BillingAndShippingAddress("adresse1","Sebastian","Nilsen","Fiolveien 1b","NORWAY","1395","Hvalstad","94198166");
+        BillingAndShippingAddress adresse1 = new BillingAndShippingAddress("adresse1","Sebastian","Nilsen","Fiolveien 1b","Norway","1395","Hvalstad","94198166");
 
         sebastian.setAddress(adresse1);
 
