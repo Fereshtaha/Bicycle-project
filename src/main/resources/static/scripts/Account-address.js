@@ -1,10 +1,10 @@
-window.onload = function (){
-    getInfoFromDB();
-}
 
-const asyncRequest = new XMLHttpRequest();
+
+
 
 function getInfoFromDB() {
+    const asyncRequest = new XMLHttpRequest();
+
     asyncRequest.addEventListener("load", fillFieldsWithResponse);
 
     asyncRequest.open("GET", "/customers/authenticated-address");
@@ -29,7 +29,6 @@ function getInfoFromDB() {
     })
 
     function fillFieldsWithResponse() {
-        console.log(this.responseText);
         let responseJson = JSON.parse(this.responseText);
 
         firstNameField.value = responseJson.firstName;
@@ -50,8 +49,11 @@ function getInfoFromDB() {
         }
     }
 }
+getInfoFromDB();
 
 function updateAddress(){
+    const asyncRequest = new XMLHttpRequest();
+
     const data = {
         firstName: document.getElementById("form-input-firstName").value.toString(),
         lastName: document.getElementById("form-input-lastName").value.toString(),
