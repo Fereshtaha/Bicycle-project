@@ -75,12 +75,12 @@ function updateAddress(){
             if (this.status === 200) { // handle success
                 responseMessage.classList.add("successResponse");
                 responseMessage.removeAttribute("hidden");
-                responseMessage.innerHTML = "<p id='successMessageText'>Profile has been successfully updated!</p>";
+                responseMessage.innerHTML = "<p id='successMessageText'>Profile has been successfully updated.</p>";
 
             } else{
                 responseMessage.removeAttribute("hidden");
                 responseMessage.classList.add("errorResponse");
-                responseMessage.innerHTML = "<p id='successMessageText'>An error occurred. Profile not updated!</p>";
+                responseMessage.innerHTML = "<p id='successMessageText'>An error occurred. Profile not updated.</p>";
             }
         }
     }

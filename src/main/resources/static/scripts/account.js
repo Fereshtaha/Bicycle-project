@@ -69,13 +69,23 @@ function updatePassword() {
 
     function onResponseReceivedFromPOST() {
         if (this.readyState === XMLHttpRequest.DONE) {
+            let responseMessage = document.getElementById("successMessageContainer");
             if (this.status === 200) { // handle success
-                console.log("Successful POST request")
-                //location.href = "/account";
-            } else{
-                console.log("POST request was unsuccessful");
-                console.log("Status code is: " + this.status)
+                responseMessage.classList.add("successResponse");
+                responseMessage.removeAttribute("hidden");
+                responseMessage.innerHTML = "<p id='successMessageText'>Password updated.</p>";
+            } else if (this.status === 401){
+                responseMessage.removeAttribute("hidden");
+                responseMessage.classList.add("errorResponse");
+                responseMessage.innerHTML = "<p id='successMessageText'>The password doesn't match this account.</p>";
+            }else{
+                responseMessage.removeAttribute("hidden");
+                responseMessage.classList.add("errorResponse");
+                responseMessage.innerHTML = "<p id='successMessageText'>An error occurred, please try again.</p>";
             }
+            oldPasswordField.value = "";
+            newPasswordField.value = "";
+            newRepeatPasswordField.value = "";
         }
     }
 }

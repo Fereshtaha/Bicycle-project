@@ -164,14 +164,11 @@ public class CustomerController {
                 customer.setPassword(new BCryptPasswordEncoder().encode(newPassword));
                 customerService.updateCustomer(customer.getId(),customer);
                  response = new ResponseEntity<>(HttpStatus.OK);
-                 System.out.println("Password updated");
             }else{
-                 response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-                 System.err.println("Error: Password not updated, password doesnt match");
+                 response = new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
              }
         }else{
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            System.err.println("Error: Password not updated, user not found");
         }
         return response;
     }

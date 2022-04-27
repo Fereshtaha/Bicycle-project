@@ -82,7 +82,11 @@
                 <small class="error" id="noPasswordMatch">The passwords need to match</small>
                 <small class="error" id="emptyRepeatPasswordFieldErrorText">Please fill out this field</small>
             </div>
-            <div class="row" id="updateAccountButton"><button id="submitBtn" type="submit" disabled onclick="updatePassword()">Update changes</button></div>
+            <div class="row" id="updateAccountButton">
+                <button id="submitBtn" type="button" disabled onclick="updatePassword()">Update changes</button>
+            </div>
+            <div id="successMessageContainer" hidden>
+            </div>
         </form>
 
     </div>
