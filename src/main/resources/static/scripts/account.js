@@ -3,7 +3,7 @@ const asyncRequest = new XMLHttpRequest();
 function getInfoFromDB() {
     asyncRequest.addEventListener("load", fillFieldsWithResponse);
 
-    asyncRequest.open("GET", "http://localhost:8080/customers/authenticated-customer");
+    asyncRequest.open("GET", "/customers/authenticated-customer");
     asyncRequest.setRequestHeader("Accept", "application/json");
     asyncRequest.setRequestHeader("Content-Type", "application/json");
     asyncRequest.send();
@@ -61,7 +61,7 @@ function updatePassword() {
         newPassword: document.getElementById("form-input-newPassword").value.toString(),
     }
     let formData = JSON.stringify(data);
-    asyncRequest.open("POST", "http://localhost:8080/customers/update-password");
+    asyncRequest.open("POST", "/customers/update-password");
     asyncRequest.setRequestHeader("Accept", "application/json");
     asyncRequest.setRequestHeader("Content-Type", "application/json");
     asyncRequest.send(formData);

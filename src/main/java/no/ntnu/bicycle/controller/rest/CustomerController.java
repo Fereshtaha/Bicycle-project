@@ -86,6 +86,28 @@ public class CustomerController {
         return response;
     }
 
+    @PostMapping("/authenticated-address")
+    public ResponseEntity<String> updateAddressOfCustomer(@RequestBody BillingAndShippingAddress address) {
+        ResponseEntity<String> response;
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String customerEmail = auth.getName();
+            Customer customer = customerService.findCustomerByEmail(customerEmail);
+
+            if (customer != null) {
+                customer.setAddress(address);
+                customerService.updateCustomer(customer.getId(), customer);
+                response = new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (NoSuchElementException e){
+            response = new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        return response;
+    }
+
     @PostMapping(consumes = "application/json")
     public ResponseEntity<String> registerNewCustomer(@RequestBody Customer customer) {
         ResponseEntity<String> response;

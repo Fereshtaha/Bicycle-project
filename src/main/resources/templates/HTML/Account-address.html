@@ -38,7 +38,7 @@
                 <option value="/logout">Logout</option>
             </select>
         </div>
-        <form action="">
+        <form id="address-form">
             <h2 class="small-header">Standard billing and shipping address</h2>
             <div class="row">
                 <label>First name</label>
@@ -305,14 +305,16 @@
             </div>
             <div class="row">
                 <label>Postal code</label>
-                <input type="text" name="newPassword" id="form-input-postalCode">
+                <input type="text" name="postalCode" id="form-input-postalCode">
             </div>
             <div class="row">
                 <label>City</label>
-                <input type="text" name="repeatPassword" id="form-input-city">
+                <input type="text" name="city" id="form-input-city">
             </div>
-            <div class="row" id="updateAccountButton" onclick="updateAdress()">
-                <button type="submit" disabled="">Update changes</button>
+            <div class="row" id="updateAccountButton" onclick="updateAddress()">
+                <button id="submitBtn" type="button" disabled="">Update changes</button>
+            </div>
+            <div id="successMessageContainer" hidden>
             </div>
         </form>
 

@@ -49,7 +49,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         Customer anne = new Customer("Anne", "Ruud", "anneruud@mail.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa",Role.ROLE_USER);
         //Customer fereshta = new Customer("Fereshta", "Ahmadi", "fereshta@stud.ntnu.no", "2000-06-11", 929394949, "$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_USER);
 
-        BillingAndShippingAddress adresse1 = new BillingAndShippingAddress("adresse1","Sebastian","Nilsen","Fiolveien 1b","Norway","1395","Hvalstad","94198166");
+        BillingAndShippingAddress adresse1 = new BillingAndShippingAddress("Sebastian","Nilsen","Fiolveien 1b","Norway","1395","Hvalstad");
 
         sebastian.setAddress(adresse1);
 
