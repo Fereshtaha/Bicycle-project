@@ -33,7 +33,7 @@ public class OrderController {
         }
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<String> add(@RequestBody CustomerOrder customerOrder) {
         ResponseEntity<String> response;
         if (orderService.addNewOrder(customerOrder)) {
@@ -56,7 +56,7 @@ public class OrderController {
         return response;
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable int id) {
         ResponseEntity<String> response;
         if (orderService.deletingOrder(id)) {

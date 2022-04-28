@@ -43,15 +43,15 @@ public class OrderService {
     private boolean canBeAdded(CustomerOrder customerOrder) {
         return customerOrder != null;
 
-        }
+    }
 
-        public boolean deletingOrder(int orderId) {
-        boolean deleted = false;
-        if (findOrderById(orderId) != null) {
-            orderRepository.deleteById(orderId);
-            deleted = true;
+    public boolean deletingOrder(int orderId) {
+    boolean deleted = false;
+    if (findOrderById(orderId) != null) {
+        orderRepository.deleteById(orderId);
+        deleted = true;
         }
-        return deleted;
+    return deleted;
     }
 
 

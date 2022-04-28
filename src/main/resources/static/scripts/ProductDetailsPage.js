@@ -30,7 +30,7 @@ function getInfoFromDB() {
             "</div>"+
             "<div id='description-container'>" +
             "<p class='productName'>" + productName + "</p>" +
-            "<p class='productPrice'>" + price + ",-" +  "</p>" +
+            "<p class='productPrice'>" + price + " NOK" +  "</p>" +
             "<p class='productDescription'>" + description + "</p>" +
             "<button id='add-to-cart-button'>Add to chart</button>" +
             "</div>"

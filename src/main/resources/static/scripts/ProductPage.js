@@ -27,7 +27,7 @@ function getInfoFromDB() {
                 tag.innerHTML = "<a href=\"/products/"+ productId +"\">" +
                                 "<img class='productImage' src='/Images/" + imageUrl + "' alt='" + imageUrl+ "'>"+
                                 "<p class='productName'>" + productName + "</p>" +
-                                "<p class='productPrice'>" + price + ",-" +  "</p>" +
+                                "<p class='productPrice'>" + price + " NOK" +  "</p>" +
                                 "</a>"
 
                 elementToBeFilled.appendChild(tag);
