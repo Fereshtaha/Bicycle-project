@@ -6,3 +6,11 @@
 }
 
 * {box-sizing:border-box}
+
+#productsToBeFilledFromDB{
+    padding-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 80%;
+    margin: auto;
+}
