@@ -18,12 +18,17 @@ function getInfoFromDB() {
         if (responseJson.length !== 0){
             for (let i = 0; i<responseJson.length;i++){
                 let productJSON = responseJson[i];
+                let productId = productJSON.id;
                 let productName = productJSON.productName;
+                let imageUrl = productJSON.imageUrl;
                 let price = productJSON.price;
 
                 let tag = document.createElement("div");
-                tag.innerHTML = "<a href=\"https://google.com\"><p>" + productName + "</p>" +
-                                "<p>" + price + ",-" +  "</p></a>"
+                tag.innerHTML = "<a href=\"/products/"+ productId +"\">" +
+                                "<img class='productImage' src='/Images/" + imageUrl + "' alt='" + imageUrl+ "'>"+
+                                "<p class='productName'>" + productName + "</p>" +
+                                "<p class='productPrice'>" + price + ",-" +  "</p>" +
+                                "</a>"
 
                 elementToBeFilled.appendChild(tag);
             }

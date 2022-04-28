@@ -3,6 +3,9 @@ package no.ntnu.bicycle.controller.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.websocket.server.PathParam;
 
 @Controller
 public class ProductWebController {
@@ -15,5 +18,10 @@ public class ProductWebController {
     public String getProductWeb(Model model) {
 
         return "HTML/ProductPage";
+    }
+
+    @GetMapping("/products/{id}")
+    public String getProductDetailsWeb(@PathParam("costumer") @PathVariable("id") int customerId,Model model) {
+        return "HTML/ProductDetailsPage";
     }
 }

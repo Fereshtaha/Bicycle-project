@@ -10,18 +10,24 @@ public class Product {
     @GeneratedValue
     private int id;
     private String productName;
+    private String imageUrl;
     private int price;
 
-    public Product(String productName, int price) {
+    public Product(String productName, String imageUrl, int price) {
         this.productName = productName;
+        this.imageUrl = imageUrl;
         this.price = price;
     }
 
     public Product() {
     }
 
-    public Product(String productName) {
-        this.productName = productName;
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {

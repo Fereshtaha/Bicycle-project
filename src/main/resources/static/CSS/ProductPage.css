@@ -9,8 +9,29 @@
 
 #productsToBeFilledFromDB{
     padding-top: 100px;
+    padding-bottom: 100px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 50px;
     width: 80%;
     margin: auto;
+    text-align: center;
+}
+
+#productsToBeFilledFromDB div{
+    padding: 30px;
+}
+
+.productImage{
+    width: 70%;
+}
+
+.productName{
+    color: black;
+    font-size: 20px;
+}
+
+.productPrice{
+    color: black;
+    font-size: 12;
 }

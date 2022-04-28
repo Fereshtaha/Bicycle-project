@@ -1,5 +1,6 @@
 package no.ntnu.bicycle.service;
 
+import no.ntnu.bicycle.model.CustomerOrder;
 import no.ntnu.bicycle.model.Product;
 import no.ntnu.bicycle.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,9 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {return iterableToList(productRepository.findAll());}
+
+    public Product findOrderById(Integer id) {
+        return productRepository.findById(id).orElse(null);
+    }
 }
 
