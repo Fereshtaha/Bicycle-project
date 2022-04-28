@@ -27,12 +27,10 @@ function onResponseReceived() {
 const queryString = window.location.search;
 let responseMessage = document.getElementById("successMessageContainer");
 if (queryString === "?error"){
-    console.log("vis error melding");
     responseMessage.removeAttribute("hidden");
     responseMessage.classList.add("errorResponse");
     responseMessage.innerHTML = "<p id='successMessageText'>Invalid credentials, please try again!</p>";
 }if (queryString === "?logout"){
-    console.log("vis error melding");
     responseMessage.removeAttribute("hidden");
     responseMessage.classList.add("successResponse");
     responseMessage.innerHTML = "<p id='successMessageText'>Successfully logged out!</p>";

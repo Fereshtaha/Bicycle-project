@@ -55,12 +55,12 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
         customerRepository.saveAll(List.of(sebastian,anne));
 
-        Product blueHelmet = new Product("Blue helmet","blue-helmet.png",199);
-        Product whiteHelmet = new Product("White helmet","white-helmet.png",199);
-        Product blueHelmet1 = new Product("Blue helmet","blue-helmet.png",199);
-        Product whiteHelmet1 = new Product("White helmet","white-helmet.png",199);
-        Product blueHelmet2 = new Product("Blue helmet","blue-helmet.png",199);
-        Product whiteHelmet2 = new Product("White helmet","white-helmet.png",199);
+        Product blueHelmet = new Product("Blue helmet","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product whiteHelmet = new Product("White helmet","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product blueHelmet1 = new Product("Blue helmet","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product whiteHelmet1 = new Product("White helmet","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product blueHelmet2 = new Product("Blue helmet","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product whiteHelmet2 = new Product("White helmet","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
 
         productRepository.saveAll(List.of(blueHelmet,whiteHelmet,blueHelmet1,whiteHelmet1,blueHelmet2,whiteHelmet2));
 

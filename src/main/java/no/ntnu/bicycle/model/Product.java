@@ -11,11 +11,13 @@ public class Product {
     private int id;
     private String productName;
     private String imageUrl;
+    private String description;
     private int price;
 
-    public Product(String productName, String imageUrl, int price) {
+    public Product(String productName, String imageUrl,String description, int price) {
         this.productName = productName;
         this.imageUrl = imageUrl;
+        this.description = description;
         this.price = price;
     }
 
@@ -28,6 +30,14 @@ public class Product {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
