@@ -8,7 +8,6 @@ import no.ntnu.bicycle.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,9 +23,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
 
     private ProductRepository productRepository;
-
-    @Autowired
-    private EmailSenderService emailSenderService;
 
 
     public DummyDataInitializer(CustomerRepository customerRepository, OrderRepository orderRepository, ProductRepository productRepository) {
@@ -62,14 +58,15 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         Product blueHelmet2 = new Product("Blue helmet","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
         Product whiteHelmet2 = new Product("White helmet","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
 
+
+
         productRepository.saveAll(List.of(blueHelmet,whiteHelmet,blueHelmet1,whiteHelmet1,blueHelmet2,whiteHelmet2));
+
 
         CustomerOrder order1 = new CustomerOrder(sebastian,blueHelmet);
         CustomerOrder order2 = new CustomerOrder(anne,whiteHelmet);
 
         orderRepository.saveAll(List.of(order1,order2));
-
-        //emailSenderService.sendEmail("sebasn@stud.ntnu.no","test of mail service class", "This is a test for mail service class. below is a test for html <b> halla </b>");
 
 
     }

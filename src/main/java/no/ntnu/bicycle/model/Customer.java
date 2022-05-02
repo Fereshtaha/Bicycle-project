@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -31,6 +33,9 @@ public class Customer {
     private BillingAndShippingAddress address;
     @Enumerated
     private Role role;
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private List<Product> shoppingCart;
 
     //@OneToMany
     //@JsonIgnore
@@ -66,6 +71,8 @@ public class Customer {
         Period p = Period.between(LocalDate.parse(dob), today);
         this.age = p.getYears();
         this.role = Role.ROLE_USER;
+        this.address = null;
+        this.shoppingCart = new ArrayList<>();
     }
 
 
@@ -93,7 +100,7 @@ public class Customer {
         Period p = Period.between(LocalDate.parse(dob), today);
         this.age = p.getYears();
         this.address = null;
-
+        this.shoppingCart = new ArrayList<>();
     }
 
 
@@ -224,6 +231,19 @@ public class Customer {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public List<Product> getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void addProductToShoppingCart(Product product) {
+        this.shoppingCart.add(product);
+    }
+
+    public void removeFromShoppingCart(Product product){
+        this.shoppingCart.add(product);
     }
 
     /**
