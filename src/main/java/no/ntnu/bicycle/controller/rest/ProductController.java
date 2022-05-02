@@ -52,7 +52,7 @@ public class ProductController {
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String email = auth.getName();
-            if (Objects.equals(email, "anonymousUser")){
+            if (email.equals("anonymousUser")){
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }else{
 

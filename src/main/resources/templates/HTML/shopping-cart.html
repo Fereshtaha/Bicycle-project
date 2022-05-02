@@ -6,12 +6,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/CSS/footer.css">
-    <link rel="stylesheet" href="../../static/CSS/Nav.css">
+    <script src="https://kit.fontawesome.com/1814d6f297.js" crossorigin="anonymous"></script>
+    <script th:src="@{/scripts/shopping-cart.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/CSS/shopping-cart.css}">
+    <link rel="icon" type="image/x-icon" th:href="@{/Images/KRRR-Logo.png}">
+    <link rel="stylesheet" th:href="@{/CSS/Nav.css}">
+    <link rel="stylesheet" th:href="@{/CSS/footer.css}">
+    <script th:src="@{/scripts/nav.js}" defer></script>
 </head>
 <body>
 <header class="Header" id="header" th:replace="components/header :: header">
 </header>
+<div id="productsToBeFilledFromDB"></div>
 <footer class="section-p1" th:replace="components/footer :: footer"></footer>
 </body>
 </html>
