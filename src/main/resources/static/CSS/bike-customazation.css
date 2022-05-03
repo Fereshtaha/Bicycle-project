@@ -1,0 +1,134 @@
+
+:root{
+    --blue-filter: invert(44%) sepia(33%) saturate(3362%) hue-rotate(163deg) brightness(98%) contrast(101%);
+    --pink-filter: invert(59%) sepia(84%) saturate(2146%) hue-rotate(297deg) brightness(104%) contrast(101%);
+    --green-filter: invert(93%) sepia(30%) saturate(758%) hue-rotate(50deg) brightness(101%) contrast(97%);
+    --grey-filter: invert(56%) sepia(10%) saturate(644%) hue-rotate(169deg) brightness(87%) contrast(89%);
+    --yellow-filter: invert(100%) sepia(32%) saturate(5986%) hue-rotate(304deg) brightness(123%) contrast(107%);
+    --teal-filter: invert(23%) sepia(41%) saturate(6903%) hue-rotate(168deg) brightness(95%) contrast(101%);
+}
+
+#bike-section{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    padding-top: 70px;
+}
+
+#bike-image-container{
+    position: relative;
+    width: 60%;
+    margin: auto;
+    min-height:575px;
+    overflow: hidden;
+}
+
+#add-to-cart-button{
+    margin-bottom: 7px;
+    margin-top: 30px;
+    width: 288px;
+    border-radius: 4px;
+    text-align: center;
+    padding: 14px 25px 13px;
+    border: 0;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: lightblue;
+    font-weight: bold;
+    font-size: .8125em;
+}
+
+
+#bike-image-container img{
+    position: absolute;
+    width: 100%;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    max-width: 100%;
+}
+
+.blue-color{
+    filter: var(--blue-filter);
+}
+
+.teal-color{
+    filter: var(--teal-filter);
+}
+
+.pink-color{
+    filter: var(--pink-filter);
+}
+
+.green-color{
+    filter: var(--green-filter);
+}
+
+.yellow-color{
+    filter: var(--yellow-filter);
+}
+
+.grey-color{
+    filter: var(--grey-filter);
+}
+
+#bike-selectors-container{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 200px;
+    padding-top: 280px;
+
+}
+
+#base-select{
+    display: flex;
+    flex-direction: row;
+}
+
+#wheel-select{
+    display: flex;
+    flex-direction: row;
+}
+
+#seat-select{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.color-button{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: solid black 1px;
+    margin: 4px;
+    background-color: black;
+}
+
+.color-button-selected{
+    border: 3px black solid;
+}
+
+@media screen and (max-width: 800px){
+    #bike-section{
+        display: flex;
+        flex-direction: column;
+    }
+    #bike-image-container{
+        min-height: 350px;
+        min-width: 325px;
+        margin: auto;
+        width: 100%;
+    }
+    #bike-selectors-container{
+        padding-top: 0;
+        width: 100%;
+        align-items: center;
+        height: auto;
+    }
+}

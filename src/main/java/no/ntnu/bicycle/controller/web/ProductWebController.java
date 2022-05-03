@@ -24,4 +24,9 @@ public class ProductWebController {
     public String getProductDetailsWeb(@PathParam("costumer") @PathVariable("id") int customerId,Model model) {
         return "HTML/ProductDetailsPage";
     }
+
+    @GetMapping("/products/customize")
+    public String getProductCustomizeWeb(){
+        return "HTML/BikeCustomization";
+    }
 }
