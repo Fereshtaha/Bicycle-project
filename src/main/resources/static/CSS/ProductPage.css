@@ -35,3 +35,15 @@
     color: black;
     font-size: 12px;
 }
+
+@media screen and (max-width: 800px) {
+    #productsToBeFilledFromDB{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #productsToBeFilledFromDB{
+        grid-template-columns: 1fr;
+    }
+}
