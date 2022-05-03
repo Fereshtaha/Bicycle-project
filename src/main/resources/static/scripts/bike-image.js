@@ -1,3 +1,10 @@
+function loadColorsOnWindowLoad(){
+    document.getElementById("bike-seat").classList.add("black-color")
+    document.getElementById("bike-base").classList.add("grey-color");
+    document.getElementById("bike-wheels").classList.add("black-color")
+}
+loadColorsOnWindowLoad();
+
 function createEventsForColorButton(buttonType, imageType){
     for (let i=0; i<buttonType.length; i++) {
         buttonType[i].addEventListener('click', function (){

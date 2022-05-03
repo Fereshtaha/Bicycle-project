@@ -21,41 +21,45 @@
     <img id="bike-background" th:src="@{/Images/Bike-image-background.jpg}" alt="bike image background">
     <img id="bike-wheels" th:src="@{/Images/Bike-image-wheels.png}" alt="">
     <img id="bike-base" th:src="@{/Images/Bike-image-base.png}" alt="">
-    <img id="bike-handle-and-pedals" th:src="@{/Images/Bike-image-handle-and-pedals.png}" alt="">
     <img id="bike-seat" th:src="@{/Images/Bike-image-seat.png}" alt="">
+    <img id="bike-handle-and-pedals" th:src="@{/Images/Bike-image-handle-and-pedals.png}" alt="">
   </div>
   <div id="bike-selectors-container">
     <div class="select-row">
+      <label for="seat-select">Seat color:</label>
+      <div id="seat-select">
+        <button class="color-button color-button-seat color-button-selected" style="background-color: #353839" value="black"></button>
+        <button class="color-button color-button-seat" style="background-color: #737F8E" value="grey"></button>
+        <button class="color-button color-button-seat" style="background-color: #f5f5f5" value="white"></button>
+      </div>
+    </div>
+    <div class="select-row">
       <label for="base-select">Base color:</label>
       <div id="base-select">
+        <button class="color-button color-button-base" style="background-color: #353839" value="black"></button>
         <button class="color-button color-button-base" style="background-color: #ED6EB0" value="pink"></button>
         <button class="color-button color-button-base" style="background-color: #AAF89E" value="green"></button>
         <button class="color-button color-button-base" style="background-color: #479EC5" value="blue"></button>
         <button class="color-button color-button-base" style="background-color: #FDEE9F" value="yellow"></button>
-        <button class="color-button color-button-base" style="background-color: #737F8E" value="grey"></button>
+        <button class="color-button color-button-base" style="background-color: #556b2f" value="olive"></button>
+        <button class="color-button color-button-base" style="background-color: #23297a" value="navy"></button>
+        <button class="color-button color-button-base" style="background-color: #b22222" value="maroon"></button>
+        <button class="color-button color-button-base" style="background-color: #ffcba4" value="peach"></button>
+        <button class="color-button color-button-base" style="background-color: #ffa500" value="orange"></button>
+        <button class="color-button color-button-base" style="background-color: #d2b48c" value="tan"></button>
+        <button class="color-button color-button-base" style="background-color: #7b68ee" value="purple"></button>
+        <button class="color-button color-button-base" style="background-color: #f5f5f5" value="white"></button>
+        <button class="color-button color-button-base" style="background-color: #00ffff" value="cyan"></button>
+        <button class="color-button color-button-base color-button-selected" style="background-color: #737F8E" value="grey"></button>
         <button class="color-button color-button-base" style="background-color: #388085" value="teal"></button>
-      </div>
-    </div>
-    <div class="select-row">
-      <label for="seat-select">Seat color:</label>
-      <div id="seat-select">
-        <button class="color-button color-button-seat" style="background-color: #ED6EB0" value="pink"></button>
-        <button class="color-button color-button-seat" style="background-color: #AAF89E" value="green"></button>
-        <button class="color-button color-button-seat" style="background-color: #479EC5" value="blue"></button>
-        <button class="color-button color-button-seat" style="background-color: #FDEE9F" value="yellow"></button>
-        <button class="color-button color-button-seat" style="background-color: #737F8E" value="grey"></button>
-        <button class="color-button color-button-seat" style="background-color: #388085" value="teal"></button>
       </div>
     </div>
     <div class="select-row">
       <label for="wheel-select">Wheel color:</label>
       <div id="wheel-select">
-        <button class="color-button color-button-wheel" style="background-color: #ED6EB0" value="pink"></button>
-        <button class="color-button color-button-wheel" style="background-color: #AAF89E" value="green"></button>
-        <button class="color-button color-button-wheel" style="background-color: #479EC5" value="blue"></button>
-        <button class="color-button color-button-wheel" style="background-color: #FDEE9F" value="yellow"></button>
+        <button class="color-button color-button-wheel color-button-selected" style="background-color: #353839" value="black"></button>
         <button class="color-button color-button-wheel" style="background-color: #737F8E" value="grey"></button>
-        <button class="color-button color-button-wheel" style="background-color: #388085" value="teal"></button>
+        <button class="color-button color-button-wheel" style="background-color: #f5f5f5" value="white"></button>
       </div>
     </div>
     <button id="add-to-cart-button" onclick="addToCart()">Add to chart</button>

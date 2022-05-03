@@ -1,12 +1,22 @@
 /*https://codepen.io/sosuke/pen/Pjoqqp*/
 /*https://html-color.codes/teal*/
 :root{
+    --black-filter: invert(17%) sepia(8%) saturate(311%) hue-rotate(149deg) brightness(101%) contrast(86%);
     --blue-filter: invert(44%) sepia(33%) saturate(3362%) hue-rotate(163deg) brightness(98%) contrast(101%);
     --pink-filter: invert(59%) sepia(84%) saturate(2146%) hue-rotate(297deg) brightness(104%) contrast(101%);
     --green-filter: invert(93%) sepia(30%) saturate(758%) hue-rotate(50deg) brightness(101%) contrast(97%);
     --grey-filter: invert(56%) sepia(10%) saturate(644%) hue-rotate(169deg) brightness(87%) contrast(89%);
     --yellow-filter: invert(100%) sepia(32%) saturate(5986%) hue-rotate(304deg) brightness(123%) contrast(107%);
     --teal-filter: invert(23%) sepia(41%) saturate(6903%) hue-rotate(168deg) brightness(95%) contrast(101%);
+    --peach-filter: invert(91%) sepia(42%) saturate(1585%) hue-rotate(297deg) brightness(111%) contrast(102%);
+    --olive-filter: invert(33%) sepia(62%) saturate(350%) hue-rotate(40deg) brightness(102%) contrast(93%);
+    --navy-filter: invert(17%) sepia(18%) saturate(7086%) hue-rotate(223deg) brightness(89%) contrast(99%);
+    --maroon-filter: invert(15%) sepia(65%) saturate(2802%) hue-rotate(343deg) brightness(118%) contrast(98%);
+    --orange-filter: invert(79%) sepia(86%) saturate(6696%) hue-rotate(358deg) brightness(97%) contrast(106%);
+    --tan-filter: invert(100%) sepia(82%) saturate(1143%) hue-rotate(308deg) brightness(86%) contrast(90%);
+    --purple-filter: invert(44%) sepia(20%) saturate(6923%) hue-rotate(227deg) brightness(97%) contrast(93%);
+    --white-filter: invert(87%) sepia(77%) saturate(42%) hue-rotate(39deg) brightness(114%) contrast(92%);
+    --cyan-filter: invert(84%) sepia(80%) saturate(6703%) hue-rotate(101deg) brightness(102%) contrast(108%);
 }
 
 #bike-section{
@@ -56,6 +66,46 @@
     filter: var(--blue-filter);
 }
 
+.cyan-color{
+    filter: var(--cyan-filter);
+}
+
+.maroon-color{
+    filter: var(--maroon-filter);
+}
+
+.white-color{
+    filter: var(--white-filter);
+}
+
+.tan-color{
+    filter: var(--tan-filter);
+}
+
+.purple-color{
+    filter: var(--purple-filter);
+}
+
+.orange-color{
+    filter: var(--orange-filter);
+}
+
+.navy-color{
+    filter: var(--navy-filter);
+}
+
+.olive-color{
+    filter: var(--olive-filter);
+}
+
+.peach-color{
+    filter: var(--peach-filter);
+}
+
+.black-color{
+    filter: var(--black-filter);
+}
+
 .teal-color{
     filter: var(--teal-filter);
 }
@@ -88,6 +138,7 @@
 
 #base-select{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
 }
 
@@ -104,8 +155,8 @@
 
 .color-button{
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border: solid black 1px;
     margin: 4px;
     background-color: black;
@@ -129,7 +180,7 @@
     #bike-selectors-container{
         padding-top: 0;
         width: 100%;
-        align-items: center;
         height: auto;
+        align-items: start;
     }
 }
