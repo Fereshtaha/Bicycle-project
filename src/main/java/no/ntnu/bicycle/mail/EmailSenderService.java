@@ -50,10 +50,10 @@ public class EmailSenderService{
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
         Context context = new Context();
         context.setVariables(email.getProperties());
-        helper.setFrom(email.getFrom());
+        helper.setFrom(FROM_EMAIL);
         helper.setTo(email.getTo());
         helper.setSubject(email.getSubject());
-        String html = templateEngine.process(email.getTemplate(), context);
+        String html = templateEngine.process("/HTML/email/" + email.getTemplate(), context);
         helper.setText(html, true);
 
         javaMailSender.send(message);
