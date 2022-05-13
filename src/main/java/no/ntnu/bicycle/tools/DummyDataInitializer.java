@@ -82,14 +82,12 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
 
         Email email = new Email();
-        email.setTo("sebasn@stud.ntnu.no");
+        email.setTo("fereshta@stud.ntnu.no");
         email.setFrom("keep.rolling.rolling.rolling16@gmail.com");
-        email.setSubject("Welcome Email from CodingNConcepts");
-        email.setTemplate("welcome-email.html");
+        email.setSubject("Welcome Email from Keep rolling, rolling, rolling");
+        email.setTemplate("/HTML/email/welcome-email.html");
         Map<String, Object> properties = new HashMap<>();
-        properties.put("name", "Ashish");
-        properties.put("subscriptionDate", LocalDate.now().toString());
-        properties.put("technologies", Arrays.asList("Python", "Go", "C#"));
+        properties.put("name", "Fereshta");
         email.setProperties(properties);
 
        emailSenderService.sendHtmlMessage(email);
