@@ -15,8 +15,8 @@ public class CustomerOrder {
     private String email;
     private LocalDateTime dateAndTime;
 
-   // @ManyToOne(targetEntity = Customer.class)
-   // @JoinColumn
+    @ManyToOne(targetEntity = Customer.class)
+    @JoinColumn
     @Transient
     private Customer customer;
 

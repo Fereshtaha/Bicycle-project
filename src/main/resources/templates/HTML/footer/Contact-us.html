@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Keep Rolling Rolling Rolling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="stylesheet" href="../CSS/Nav.css">
+    <link rel="stylesheet" href="../CSS/contact-us.css">
+    <script src="../scripts/login.js" defer></script>
+    <script src="../scripts/nav.js" defer></script>
+    <script src="https://kit.fontawesome.com/1814d6f297.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<header class="Header" id="header" th:replace="components/header :: header">
+</header>
+
+<section class="contact-us">
+    <div class="info">
+        <h2>Contact us</h2>
+        <br>
+        <h1>Please write your request here, and we will contact you within 2-5 working days.</h1>
+        <br>
+        <textarea class="textarea"></textarea>
+        <br><br>
+        <div class="submit">
+            <button class="button">Submit</button>
+        </div>
+    </div>
+</section>
+
+
+<footer class="section-p1" th:replace="components/footer :: footer"></footer>
+
+</body>
+</html>

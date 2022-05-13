@@ -166,6 +166,15 @@
     border: 3px black solid;
 }
 
+.color-label{
+    content: "\a";
+    margin: 4px;
+    font-size: 10px;
+    white-space: pre;
+
+
+}
+
 @media screen and (max-width: 800px){
     #bike-section{
         display: flex;
