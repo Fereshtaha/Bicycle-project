@@ -1,25 +1,38 @@
 package no.ntnu.bicycle.mail;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import no.ntnu.bicycle.model.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.nio.charset.StandardCharsets;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class EmailSenderService{
     @Autowired
     private JavaMailSender javaMailSender;
 
+
+    private final SpringTemplateEngine templateEngine;
+
+    private static final String FROM_EMAIL = "keep.rolling.rolling.rolling16@gmail.com";
+
+
     public void sendEmail(String toEmail, String subject, String body) throws MailException {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("keep.rolling.rolling.rolling16@gmail.com");
+        message.setFrom(FROM_EMAIL);
         message.setTo(toEmail);
         message.setSubject(subject);
         message.setText(body);
@@ -30,19 +43,19 @@ public class EmailSenderService{
 
     }
 
-    public void sendAdvancedEmail(String toEmail, String subject, String body) throws MessagingException {
-        JavaMailSender javaMailSender = new JavaMailSenderImpl();
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
 
-        //mimeMessage.setContent(htmlMsg, "text/html"); /** Use this or below line **/
-        helper.setText(body, true); // Use this or above line.
-        helper.setTo(toEmail);
-        helper.setSubject(subject);
-        helper.setFrom("keep.rolling.rolling.rolling16@gmail.com");
-        javaMailSender.send(mimeMessage);
+    public void sendHtmlMessage(Email email) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
+        Context context = new Context();
+        context.setVariables(email.getProperties());
+        helper.setFrom(email.getFrom());
+        helper.setTo(email.getTo());
+        helper.setSubject(email.getSubject());
+        String html = templateEngine.process(email.getTemplate(), context);
+        helper.setText(html, true);
 
-        System.err.println("Message sent");
+        javaMailSender.send(message);
     }
 }

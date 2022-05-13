@@ -11,17 +11,27 @@ public class Product {
     private int id;
     private String productName;
     private String imageUrl;
+    private String color;
     private String description;
     private int price;
 
-    public Product(String productName, String imageUrl,String description, int price) {
+    public Product(String productName, String color, String imageUrl,String description, int price) {
         this.productName = productName;
+        this.color = color;
         this.imageUrl = imageUrl;
         this.description = description;
         this.price = price;
     }
 
     public Product() {
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getImageUrl() {

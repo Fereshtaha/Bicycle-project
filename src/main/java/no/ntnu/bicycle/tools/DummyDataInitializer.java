@@ -1,16 +1,24 @@
 package no.ntnu.bicycle.tools;
 
+import lombok.SneakyThrows;
 import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.*;
 import no.ntnu.bicycle.repository.CustomerRepository;
 import no.ntnu.bicycle.repository.OrderRepository;
 import no.ntnu.bicycle.repository.ProductRepository;
+import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @Component
@@ -24,6 +32,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     private ProductRepository productRepository;
 
+    @Autowired
+    private EmailSenderService emailSenderService;
+
 
     public DummyDataInitializer(CustomerRepository customerRepository, OrderRepository orderRepository, ProductRepository productRepository) {
         this.customerRepository = customerRepository;
@@ -33,6 +44,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     private final Logger logger = Logger.getLogger("DummyInit");
 
+    @SneakyThrows
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         if (isDataImported()){
@@ -51,12 +63,12 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
         customerRepository.saveAll(List.of(sebastian,anne));
 
-        Product blueHelmet = new Product("Blue helmet","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
-        Product whiteHelmet = new Product("White helmet","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
-        Product blueHelmet1 = new Product("Blue helmet","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
-        Product whiteHelmet1 = new Product("White helmet","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
-        Product blueHelmet2 = new Product("Blue helmet","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
-        Product whiteHelmet2 = new Product("White helmet","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product blueHelmet = new Product("Blue helmet","blue","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product whiteHelmet = new Product("White helmet","white","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product blueHelmet1 = new Product("Blue helmet","blue","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product whiteHelmet1 = new Product("White helmet","white","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product blueHelmet2 = new Product("Blue helmet","blue","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
+        Product whiteHelmet2 = new Product("White helmet","white","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
 
 
 
@@ -67,6 +79,20 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         CustomerOrder order2 = new CustomerOrder(anne,whiteHelmet);
 
         orderRepository.saveAll(List.of(order1,order2));
+
+
+        Email email = new Email();
+        email.setTo("sebasn@stud.ntnu.no");
+        email.setFrom("keep.rolling.rolling.rolling16@gmail.com");
+        email.setSubject("Welcome Email from CodingNConcepts");
+        email.setTemplate("welcome-email.html");
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("name", "Ashish");
+        properties.put("subscriptionDate", LocalDate.now().toString());
+        properties.put("technologies", Arrays.asList("Python", "Go", "C#"));
+        email.setProperties(properties);
+
+       emailSenderService.sendHtmlMessage(email);
 
 
     }
