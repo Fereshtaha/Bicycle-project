@@ -65,6 +65,7 @@ function getInfoFromDB() {
                 console.log("Successful GET request")
                 loggedIn = true;
             } else{
+                //todo: specify http message for not logged in and general faults
                 loggedIn = false;
                 alert("Not logged in, products received from localstorage");
 
@@ -72,10 +73,15 @@ function getInfoFromDB() {
                 let cs = localStorage.getItem("products");
                 let jsonArray = JSON.parse(cs);
 
+                let totalPriceCounter = 0;
 
                 for (let i = 0; i<jsonArray.length;i++){
                     elementToBeFilled.appendChild(createHtml(jsonArray[i]._id, jsonArray[i]._name,jsonArray[i]._imageUrl,jsonArray[i]._price));
+                    totalPriceCounter += jsonArray[i]._price;
                 }
+                let totalPriceTag = document.createElement("b");
+                totalPriceTag.innerText = "Total: " + totalPriceCounter.toString() + " NOK";
+                elementToBeFilled.appendChild(totalPriceTag);
             }
         }
     }
