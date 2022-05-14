@@ -6,6 +6,57 @@ const queryString = window.location.pathname;
 const lastSegment = queryString.split("/").pop();
 console.log(lastSegment);
 
+class Product {
+    constructor(id, name, imageUrl , description, price) {
+        this._id = id;
+        this._name = name;
+        this._imageUrl = imageUrl;
+        this._price = price;
+        this._description = description;
+    }
+    get id(){
+        return this._id
+    }
+
+    set id(value){
+        this._id = value;
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    set name(value) {
+        this._name = value;
+    }
+
+    get imageUrl() {
+        return this._imageUrl;
+    }
+
+    set imageUrl(value) {
+        this._imageUrl = value;
+    }
+
+    get description() {
+        return this._description;
+    }
+
+    set description(value) {
+        this._description = value;
+    }
+
+    get price() {
+        return this._price;
+    }
+
+    set price(value) {
+        this._price = value;
+    }
+}
+
+let product;
+
 function getInfoFromDB() {
     asyncRequest.addEventListener("load", fillFieldsWithResponse);
 
@@ -20,10 +71,13 @@ function getInfoFromDB() {
     function fillFieldsWithResponse() {
         let responseJson = JSON.parse(this.responseText);
 
+        let productId = lastSegment;
         let productName = responseJson.productName;
         let imageUrl = responseJson.imageUrl;
         let description = responseJson.description;
         let price = responseJson.price;
+
+        product = new Product(productId,productName,imageUrl,description,price);
 
         elementToBeFilled.innerHTML =
             "<div id='image-container'>" +
@@ -68,7 +122,20 @@ function addToCart(){
             if (this.status === 200) { // handle success
                 alert("Added to cart");
             } else if(this.status === 401){
-                alert("Not logged in");
+                alert("Not logged in products added to localstorage");
+                let products = [];
+
+                if(localStorage.getItem('products')){
+                    products = JSON.parse(localStorage.getItem('products'));
+                }
+
+
+                products.push(product);
+                console.log(product);
+                console.log(localStorage.getItem("products"))
+
+
+                localStorage.setItem("products",JSON.stringify(products))
             }else{
                 console.log(this.status);
                 alert("Something went wrong");
