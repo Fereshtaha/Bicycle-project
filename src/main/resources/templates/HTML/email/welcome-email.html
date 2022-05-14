@@ -116,6 +116,19 @@
         button:hover{
             cursor: pointer;
         }
+
+        @media screen and (max-width: 600px){
+            .info-section{
+                grid-template-columns: 1fr;
+                text-align: center;
+                margin: auto;
+            }
+
+            .info-section img{
+                width: 80%;
+                margin: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -132,7 +145,7 @@
 <section id="info-section-container">
     <h1 id="info-section-header">Before Starting Your Adventure</h1>
     <div class="info-section">
-        <img src="http://localhost:8080/Images/account-mail-image.png"  alt="">
+        <img src="http://localhost:8080/Images/account-mail-image.png"  alt="Profile icon">
         <div>
             <h1>Tell Us About Yourself</h1>
             <p>Complete your profile and add your shipping address for faster checkouts in the future.</p>
@@ -141,7 +154,7 @@
     </div>
     <hr>
     <div class="info-section">
-        <img src="http://localhost:8080/Images/bicycle-mail-image.png"  alt="">
+        <img src="http://localhost:8080/Images/bicycle-mail-image.png"  alt="Bike icon">
         <div>
             <h1>Rent a bike now</h1>
             <p>Check out our wide selection of bikes for rental. Helmets are included when you rent a bike today.</p>
@@ -150,7 +163,7 @@
     </div>
     <hr>
     <div class="info-section">
-        <img src="http://localhost:8080/Images/bag-mail-image.png"  alt="">
+        <img src="http://localhost:8080/Images/bag-mail-image.png"  alt="Textile bag icon">
         <div>
             <h1>Save the planet</h1>
             <p>Buy our eco friendly textile bags today and get a free pair of sunglasses! Our textile bag are fair trade approved. </p>
