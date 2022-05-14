@@ -3,6 +3,7 @@ package no.ntnu.bicycle.controller.rest;
 import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.BillingAndShippingAddress;
 import no.ntnu.bicycle.model.Customer;
+import no.ntnu.bicycle.model.Email;
 import no.ntnu.bicycle.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.websocket.server.PathParam;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/customers")
@@ -109,10 +109,23 @@ public class CustomerController {
     }
 
     @PostMapping(consumes = "application/json")
-    public ResponseEntity<String> registerNewCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<String> registerNewCustomer(@RequestBody Customer customer)  {
         ResponseEntity<String> response;
         if (customerService.addNewCustomer(customer)) {
             response = new ResponseEntity<>(HttpStatus.OK);
+            try {
+                Email email = new Email();
+                email.setTo(customer.getEmail());
+                email.setSubject("Welcome Email from Keep rolling, rolling, rolling");
+                email.setTemplate("welcome-email.html");
+                Map<String, Object> properties = new HashMap<>();
+                properties.put("name", customer.getFirstName());
+                email.setProperties(properties);
+
+                emailSenderService.sendHtmlMessage(email);
+            }catch (MessagingException e){
+                System.err.println("Welcome mail could not be sent");
+            }
         } else {
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

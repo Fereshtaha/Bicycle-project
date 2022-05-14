@@ -79,19 +79,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         CustomerOrder order2 = new CustomerOrder(anne,whiteHelmet);
 
         orderRepository.saveAll(List.of(order1,order2));
-
-
-        Email email = new Email();
-        email.setTo("sebasn@stud.ntnu.no");
-        email.setSubject("Welcome Email from Keep rolling, rolling, rolling");
-        email.setTemplate("welcome-email.html");
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("name", "Sebastian");
-        email.setProperties(properties);
-
-       emailSenderService.sendHtmlMessage(email);
-
-
     }
 
     private boolean isDataImported() {
