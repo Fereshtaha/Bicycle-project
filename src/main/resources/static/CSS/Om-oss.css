@@ -9,18 +9,21 @@
 
 
 .main-image {
-    background: url(https://images.unsplash.com/photo-1588777930357-fb171e43f7ae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)no-repeat;
-    background-size: 100%;
-    overflow: hidden;
-
+    display: flex;
+    filter: saturate(1.1);
 }
+
+.images {
+    flex: 50%;
+    filter: saturate(1.1);
+}
+
 
 .section {
     padding-top: 84px;
     display: flex;
     justify-content: center;
     align-content: flex-start;
-    height: 50%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -28,14 +31,16 @@
 }
 .centered {
     position: absolute;
-    color: white;
+    width: 100%;
     padding: 200px 100px;
-    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-    top: 50%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;
+    color: white;
 }
+
+
 
 .another-section {
     padding: 80px;
@@ -112,6 +117,13 @@
     line-height: 30px;
     text-align: justify;
     margin-bottom: 40px;
+}
+
+.about-us{
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    font-size: 55px;
 }
 
 @media screen and (max-width:1200px){
