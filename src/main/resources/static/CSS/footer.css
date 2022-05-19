@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
+    line-height: 1.6;
 }
 
 .logo {
@@ -17,7 +18,9 @@
 }
 
 footer{
-    padding: 40px;
+    padding: 50px;
+    padding-left: 100px;
+    padding-right: 100px
     justify-content: center;
     align-content: center;
     margin-bottom: 10px;

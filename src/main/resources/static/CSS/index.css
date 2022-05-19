@@ -181,6 +181,41 @@ p{
     border: solid lightgray;
 }
 
+.review-section{
+    line-height: 1.6;
+    padding: 100px;
+    padding-left: 150px;
+    padding-right: 150px;
+    box-sizing: border-box;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: beige;
+}
+
+.reviews {
+    line-height: 1.6;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    border-radius: 25px;
+    border: 2px solid #022F5B
+
+}
+
+.review-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+
+}
+
+.review-head {
+    height: 45px;
+    width:
+}
+
 @media screen and (max-width: 992px) {
     .helmet-grid {
         display: block;

@@ -1,9 +1,12 @@
 package no.ntnu.bicycle.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.awt.*;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -15,6 +18,10 @@ public class Product {
     private String color;
     private String description;
     private int price;
+
+    @ManyToMany(mappedBy = "shoppingCart")
+    @JsonIgnore
+    private List<Customer> customer;
 
     public Product(String productName, String color, String imageUrl,String description, int price) {
         this.productName = productName;
