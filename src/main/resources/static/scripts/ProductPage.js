@@ -35,12 +35,6 @@ function getInfoFromDB() {
         }else{
             elementToBeFilled.innerText = "No products in database";
         }
-
-
-
-
-
-
     }
     function onResponseReceivedFromGET() {
         if (this.readyState === XMLHttpRequest.DONE) {

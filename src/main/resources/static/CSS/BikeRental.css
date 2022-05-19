@@ -1,0 +1,100 @@
+body{
+    margin: 0;
+}
+#map {
+    height: calc(100vh - 84px);
+    position: relative;
+}
+
+.active{
+    display: flex;
+}
+
+.map-flex{
+    width: 70%;
+    animation-name: example1;
+    animation-duration: 1s;
+}
+
+.info-flex{
+    width: 30%;
+    margin-left: 10px;
+    animation-name: example;
+    animation-duration: 1s;
+    padding: 20px;
+}
+
+@keyframes example {
+    from {width: 0;}
+    to {width: 30%;}
+}
+@keyframes example1 {
+    from {width: 100%;}
+    to {width: 70%;}
+}
+
+.hidden{
+    display: none;
+}
+
+#rentButton{
+    margin-bottom: 7px;
+    width: 80%;
+    border-radius: 4px;
+    text-align: center;
+    padding: 14px 25px 13px;
+    border: 0;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: lightblue;
+    font-weight: bold;
+    font-size: .8125em;
+}
+
+#bicycle-image{
+    width: 80%;
+}
+
+#requestToCurrentLocationBtn{
+    position: absolute;
+    z-index: 1002;
+    left: calc(50% - 2px - calc(15% / 2));
+    bottom: 30px;
+    height: 40px;
+    border-radius: 30px;
+    width: 15%;
+    min-width: 300px;
+    margin: auto;
+    background-color: white;
+    border: solid black 2px;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 30px 30px 50px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+@media screen and (max-width: 2000px){
+    #requestToCurrentLocationBtn{
+        left: calc(50% - 150px - 2px);
+    }
+}
+
+
+.dropdown-content {
+    z-index: 1001;
+    top: 84px;
+    border-bottom: solid 1px lightgray;
+}
+
+.Header{
+    position: static;
+    border-bottom: lightgray solid 1px;
+}
+
+
+.dropbtn{
+    width: 50px;
+    padding: 30px;
+}

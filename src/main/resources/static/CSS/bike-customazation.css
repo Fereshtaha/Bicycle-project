@@ -32,6 +32,7 @@
     margin: auto;
     min-height:575px;
     overflow: hidden;
+    max-width: 1130px;
 }
 
 #add-to-cart-button{

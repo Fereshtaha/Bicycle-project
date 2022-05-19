@@ -16,7 +16,7 @@ public class BicycleRentalOrder {
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
-    private Point location;
+    private String location;
     private LocalDateTime rentalStartTime;
     private LocalDateTime rentalEndTime;
     private int totalPrice;
@@ -29,7 +29,7 @@ public class BicycleRentalOrder {
         return customer;
     }
 
-    public BicycleRentalOrder(Bicycle bicycle, Customer customer, Point location, int totalPrice) {
+    public BicycleRentalOrder(Bicycle bicycle, Customer customer, String location, int totalPrice) {
         this.bicycle = bicycle;
         this.customer = customer;
         this.location = location;
@@ -50,11 +50,11 @@ public class BicycleRentalOrder {
         return Duration.between(rentalStartTime,LocalDateTime.now()).toMinutes();
     }
 
-    public Point getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Point location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 

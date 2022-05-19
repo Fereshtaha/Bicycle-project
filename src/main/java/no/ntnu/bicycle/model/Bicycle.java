@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.awt.*;
 
 @Entity
 @Table(name = "bicycle")
@@ -12,15 +13,25 @@ public class Bicycle {
     @GeneratedValue
     private int id;
     private String color;
+    private String location;
     private int pricePerMinute;
 
-    public Bicycle(String color, int pricePerMinute) {
+    public Bicycle(String color, String location, int pricePerMinute) {
         this.color = color;
         this.pricePerMinute = pricePerMinute;
+        this.location = location;
     }
 
     public Bicycle() {
 
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public int getId(){

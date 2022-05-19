@@ -3,6 +3,7 @@ package no.ntnu.bicycle.tools;
 import lombok.SneakyThrows;
 import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.*;
+import no.ntnu.bicycle.repository.BicycleRepository;
 import no.ntnu.bicycle.repository.CustomerRepository;
 import no.ntnu.bicycle.repository.OrderRepository;
 import no.ntnu.bicycle.repository.ProductRepository;
@@ -32,14 +33,17 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     private ProductRepository productRepository;
 
+    private BicycleRepository bicycleRepository;
+
     @Autowired
     private EmailSenderService emailSenderService;
 
 
-    public DummyDataInitializer(CustomerRepository customerRepository, OrderRepository orderRepository, ProductRepository productRepository) {
+    public DummyDataInitializer(CustomerRepository customerRepository, OrderRepository orderRepository, ProductRepository productRepository, BicycleRepository bicycleRepository) {
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
+        this.bicycleRepository = bicycleRepository;
     }
 
     private final Logger logger = Logger.getLogger("DummyInit");
@@ -79,6 +83,11 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         CustomerOrder order2 = new CustomerOrder(anne,whiteHelmet);
 
         orderRepository.saveAll(List.of(order1,order2));
+
+        Bicycle bicycle = new Bicycle("Brown", "62.47433372997846, 6.164537350482638", 1);
+        Bicycle bicycle1 = new Bicycle("Green", "62.47309499833774, 6.153352263095387", 1);
+
+        bicycleRepository.saveAll(List.of(bicycle, bicycle1));
     }
 
     private boolean isDataImported() {

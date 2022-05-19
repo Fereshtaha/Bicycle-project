@@ -29,4 +29,9 @@ public class ProductWebController {
     public String getProductCustomizeWeb(){
         return "HTML/BikeCustomization";
     }
+
+    @GetMapping("/rental")
+    public String getRentalWeb(){
+        return "HTML/BikeRental";
+    }
 }

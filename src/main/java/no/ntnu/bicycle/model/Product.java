@@ -3,6 +3,7 @@ package no.ntnu.bicycle.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.awt.*;
 
 @Entity
 public class Product {
