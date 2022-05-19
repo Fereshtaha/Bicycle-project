@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/CSS/footer.css}">
+    <link rel="stylesheet" th:href="@{/CSS/Nav.css}">
+    <script th:src="@{/scripts/Nav.js}" defer></script>
+    <script th:src="@{/scripts/RentalConfirmation.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/CSS/RentalConfirmation.css}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+          integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+          crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+            integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+            crossorigin=""></script>
+</head>
+<body>
+<header class="Header" id="header" th:replace="components/header :: header">
+</header>
+<section id="confirmation-section">
+    <h1 id="rental-header">RENTAL CONFIRMATION</h1>
+    <div id="flex">
+        <div id="map"></div>
+        <div id="info-section">
+            <h2>Thank you for your rental!</h2>
+
+            <p>We have sent a confirmation to your email with details about your rental.</p>
+
+            <p>Please return your bike within the green marked area to avoid a fee of 100 NOK</p>
+            <b>To end your rental please follow the link in your confirmation email, or visit the active rental section in the account details page</b>
+        </div>
+    </div>
+</section>
+
+
+<footer class="section-p1" th:replace="components/footer :: footer"></footer>
+</body>
+</html>

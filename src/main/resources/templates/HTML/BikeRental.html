@@ -13,23 +13,18 @@
             integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
             crossorigin=""></script>
     <link rel="stylesheet" th:href="@{/CSS/BikeRental.css}">
+    <link rel="stylesheet" th:href="@{/CSS/footer.css}">
 </head>
 <body>
 <header class="Header" id="header" th:replace="components/header :: header">
 </header>
 
 <div id="map-container">
-    <div id="map"><!--<button id="requestToCurrentLocationBtn" onclick="showOrderDiv()">Request to current location</button>--></div>
+    <div id="map"></div>
 
     <div id="info-section"></div>
 </div>
+<footer class="section-p1" th:replace="components/footer :: footer"></footer>
 
-<!--<form id="bikeMarkerMaker">
-    <label for="location">Location</label>
-    <input value="" type="text" name="location" id="location">
-    <label for="bikeNumber">Bike number</label>
-    <input type="number" name="bikeNumber" id="bikeNumber">
-    <button id="submitMarkerBtn">Halla</button>
-</form>-->
 </body>
 </html>

@@ -34,4 +34,9 @@ public class ProductWebController {
     public String getRentalWeb(){
         return "HTML/BikeRental";
     }
+
+    @GetMapping("/rental/confirmation/{id}")
+    public String getRentalConfirmationWeb(@PathParam("bicycle") @PathVariable("id") int bicycleId,Model model){
+        return "HTML/RentalConfirmation";
+    }
 }
