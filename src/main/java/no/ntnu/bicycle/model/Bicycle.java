@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.awt.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "bicycle")
@@ -15,11 +16,13 @@ public class Bicycle {
     private String color;
     private String location;
     private int pricePerMinute;
+    private String status;
 
     public Bicycle(String color, String location, int pricePerMinute) {
         this.color = color;
         this.pricePerMinute = pricePerMinute;
         this.location = location;
+        this.status = "NEW";
     }
 
     public Bicycle() {
@@ -52,5 +55,33 @@ public class Bicycle {
 
     public void setPricePerMinute(int pricePerMinute) {
         this.pricePerMinute = pricePerMinute;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isAvailable() {
+        return Objects.equals(this.status, "AVAILABLE");
+    }
+
+    public void setStatusToAvailable() {
+        this.status = "AVAILABLE";
+    }
+
+    public void setStatusToRented(){
+        this.status = "RENTED";
+    }
+
+    public void setStatusToDisabled(){
+        this.status = "DISABLED";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

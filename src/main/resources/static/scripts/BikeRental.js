@@ -92,10 +92,9 @@ let gpsCircleMarker;
 //setting the location-marker til current location. updates every 15 seconds
 /**
  *
- * @param description the text in the popup of the current location
  * @returns marker
  */
-function interval(description){
+function interval(){
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(onLocationFound);
@@ -105,16 +104,13 @@ function interval(description){
     }
     function onLocationFound(position) {
         let radius = position.coords.accuracy / 2;
-        let popupContent = description;
 
 
         if (gpsMarker == null) {
             gpsMarker = L.marker([position.coords.latitude,position.coords.longitude],{icon: personIcon}).addTo(map);
-            gpsMarker.bindPopup(popupContent);
             gpsCircleMarker = L.circle([position.coords.latitude,position.coords.longitude], radius).addTo(map);
         }
         else {
-            gpsMarker.getPopup().setContent(popupContent);
             gpsMarker.setLatLng([position.coords.latitude,position.coords.longitude]);
             gpsCircleMarker.setLatLng([position.coords.latitude,position.coords.longitude]);
             gpsCircleMarker.setRadius(radius);
@@ -125,7 +121,7 @@ function interval(description){
 
     return gpsMarker;
 }
-interval("You are here!");
+interval();
 /**
  * function for creating a bike marker
  * @param position
@@ -133,11 +129,12 @@ interval("You are here!");
  * @param color
  * @returns {Marker<any>}
  */
-function createBikeMarker(position, bikeNo, color){
+function createBikeMarker(position, bikeNo, color, pricePerMinute){
     const popup = '<p>Bike for rent!</p>';
     let marker = L.marker(position,{icon: bikeIcon}).on('click', showInfoOnClick).addTo(map);
     marker.bikeColor = color;
     marker.bikeId = bikeNo;
+    marker.bikePricePerMinute = pricePerMinute;
     marker.bindPopup(popup);
     //marker.off('click', marker._openPopup);
 
@@ -209,7 +206,7 @@ function showInfoOnClick(e) {
             "<li>Classy bike from 80s</li>" +
             "<li>Color: " + e.target.bikeColor + "</li>" +
             "<li>Customizable seat height</li>" +
-            "<li>Price: 1 NOK/min</li>" +
+            "<li>Price: "+ e.target.bikePricePerMinute +" NOK/min</li>" +
             "<li>*100 NOK fee for leaving the bike at another location</li>" +
             "</ul>" +
             "<p>Bicycle id : " + e.target.bikeId + "</p>" +
@@ -251,7 +248,7 @@ function getBicyclesFromServer(){
 
     asyncRequest.addEventListener("load", fillFieldsWithResponse);
 
-    asyncRequest.open("GET", "/api/bicycle");
+    asyncRequest.open("GET", "/api/bicycle/available");
     asyncRequest.setRequestHeader("Accept", "application/json");
     asyncRequest.setRequestHeader("Content-Type", "application/json");
     asyncRequest.send();
@@ -269,7 +266,7 @@ function getBicyclesFromServer(){
                 let bicycleLocation = L.latLng(locationLatIng);
                 let bicyclePricePerMinute = productJSON.pricePerMinute;
 
-                createBikeMarker(bicycleLocation, bicycleId, bicycleColor);
+                createBikeMarker(bicycleLocation, bicycleId, bicycleColor, bicyclePricePerMinute);
             }
         }
     }
@@ -286,24 +283,3 @@ function getBicyclesFromServer(){
 }
 
 getBicyclesFromServer();
-
-
-/*let selectedLocation;
-
-map.on("click", function (e) {
-    if (selectedLocation === undefined || selectedLocation === null){
-        selectedLocation = new L.Marker([e.latlng.lat,e.latlng.lng]);
-        let popup = "<p>Selected location</p>"
-        selectedLocation.bindPopup(popup);
-        selectedLocation.addTo(map);
-        console.log([e.latlng.lat, e.latlng.lng]);
-    }else{
-        selectedLocation.setLatLng([e.latlng.lat,e.latlng.lng]);
-        console.log([e.latlng.lat, e.latlng.lng]);
-    }
-
-});
-
-function showOrderDiv(){
-    console.log("clicked");
-}*/

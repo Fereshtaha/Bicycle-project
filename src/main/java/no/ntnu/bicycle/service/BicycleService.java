@@ -4,9 +4,7 @@ import no.ntnu.bicycle.model.Bicycle;
 import no.ntnu.bicycle.repository.BicycleRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BicycleService {
@@ -16,25 +14,41 @@ public class BicycleService {
         this.bicycleRepository = bicycleRepository;
     }
 
-    public Bicycle findBicycleById(long id){
+    public boolean findBicycleById(long id){
         Optional<Bicycle> bicycle = bicycleRepository.findById(id);
 
-        return bicycle.get();
+        return bicycle.isPresent();
     }
 
     public boolean addBicycle(Bicycle bicycle){
-        boolean added = false;
-        try{
-            findBicycleById(bicycle.getId());
-        }catch (NoSuchElementException e){
+        if(!findBicycleById(bicycle.getId())){
             bicycleRepository.save(bicycle);
-            added = true;
+            return true;
+        }else {
+            return false;
         }
-
-        return added;
     }
 
     public List<Bicycle> getAllBicycles(){
         return (List<Bicycle>) bicycleRepository.findAll();
+    }
+
+    public List<Bicycle> getAllAvailableBicycles(){
+        ArrayList<Bicycle> list = new ArrayList<>();
+        bicycleRepository.findAll().forEach(bicycle -> {
+            if (bicycle.isAvailable()){
+                list.add(bicycle);
+            }
+        });
+        return list;
+    }
+
+    public boolean setStatusToRented(Bicycle bicycle){
+        if(findBicycleById(bicycle.getId())){
+            bicycle.setStatusToRented();
+            return true;
+        }else{
+            return false;
+        }
     }
 }
