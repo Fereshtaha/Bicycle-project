@@ -235,8 +235,8 @@ function orderNowButton(bikeId, location, pricePerMinute){
     function onResponseReceivedFromPOST() {
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) { // handle success
-                alert("Added to cart");
-                window.location = "/rental/confirmation/" + bikeId;
+                let orderId = this.responseText;
+                window.location = "/rental/confirmation/" + orderId;
             } else if(this.status === 401){
                alert("Payment method not specified");
             }else{

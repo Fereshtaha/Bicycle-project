@@ -17,6 +17,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -99,7 +101,7 @@ public class OrderController {
     }
 
     @PostMapping(value = "/rental", consumes = "application/json")
-    public ResponseEntity<String> createBikeRentalOrder(HttpEntity<String> entity){
+    public ResponseEntity<Long> createBikeRentalOrder(HttpEntity<String> entity){
 
         //JSONObject json = new JSONObject(entity.getBody());
 
@@ -109,7 +111,7 @@ public class OrderController {
         String location = jsonObject.getString("location");
         int pricePerMinute = Integer.parseInt(jsonObject.getString("pricePerMinute"));
 
-        ResponseEntity<String> response;
+        ResponseEntity<Long> response;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
@@ -117,15 +119,28 @@ public class OrderController {
             Customer customer = customerService.findCustomerByEmail(email);
             Bicycle bicycle = bicycleService.findBicycleById(id);
 
-            bicycleRentalOrderService.addBicycleRentalOrder(new BicycleRentalOrder(bicycle, customer, location, pricePerMinute));
+            BicycleRentalOrder order = new BicycleRentalOrder(bicycle, customer, location, pricePerMinute);
 
-            response = new ResponseEntity<>(HttpStatus.OK);
+            bicycleRentalOrderService.addBicycleRentalOrder(order);
+
+            response = new ResponseEntity<>(order.getId(),HttpStatus.OK);
         }catch (NoSuchElementException e){
             e.printStackTrace();
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         return response;
+    }
+
+    @GetMapping(value = "/confirmation/{id}", consumes = "application/json")
+    public ResponseEntity<String> getLocationFromOrder(@PathVariable("id")long id){
+        try {
+            BicycleRentalOrder order = bicycleRentalOrderService.findBicycleRentalOrderById(id);
+
+            return new ResponseEntity<>(order.getLocation(), HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

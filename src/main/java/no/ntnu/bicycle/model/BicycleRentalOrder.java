@@ -23,6 +23,7 @@ public class BicycleRentalOrder {
     private LocalDateTime rentalStartTime;
     private LocalDateTime rentalEndTime;
     private int pricePerMinute;
+    private int totalPrice;
 
     /**
      * Gets bicycle.
@@ -57,6 +58,7 @@ public class BicycleRentalOrder {
         this.rentalStartTime = LocalDateTime.now();
         this.rentalEndTime = null;
         this.pricePerMinute = pricePerMinute;
+        this.totalPrice = 0;
     }
 
     /**
@@ -127,6 +129,27 @@ public class BicycleRentalOrder {
      */
     public LocalDateTime getRentalEndTime() {
         return rentalEndTime;
+    }
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setBicycle(Bicycle bicycle) {
+        this.bicycle = bicycle;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     /**

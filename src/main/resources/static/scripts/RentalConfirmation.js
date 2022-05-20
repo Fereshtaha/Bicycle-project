@@ -1,13 +1,17 @@
 const initialCoordinates = [62.46814742594781,6.34689191998423];
 
 //map as a variable
-let map = initMap();
+let map;
 
+const queryString = window.location.pathname;
+const lastSegment = queryString.split("/").pop();
+
+let coordinates;
 
 
 //function for initiating the map;
 function initMap() {
-    let map = L.map('map',  {zoomControl: false}).setView(initialCoordinates, 14);
+    let map = L.map('map',  {zoomControl: false}).setView(coordinates, 14);
 
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
@@ -47,5 +51,34 @@ function createCircle(position, radius, borderColor, fillColor){
     }).addTo(map);
 }
 
-createCircle(initialCoordinates, 500, "green", "green");
+
+
+
+function getLocationFromServer(){
+    const asyncRequest = new XMLHttpRequest();
+
+    //asyncRequest.addEventListener("load", setCoordinates);
+
+    asyncRequest.open("GET", "/orders/confirmation/" + lastSegment);
+    asyncRequest.setRequestHeader("Accept", "application/json");
+    asyncRequest.setRequestHeader("Content-Type", "application/json");
+    asyncRequest.send();
+    asyncRequest.onreadystatechange = onResponseReceivedFromGET;
+
+    function onResponseReceivedFromGET() {
+        if (this.readyState === XMLHttpRequest.DONE) {
+            if (this.status === 200) { // handle success
+                let coordinatesArray = this.responseText.split(",");
+                coordinates = L.latLng(coordinatesArray[0],coordinatesArray[1]) ;
+                map = initMap();
+                createCircle(coordinates, 500, "green", "green");
+            } else{
+                console.log("Request was unsuccessful");
+                console.log("Status code is: " + this.status)
+            }
+        }
+    }
+
+}
+getLocationFromServer();
 
