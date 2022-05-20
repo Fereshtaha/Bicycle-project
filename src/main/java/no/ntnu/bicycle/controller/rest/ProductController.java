@@ -18,7 +18,7 @@ import java.util.Objects;
 public class ProductController {
 
     private ProductService productService;
-    CustomerService customerService;
+    private CustomerService customerService;
 
     public ProductController(ProductService productService, CustomerService customerService) {
         this.productService = productService;

@@ -14,17 +14,18 @@ public class BicycleService {
         this.bicycleRepository = bicycleRepository;
     }
 
-    public boolean findBicycleById(long id){
+    public Bicycle findBicycleById(long id){
         Optional<Bicycle> bicycle = bicycleRepository.findById(id);
 
-        return bicycle.isPresent();
+        return bicycle.get();
     }
 
     public boolean addBicycle(Bicycle bicycle){
-        if(!findBicycleById(bicycle.getId())){
+        try{
+            findBicycleById(bicycle.getId());
             bicycleRepository.save(bicycle);
             return true;
-        }else {
+        }catch (NoSuchElementException e){
             return false;
         }
     }
@@ -44,10 +45,11 @@ public class BicycleService {
     }
 
     public boolean setStatusToRented(Bicycle bicycle){
-        if(findBicycleById(bicycle.getId())){
+        try{
+            findBicycleById(bicycle.getId());
             bicycle.setStatusToRented();
             return true;
-        }else{
+        }catch (NoSuchElementException e){
             return false;
         }
     }

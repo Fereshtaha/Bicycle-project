@@ -5,11 +5,14 @@ import java.awt.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+/**
+ * The type Bicycle rental order.
+ */
 @Entity
 public class BicycleRentalOrder {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     @OneToOne
     @JoinColumn(name = "bicycle_id", referencedColumnName = "id")
     private Bicycle bicycle;
@@ -19,66 +22,137 @@ public class BicycleRentalOrder {
     private String location;
     private LocalDateTime rentalStartTime;
     private LocalDateTime rentalEndTime;
-    private int totalPrice;
+    private int pricePerMinute;
 
+    /**
+     * Gets bicycle.
+     *
+     * @return the bicycle
+     */
     public Bicycle getBicycle() {
         return bicycle;
     }
 
+    /**
+     * Gets customer.
+     *
+     * @return the customer
+     */
     public Customer getCustomer() {
         return customer;
     }
 
-    public BicycleRentalOrder(Bicycle bicycle, Customer customer, String location, int totalPrice) {
+    /**
+     * Instantiates a new Bicycle rental order.
+     *
+     * @param bicycle    the bicycle
+     * @param customer   the customer
+     * @param location   the location
+     * @param pricePerMinute the price per minute
+     */
+    public BicycleRentalOrder(Bicycle bicycle, Customer customer, String location, int pricePerMinute) {
         this.bicycle = bicycle;
         this.customer = customer;
         this.location = location;
         this.rentalStartTime = LocalDateTime.now();
-        this.rentalStartTime = null;
-        this.totalPrice = totalPrice;
+        this.rentalEndTime = null;
+        this.pricePerMinute = pricePerMinute;
     }
 
+    /**
+     * Instantiates a new Bicycle rental order.
+     */
     public BicycleRentalOrder() {
 
     }
 
-    public int getId() {
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public long getId() {
         return id;
     }
 
+    /**
+     * Get elapsed time in minutes long.
+     *
+     * @return the long
+     */
     public Long getElapsedTimeInMinutes(){
         return Duration.between(rentalStartTime,LocalDateTime.now()).toMinutes();
     }
 
+    /**
+     * Gets location.
+     *
+     * @return the location
+     */
     public String getLocation() {
         return location;
     }
 
+    /**
+     * Sets location.
+     *
+     * @param location the location
+     */
     public void setLocation(String location) {
         this.location = location;
     }
 
+    /**
+     * Gets rental start time.
+     *
+     * @return the rental start time
+     */
     public LocalDateTime getRentalStartTime() {
         return rentalStartTime;
     }
 
+    /**
+     * Sets rental start time.
+     *
+     * @param rentalStartTime the rental start time
+     */
     public void setRentalStartTime(LocalDateTime rentalStartTime) {
         this.rentalStartTime = rentalStartTime;
     }
 
+    /**
+     * Gets rental end time.
+     *
+     * @return the rental end time
+     */
     public LocalDateTime getRentalEndTime() {
         return rentalEndTime;
     }
 
+    /**
+     * Sets rental end time.
+     *
+     * @param rentalEndTime the rental end time
+     */
     public void setRentalEndTime(LocalDateTime rentalEndTime) {
         this.rentalEndTime = rentalEndTime;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
+    /**
+     * Gets total price.
+     *
+     * @return the total price
+     */
+    public int getPricePerMinute() {
+        return pricePerMinute;
     }
 
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
+    /**
+     * Sets total price.
+     *
+     * @param totalPrice the total price
+     */
+    public void setPricePerMinute(int totalPrice) {
+        this.pricePerMinute = totalPrice;
     }
 }

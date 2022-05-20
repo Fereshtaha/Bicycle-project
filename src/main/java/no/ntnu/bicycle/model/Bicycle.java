@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Bicycle {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String color;
     private String location;
     private int pricePerMinute;
@@ -37,7 +37,7 @@ public class Bicycle {
         this.location = location;
     }
 
-    public int getId(){
+    public long getId(){
         return this.id;
     }
 
@@ -57,7 +57,7 @@ public class Bicycle {
         this.pricePerMinute = pricePerMinute;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

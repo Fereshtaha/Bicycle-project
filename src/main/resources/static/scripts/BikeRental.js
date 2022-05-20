@@ -210,21 +210,41 @@ function showInfoOnClick(e) {
             "<li>*100 NOK fee for leaving the bike at another location</li>" +
             "</ul>" +
             "<p>Bicycle id : " + e.target.bikeId + "</p>" +
-            "<button id='rentButton' onclick='orderNowButton("+ e.target.bikeId + ",[" + e.latlng.lat + "," + e.latlng.lng  + "])'>RENT NOW</button>";
+            "<button id='rentButton' onclick='orderNowButton("+ e.target.bikeId + ",[" + e.latlng.lat + "," + e.latlng.lng  + "], " + e.target.bikePricePerMinute +")'>RENT NOW</button>";
     }
 }
 
-function orderNowButton(bikeId, location){
+function orderNowButton(bikeId, location, pricePerMinute){
     const toJson = "{" + '"bikeId"' + ":" + '"' + bikeId + '"' + ","  +
-        '"location"' + ":" + '"' + location + '"' + "}";
+        '"location"' + ":" + '"' + location + '"' + "," +
+        '"pricePerMinute" : "' + pricePerMinute + '"}';
 
-    const jsonObject = JSON.parse(toJson.toString());
+    //const jsonObject = JSON.parse(toJson.toString());
 
-    console.log(jsonObject);
+    console.log(toJson);
 
-    console.log("order created");
-    console.log("location: " + jsonObject.location);
-    console.log("bikeId: " + jsonObject.bikeId);
+    const asyncRequest = new XMLHttpRequest();
+
+    asyncRequest.open("POST", "/orders/rental/");
+    asyncRequest.setRequestHeader("Accept", "application/json");
+    asyncRequest.setRequestHeader("Content-Type", "application/json");
+    asyncRequest.send(toJson);
+
+    asyncRequest.onreadystatechange = onResponseReceivedFromPOST;
+
+    function onResponseReceivedFromPOST() {
+        if (this.readyState === XMLHttpRequest.DONE) {
+            if (this.status === 200) { // handle success
+                alert("Added to cart");
+                window.location = "/rental/confirmation/" + bikeId;
+            } else if(this.status === 401){
+               alert("Payment method not specified");
+            }else{
+                console.log(this.status);
+                alert("Something went wrong");
+            }
+        }
+    }
 }
 
 /**
