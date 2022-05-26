@@ -1,6 +1,5 @@
 package no.ntnu.bicycle.controller.rest;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import no.ntnu.bicycle.model.Bicycle;
 import no.ntnu.bicycle.model.BicycleRentalOrder;
 import no.ntnu.bicycle.model.Customer;
@@ -16,12 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * REST API controller for orders.
+ */
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -30,6 +29,13 @@ public class OrderController {
     private CustomerService customerService;
     private BicycleService bicycleService;
 
+    /**
+     * Constructor with parameters
+     * @param orderService order service
+     * @param bicycleRentalOrderService bicycle rental order service
+     * @param customerService customer service
+     * @param bicycleService bicycle service
+     */
     public OrderController(OrderService orderService, BicycleRentalOrderService bicycleRentalOrderService, CustomerService customerService, BicycleService bicycleService) {
         this.orderService = orderService;
         this.bicycleRentalOrderService = bicycleRentalOrderService;
@@ -37,6 +43,13 @@ public class OrderController {
         this.bicycleService = bicycleService;
     }
 
+    /**
+     * Get all orders
+     * HTTP get to /orders
+     * @param customer Customer. When specified, get all orders from a customer including this substring, case-insensitive.
+     * @param product Product. When specified, get all orders with a product including this substring, case-insensitive.
+     * @return List of all orders currently stored in the database.
+     */
     @GetMapping
     public List<CustomerOrder> getAllOrders(@RequestParam(required = false) String customer,
                                             @RequestParam(required = false) String product) {
@@ -53,6 +66,11 @@ public class OrderController {
         }
     }
 
+    /**
+     * Add an order to the database.
+     * @param customerOrder order to be added, from HTTP response body
+     * @return 200 OK status on success, 400 bad request on error
+     */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<String> add(@RequestBody CustomerOrder customerOrder) {
         ResponseEntity<String> response;
@@ -64,6 +82,11 @@ public class OrderController {
         return response;
     }
 
+    /**
+     * Get a specific order
+     * @param id Id of the order to be returned
+     * @return Order with the given Id or status 404
+     */
     @GetMapping("/{id}")
     public ResponseEntity<CustomerOrder> getOne(@PathVariable Integer id) {
         ResponseEntity<CustomerOrder> response;
@@ -76,6 +99,11 @@ public class OrderController {
         return response;
     }
 
+    /**
+     * Delete an order from the collection
+     * @param id Id of the order to delete
+     * @return 200 OK on success, 404 Not found on error
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable int id) {
         ResponseEntity<String> response;
@@ -87,7 +115,12 @@ public class OrderController {
         return response;
     }
 
-
+    /**
+     * Update an order in the repository
+     * @param id Id of the order to update, from the URL
+     * @param customerOrder New order data to store, from request body
+     * @return 200 OK success, 400 bad request on error
+     */
     @PutMapping
     public ResponseEntity<String> update(@PathVariable int id, @RequestBody CustomerOrder customerOrder) {
         String errorMessage = orderService.update(id, customerOrder);
@@ -100,6 +133,11 @@ public class OrderController {
         return  response;
     }
 
+    /**
+     * !TODO document this
+     * @param entity
+     * @return
+     */
     @PostMapping(value = "/rental", consumes = "application/json")
     public ResponseEntity<Long> createBikeRentalOrder(HttpEntity<String> entity){
 
@@ -132,6 +170,11 @@ public class OrderController {
         return response;
     }
 
+    /**
+     * !TODO document this
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/confirmation/{id}", consumes = "application/json")
     public ResponseEntity<String> getLocationFromOrder(@PathVariable("id")long id){
         try {

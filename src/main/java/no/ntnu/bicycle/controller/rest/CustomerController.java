@@ -17,6 +17,9 @@ import javax.mail.MessagingException;
 import javax.websocket.server.PathParam;
 import java.util.*;
 
+/**
+ * REST API controller for customer.
+ */
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -24,16 +27,31 @@ public class CustomerController {
 
     EmailSenderService emailSenderService;
 
+    /**
+     * Constructor with parameters
+     * @param customerService customer service
+     * @param emailSenderService email sender service
+     */
     public CustomerController(CustomerService customerService, EmailSenderService emailSenderService) {
         this.customerService = customerService;
         this.emailSenderService = emailSenderService;
     }
 
+    /**
+     * Gets all customers
+     * HTTP get
+     * @return list of all customers
+     */
     @GetMapping
     public List<Customer> getCustomer() {
         return customerService.getAllCustomers();
     }
 
+    /**
+     * Gets one specific customer
+     * @param customerId ID of the customer to be returned
+     * @return Customer with the given ID or status 404
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Customer> getOneCustomer(@PathParam("costumer") @PathVariable("id") int customerId){
         ResponseEntity<Customer> response;
@@ -46,6 +64,11 @@ public class CustomerController {
         return response;
     }
 
+    /**
+     * !TODO check if this is correct
+     * Gets one customer by email
+     * @return Customer by email, 404 not found or 403 forbidden.
+     */
     @GetMapping("/authenticated-customer")
     public ResponseEntity<Customer> getOneCustomerByEmail(){
         ResponseEntity<Customer> response;
@@ -66,6 +89,10 @@ public class CustomerController {
         return response;
     }
 
+    /**
+     * Gets address of customer by email
+     * @return Address of customer by email, 404 not found or 403 forbidden.
+     */
     @GetMapping("/authenticated-address")
     public ResponseEntity<BillingAndShippingAddress> getAddressOfCustomerByEmail(){
         ResponseEntity<BillingAndShippingAddress> response;
@@ -86,6 +113,11 @@ public class CustomerController {
         return response;
     }
 
+    /**
+     * Updates address of customer
+     * @param address address to be updated
+     * @return 200 OK status on success, 404 not found or 403 forbidden.
+     */
     @PostMapping("/authenticated-address")
     public ResponseEntity<String> updateAddressOfCustomer(@RequestBody BillingAndShippingAddress address) {
         ResponseEntity<String> response;
@@ -108,6 +140,12 @@ public class CustomerController {
         return response;
     }
 
+    /**
+     * Registers new customer
+     * @param customer customer to be registered
+     * @return 200 OK status on success = welcome mail from KRRR,
+     * or 400 bad request and prints out that mail could not be sent
+     */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<String> registerNewCustomer(@RequestBody Customer customer)  {
         ResponseEntity<String> response;
@@ -132,6 +170,12 @@ public class CustomerController {
         return response;
     }
 
+    /**
+     * Reset password
+     * @param emailObject email to the password that needs to be reset
+     * @return 200 OK status on success = mail with new password to the email given,
+     * 400 bad request or 404 not found
+     */
     @PostMapping(value = "/reset-password", consumes = "application/json")
     public ResponseEntity<String> resetPassword(@RequestBody String emailObject) {
         String[] stringArray = emailObject.split("\"" );
@@ -160,6 +204,14 @@ public class CustomerController {
         return response;
     }
 
+    /**
+     * !TODO documentation here
+     * Updates password
+     * @param emailAndNewAndOldPassword Email, new and old password
+     * @return 200 OK status on success =
+     * 401 Unauthorized =
+     * 404 not found =
+     */
     @PostMapping(value = "/update-password", consumes = "application/json")
     public ResponseEntity<String> updatePassword(@RequestBody String emailAndNewAndOldPassword){
         ResponseEntity<String> response;
@@ -187,12 +239,21 @@ public class CustomerController {
     }
 
 
-
+    /**
+     * Deletes a customer
+     * @param customerId customer to be deleted
+     */
     @DeleteMapping("/{id}")
     public void deleteCustomer(@PathVariable("id") int customerId) {
         customerService.deleteCustomer(customerId);
     }
 
+    /**
+     * Update customer
+     * @param id id of the customer that needs to be updated
+     * @param customer customer that needs to be updated
+     * @return 200 OK status on success or 400 bad request if it does not get updated
+     */
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable int id,
                                          @RequestBody Customer customer) {

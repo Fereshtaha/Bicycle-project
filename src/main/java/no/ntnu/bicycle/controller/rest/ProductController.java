@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * REST API controller for product.
+ */
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -20,16 +23,30 @@ public class ProductController {
     private ProductService productService;
     private CustomerService customerService;
 
+    /**
+     * Constructor with parameters
+     * @param productService product service
+     * @param customerService customer service
+     */
     public ProductController(ProductService productService, CustomerService customerService) {
         this.productService = productService;
         this.customerService = customerService;
     }
 
+    /**
+     * Gets all products
+     * @return list of all products
+     */
     @GetMapping
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
+    /**
+     * Gets one product
+     * @param id Integer. ID of the product.
+     * @return 200 OK status on success, or 404 not found if it does not exist.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Product> getOne(@PathVariable Integer id) {
         ResponseEntity<Product> response;
@@ -42,6 +59,11 @@ public class ProductController {
         return response;
     }
 
+    /**
+     * Add product to cart
+     * @param idJsonObject String. !TODO explain this
+     * @return
+     */
     @PostMapping(value = "/addToCart", consumes = "application/json")
     public ResponseEntity<String> addProductToCart(@RequestBody String idJsonObject){
         try {
@@ -70,6 +92,10 @@ public class ProductController {
         }
     }
 
+    /**
+     * Get products in cart
+     * @return 200 OK status on success, 400 bad request if it does not get products in cart
+     */
     @GetMapping(value = "shopping-cart", produces = "application/json")
     public ResponseEntity<List<Product>> getProductsInCart(){
         try{

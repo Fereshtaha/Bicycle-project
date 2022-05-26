@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.websocket.server.PathParam;
 
+/**
+ * This is a REST API controller - part of the backend
+ */
 @Controller
 public class ProductWebController {
     /**

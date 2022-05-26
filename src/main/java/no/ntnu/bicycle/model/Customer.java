@@ -242,14 +242,26 @@ public class Customer {
     }
 
 
+    /**
+     * Getting shopping cart list
+     * @return shopping cart
+     */
     public List<Product> getShoppingCart() {
         return shoppingCart;
     }
 
+    /**
+     * Adding a product to shopping cart
+     * @param product product to add in shopping cart
+     */
     public void addProductToShoppingCart(Product product) {
         this.shoppingCart.add(product);
     }
 
+    /**
+     * Removing a product from shopping cart
+     * @param product product to remove from shopping cart
+     */
     public void removeFromShoppingCart(Product product){
         this.shoppingCart.add(product);
     }

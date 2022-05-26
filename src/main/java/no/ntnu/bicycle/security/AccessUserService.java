@@ -9,15 +9,28 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Provides AccessUserDetails needed for authentication
+ */
 @Service
 public class AccessUserService implements UserDetailsService {
 
     private CustomerRepository customerRepository;
 
+    /**
+     * Constructor with the parameter customer repository
+     * @param customerRepository customer repository
+     */
     public AccessUserService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
+    /**
+     * Loads user by username
+     * @param email String.
+     * @return user by username, otherwise throw an exception
+     * @throws UsernameNotFoundException with customer email not found
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Customer> customer = customerRepository.findByEmail(email);

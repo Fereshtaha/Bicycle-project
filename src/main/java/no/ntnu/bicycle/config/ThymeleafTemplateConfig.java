@@ -8,6 +8,9 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * !TODO write documentation here
+ */
 @Configuration
 public class ThymeleafTemplateConfig {
 

@@ -16,6 +16,9 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * !TODO write documentation here
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j

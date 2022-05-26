@@ -1,10 +1,12 @@
 package no.ntnu.bicycle.controller.web;
 
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * This is a REST API controller - part of the backend
+ */
 @Controller
 public class AboutController {
     /**
@@ -18,23 +20,40 @@ public class AboutController {
         return "HTML/footer/Om-oss";
     }
 
+    /**
+     * Return a page from the footer
+     * @param model
+     * @return
+     */
     @GetMapping("/customer-service")
     public String getCustomerService(Model model) {
         return "HTML/footer/Customer-Service";
     }
 
+    /**
+     * Return a page from the footer
+     * @return delivery information
+     */
     @GetMapping("/delivery-information")
-    public String getDelivaryInfo(Model model) {
+    public String getDeliveryInfo() {
         return "HTML/footer/Delivery-information";
     }
 
+    /**
+     * Return a page from the footer
+     * @return terms & policy
+     */
     @GetMapping("/terms-policy")
-    public String getTermsPolicy(Model model) {
+    public String getTermsPolicy() {
         return "HTML/footer//Terms-policy";
     }
 
+    /**
+     * Return a page from the footer
+     * @return contact us
+     */
     @GetMapping("/contact-us")
-    public String getContactUs(Model model) {
+    public String getContactUs() {
         return "HTML/footer//Contact-us";
     }
 }

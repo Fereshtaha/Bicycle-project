@@ -1,7 +1,6 @@
 package no.ntnu.bicycle.controller.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -17,17 +16,27 @@ public class HomeController {
      * @return Name of the template to render
      */
     @GetMapping("/")
-    public String getHome(Model model) {
+    public String getHome() {
 
         return "index";
     }
+
+    /**
+     * Responds to HTTP get
+     * @return login successful for user
+     */
     @GetMapping("/user")
-    public String getLoginSuccessUser(Model model) {
+    public String getLoginSuccessUser() {
 
         return "HTML/loginSuccessUser";
     }
+
+    /**
+     * Responds to HTTP get
+     * @return login successful for admin
+     */
     @GetMapping("/admin")
-    public String getLoginSuccessAdmin(Model model) {
+    public String getLoginSuccessAdmin() {
 
         return "HTML/loginSuccessAdmin";
     }

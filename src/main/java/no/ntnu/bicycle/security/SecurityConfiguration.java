@@ -11,25 +11,44 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * Creates AuthenticationManager, meaning setting up the authentication type
+ * The @EnableWebSecurity tells that this is a class for configuring web security
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
-
+    /**
+     * A service providing the users from the collection
+     */
     @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
+    /**
+     * Constructor with the parameter accessUserService
+     * @param accessUserService accessing the user service
+     */
     public SecurityConfiguration(AccessUserService accessUserService) {
         this.userDetailsService = accessUserService;
     }
 
+    /**
+     * Configure the authorization rules
+     * @param auth AuthenticationManagerBuilder
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService);
     }
 
-
+    /**
+     * Configure the authorization rules
+     * @param http HTTP Security object
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         final String admin = "ADMIN";

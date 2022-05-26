@@ -3,9 +3,11 @@ package no.ntnu.bicycle.controller.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * This is a REST API controller - part of the backend
+ */
 @Controller
 @RequestMapping("/account")
 public class AccountController {
@@ -20,14 +22,22 @@ public class AccountController {
         return "HTML/Account";
     }
 
+    /**
+     * Respond to HTTP get
+     * @return account address
+     */
     @GetMapping("/address")
-    public String getAccountAddress(Model model){
+    public String getAccountAddress(){
 
         return "HTML/Account-address";
     }
 
+    /**
+     * Responds to HTTP get
+     * @return account orders
+     */
     @GetMapping("orders")
-    public String getAccountOrders(Model model){
+    public String getAccountOrders(){
 
         return "HTML/Account-orders";
     }
