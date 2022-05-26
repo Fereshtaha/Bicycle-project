@@ -2,24 +2,43 @@ package no.ntnu.bicycle.service;
 
 import no.ntnu.bicycle.model.Bicycle;
 import no.ntnu.bicycle.repository.BicycleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+/**
+ * Business logic related to bicycles
+ */
 @Service
 public class BicycleService {
+    @Autowired
     BicycleRepository bicycleRepository;
 
+    /**
+     * Constructor with the parameter bicycleRepository
+     * @param bicycleRepository BicycleRepository
+     */
     public BicycleService(BicycleRepository bicycleRepository){
         this.bicycleRepository = bicycleRepository;
     }
 
+    /**
+     * Finds bicycle by ID
+     * @param id long. Bicycle id
+     * @return The bicycle or nothing if none is found by that ID
+     */
     public Bicycle findBicycleById(long id){
         Optional<Bicycle> bicycle = bicycleRepository.findById(id);
 
         return bicycle.get();
     }
 
+    /**
+     * Adds a biccycle to the application (database)
+     * @param bicycle Bicycle
+     * @return true when bicycle added, false on error
+     */
     public boolean addBicycle(Bicycle bicycle){
         try{
             findBicycleById(bicycle.getId());
@@ -30,10 +49,18 @@ public class BicycleService {
         }
     }
 
+    /**
+     * Gets all bicycles
+     * @return list of all bicycles
+     */
     public List<Bicycle> getAllBicycles(){
         return (List<Bicycle>) bicycleRepository.findAll();
     }
 
+    /**
+     * Gets all available bicycles
+     * @return returns the bicycle if it is available
+     */
     public List<Bicycle> getAllAvailableBicycles(){
         ArrayList<Bicycle> list = new ArrayList<>();
         bicycleRepository.findAll().forEach(bicycle -> {
@@ -44,6 +71,11 @@ public class BicycleService {
         return list;
     }
 
+    /**
+     * Sets the status to rented
+     * @param bicycle Bicycle. The bicycle that needs to be set as rented.
+     * @return true if it is rented, false if it is available
+     */
     public boolean setStatusToRented(Bicycle bicycle){
         try{
             findBicycleById(bicycle.getId());

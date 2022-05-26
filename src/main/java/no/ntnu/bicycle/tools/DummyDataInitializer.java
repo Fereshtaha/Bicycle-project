@@ -7,21 +7,17 @@ import no.ntnu.bicycle.repository.BicycleRepository;
 import no.ntnu.bicycle.repository.CustomerRepository;
 import no.ntnu.bicycle.repository.OrderRepository;
 import no.ntnu.bicycle.repository.ProductRepository;
-import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * This class initializes example data
+ */
 @Component
 public class DummyDataInitializer implements ApplicationListener<ApplicationReadyEvent>{
 
@@ -38,7 +34,13 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     @Autowired
     private EmailSenderService emailSenderService;
 
-
+    /**
+     * Constructor for dummy data initializer
+     * @param customerRepository CustomerRepository
+     * @param orderRepository OrderRepository
+     * @param productRepository ProductRepository
+     * @param bicycleRepository BicycleRepository
+     */
     public DummyDataInitializer(CustomerRepository customerRepository, OrderRepository orderRepository, ProductRepository productRepository, BicycleRepository bicycleRepository) {
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
@@ -59,7 +61,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         logger.info("Importing test data...");
         Customer sebastian = new Customer("Sebastian", "Nilsen", "sebasn@stud.ntnu.no","2001-04-19",94198166,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_ADMIN);
         Customer anne = new Customer("Anne", "Ruud", "anneruud@mail.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa",Role.ROLE_USER);
-        //Customer fereshta = new Customer("Fereshta", "Ahmadi", "fereshta@stud.ntnu.no", "2000-06-11", 929394949, "$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_USER);
 
         BillingAndShippingAddress adresse1 = new BillingAndShippingAddress("Sebastian","Nilsen","Fiolveien 1b","Norway","1395","Hvalstad");
 
@@ -92,6 +93,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         bicycleRepository.saveAll(List.of(bicycle, bicycle1));
     }
 
+    /**
+     * Checking if data if imported
+     * @return true if data is imported, false if its not imported
+     */
     private boolean isDataImported() {
         return (customerRepository.count() > 0);
     }

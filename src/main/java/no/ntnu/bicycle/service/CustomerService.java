@@ -15,19 +15,35 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Business logic related to Customer service
+ */
 @Service
 public class CustomerService {
 
     private CustomerRepository customerRepository;
 
+    /**
+     * Constructor with the parameter customer repository
+     * @param customerRepository customer repository
+     */
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
+    /**
+     * Gets all customers
+     * @return list of all customers
+     */
     public List<Customer> getAllCustomers() {
         return (List<Customer>) customerRepository.findAll();
     }
 
+    /**
+     * Finds customer by id
+     * @param id long. Customer id that needs to be found
+     * @return
+     */
     public Customer findCustomerById(long id) {
         Optional<Customer> customer = customerRepository.findById(id);
         return customer.get();
@@ -37,12 +53,21 @@ public class CustomerService {
         return optionalCustomer.get();*/
     }
 
+    /**
+     * Finds customer by email
+     * @param email String. Email to be found
+     * @return customer
+     */
     public Customer findCustomerByEmail(String email) {
         Optional<Customer> customer = customerRepository.findByEmail(email);
         return customer.get();
     }
 
-
+    /**
+     * Adds a new customer
+     * @param customer Customer. customer to be added.
+     * @return true if the customer got added, false if it did not get added
+     */
     public boolean addNewCustomer(Customer customer) {
         boolean added = false;
         if (customer != null && customer.isValid()) {
@@ -59,6 +84,11 @@ public class CustomerService {
         return added;
     }
 
+    /**
+     * Resets password
+     * @param email String.
+     * @return new mail with a new password,
+     */
     public String resetPassword(String email){
         PasswordGenerator passwordGenerator = new PasswordGenerator();
         CharacterRule alphabets = new CharacterRule(EnglishCharacterData.Alphabetical);
@@ -75,14 +105,23 @@ public class CustomerService {
         return generatedPassword;
     }
 
+    /**
+     * Deletes a customer
+     * @param customerId int. Customer Id that gets deleted
+     * @return true if customer is deleted, and false if it does not exist
+     */
     public boolean deleteCustomer(int customerId) {
         Optional<Customer> customer = customerRepository.findById((long) customerId);
-        if (customer.isPresent()) {
-            customerRepository.delete(customer.get());
-        }
+        customer.ifPresent(value -> customerRepository.delete(value));
         return customer.isPresent();
     }
 
+    /**
+     * Updates a customer
+     * @param customerId long. Id that gets updated
+     * @param customer Customer. customer that gets updated.
+     * @return null on success, error message on error
+     */
     @Transactional
     public String updateCustomer(long customerId, Customer customer) {
      String errorMessage = null;
