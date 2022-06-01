@@ -3,8 +3,10 @@ package no.ntnu.bicycle.controller.rest;
 import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.BillingAndShippingAddress;
 import no.ntnu.bicycle.model.Customer;
+import no.ntnu.bicycle.model.CustomerOrder;
 import no.ntnu.bicycle.model.Email;
 import no.ntnu.bicycle.service.CustomerService;
+import no.ntnu.bicycle.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
@@ -27,14 +29,17 @@ public class CustomerController {
 
     EmailSenderService emailSenderService;
 
+    ProductService productService;
+
     /**
      * Constructor with parameters
      * @param customerService customer service
      * @param emailSenderService email sender service
      */
-    public CustomerController(CustomerService customerService, EmailSenderService emailSenderService) {
+    public CustomerController(CustomerService customerService, EmailSenderService emailSenderService, ProductService productService) {
         this.customerService = customerService;
         this.emailSenderService = emailSenderService;
+        this.productService = productService;
     }
 
     /**
@@ -264,6 +269,28 @@ public class CustomerController {
         } else {
             response = new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
         }
+        return response;
+    }
+
+    @DeleteMapping(value = "/deleteProductInCart")
+    public ResponseEntity<String> deleteProductInCart(@RequestBody int id){
+        ResponseEntity<String> response;
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+
+        try{
+            Customer customer = customerService.findCustomerByEmail(email);
+
+            customer.removeFromShoppingCart(productService.findOrderById(id));
+
+            customerService.updateCustomer(customer.getId(), customer);
+
+            response = new ResponseEntity<>(HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         return response;
     }
 }

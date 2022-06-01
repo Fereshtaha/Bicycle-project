@@ -263,7 +263,7 @@ public class Customer {
      * @param product product to remove from shopping cart
      */
     public void removeFromShoppingCart(Product product){
-        this.shoppingCart.add(product);
+        this.shoppingCart.remove(product);
     }
 
     /**

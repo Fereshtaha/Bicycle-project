@@ -35,6 +35,11 @@ function getInfoFromDB() {
 
     function fillFieldsWithResponse() {
         let responseJson = JSON.parse(this.responseText);
+
+        while(elementToBeFilled.firstChild){
+            elementToBeFilled.removeChild(elementToBeFilled.lastChild);
+        }
+
         if (responseJson.length !== 0){
             let totalPriceCounter = 0;
             for (let i = 0; i<responseJson.length;i++){
@@ -55,6 +60,14 @@ function getInfoFromDB() {
             let totalPriceTag = document.createElement("b");
             totalPriceTag.innerText = "Total: " + totalPriceCounter.toString() + " NOK";
             elementToBeFilled.appendChild(totalPriceTag);
+
+            let purchaseBtn = document.createElement("button");
+            purchaseBtn.innerText = "Order now";
+            purchaseBtn.id = "purchaseBtn";
+
+            purchaseBtn.addEventListener("click", sendOrder)
+
+            elementToBeFilled.appendChild(purchaseBtn);
         }else{
             elementToBeFilled.innerText = "No products in database";
         }
@@ -67,7 +80,6 @@ function getInfoFromDB() {
             } else{
                 //todo: specify http message for not logged in and general faults
                 loggedIn = false;
-                alert("Not logged in, products received from localstorage");
 
 
                 let cs = localStorage.getItem("products");
@@ -79,9 +91,21 @@ function getInfoFromDB() {
                     elementToBeFilled.appendChild(createHtml(jsonArray[i]._id, jsonArray[i]._name,jsonArray[i]._imageUrl,jsonArray[i]._price));
                     totalPriceCounter += jsonArray[i]._price;
                 }
-                let totalPriceTag = document.createElement("b");
-                totalPriceTag.innerText = "Total: " + totalPriceCounter.toString() + " NOK";
-                elementToBeFilled.appendChild(totalPriceTag);
+                if (jsonArray.length !== 0){
+                    let totalPriceTag = document.createElement("b");
+                    totalPriceTag.innerText = "Total: " + totalPriceCounter.toString() + " NOK";
+                    elementToBeFilled.appendChild(totalPriceTag);
+
+                    let purchaseBtn = document.createElement("button");
+                    purchaseBtn.innerText = "Order now";
+                    purchaseBtn.id = "purchaseBtn";
+
+                    purchaseBtn.addEventListener("click", sendOrder)
+
+                    elementToBeFilled.appendChild(purchaseBtn);
+                }else{
+                    elementToBeFilled.innerText = "No products in cart";
+                }
             }
         }
     }
@@ -90,9 +114,23 @@ function getInfoFromDB() {
 getInfoFromDB();
 
 function removeProductFromCart(productID){
-    alert("slettet vare med id " + productID)
     if (loggedIn){
-        //todo: send DELETE request til server
+        asyncRequest.open("DELETE", "/customers/deleteProductInCart");
+        asyncRequest.setRequestHeader("Accept", "application/json");
+        asyncRequest.setRequestHeader("Content-Type", "application/json");
+        asyncRequest.send(productID);
+
+        asyncRequest.onreadystatechange = function (){
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) { // handle success
+                    getInfoFromDB();
+                }else{
+                    //alert("Could not remove item from cart");
+                    //console.log(this.status);
+                }
+            }
+        };
+
     }else{
         let jsonArray = JSON.parse(localStorage.getItem("products"));
 
@@ -104,5 +142,14 @@ function removeProductFromCart(productID){
                 localStorage.setItem('products', JSON.stringify(jsonArray));
             }
         }
+    }
+}
+
+function sendOrder(){
+    if (loggedIn){
+
+        alert("Order sent");
+    }else{
+        alert("You need to log in to send an order");
     }
 }

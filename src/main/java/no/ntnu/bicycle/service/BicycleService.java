@@ -1,10 +1,12 @@
 package no.ntnu.bicycle.service;
 
 import no.ntnu.bicycle.model.Bicycle;
+import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.repository.BicycleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 /**
@@ -19,7 +21,7 @@ public class BicycleService {
      * Constructor with the parameter bicycleRepository
      * @param bicycleRepository BicycleRepository
      */
-    public BicycleService(BicycleRepository bicycleRepository){
+    public BicycleService(BicycleRepository bicycleRepository) {
         this.bicycleRepository = bicycleRepository;
     }
 
@@ -28,7 +30,7 @@ public class BicycleService {
      * @param id long. Bicycle id
      * @return The bicycle or nothing if none is found by that ID
      */
-    public Bicycle findBicycleById(long id){
+    public Bicycle findBicycleById(long id) {
         Optional<Bicycle> bicycle = bicycleRepository.findById(id);
 
         return bicycle.get();
@@ -39,12 +41,12 @@ public class BicycleService {
      * @param bicycle Bicycle
      * @return true when bicycle added, false on error
      */
-    public boolean addBicycle(Bicycle bicycle){
-        try{
+    public boolean addBicycle(Bicycle bicycle) {
+        try {
             findBicycleById(bicycle.getId());
             bicycleRepository.save(bicycle);
             return true;
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -53,7 +55,7 @@ public class BicycleService {
      * Gets all bicycles
      * @return list of all bicycles
      */
-    public List<Bicycle> getAllBicycles(){
+    public List<Bicycle> getAllBicycles() {
         return (List<Bicycle>) bicycleRepository.findAll();
     }
 
@@ -61,10 +63,10 @@ public class BicycleService {
      * Gets all available bicycles
      * @return returns the bicycle if it is available
      */
-    public List<Bicycle> getAllAvailableBicycles(){
+    public List<Bicycle> getAllAvailableBicycles() {
         ArrayList<Bicycle> list = new ArrayList<>();
         bicycleRepository.findAll().forEach(bicycle -> {
-            if (bicycle.isAvailable()){
+            if (bicycle.isAvailable()) {
                 list.add(bicycle);
             }
         });
@@ -76,13 +78,26 @@ public class BicycleService {
      * @param bicycle Bicycle. The bicycle that needs to be set as rented.
      * @return true if it is rented, false if it is available
      */
-    public boolean setStatusToRented(Bicycle bicycle){
-        try{
+    public boolean setStatusToRented(Bicycle bicycle) {
+        try {
             findBicycleById(bicycle.getId());
             bicycle.setStatusToRented();
             return true;
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
+        }
+    }
+
+    @Transactional
+    public void updateBicycle(Bicycle bicycle) {
+        String errorMessage = null;
+        Bicycle existingBicycle = findBicycleById(bicycle.getId());
+        if (existingBicycle == null) {
+            errorMessage = "No customer with id " + bicycle.getId() + "exists";
+        } else if (bicycle == null) {
+            errorMessage = "Invalid data";
+        } else if (bicycle.getId() != existingBicycle.getId()) {
+            errorMessage = "Id does not match";
         }
     }
 }

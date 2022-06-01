@@ -18,5 +18,6 @@ public interface OrderRepository extends JpaRepository<CustomerOrder, Integer> {
    /// @Query(value = "SELECT * ")
    // List<CustomerOrder> findByCustomerNameAndProduct(String customer, String product);
 
+    //List<CustomerOrder> findAllByCustomer_ID(int customerId);
 
 }

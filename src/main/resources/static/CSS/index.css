@@ -183,9 +183,7 @@ p{
 
 .review-section{
     line-height: 1.6;
-    padding: 100px;
-    padding-left: 150px;
-    padding-right: 150px;
+    padding: 100px 150px;
     box-sizing: border-box;
     display: grid;
     grid-gap: 2rem;
@@ -200,8 +198,8 @@ p{
     display: flex;
     flex-direction: column;
     border-radius: 25px;
-    border: 2px solid #022F5B
-
+    border: 2px solid #022F5B;
+    text-align: center;
 }
 
 .review-img {
@@ -212,8 +210,7 @@ p{
 }
 
 .review-head {
-    height: 45px;
-    width:
+    width: 100%;
 }
 
 @media screen and (max-width: 992px) {

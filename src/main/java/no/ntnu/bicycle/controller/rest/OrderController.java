@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.PostRemove;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -161,6 +163,10 @@ public class OrderController {
 
             bicycleRentalOrderService.addBicycleRentalOrder(order);
 
+            bicycle.setStatusToRented();
+
+            bicycleService.updateBicycle(bicycle);
+
             response = new ResponseEntity<>(order.getId(),HttpStatus.OK);
         }catch (NoSuchElementException e){
             e.printStackTrace();
@@ -185,5 +191,4 @@ public class OrderController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }
