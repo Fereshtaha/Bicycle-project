@@ -115,6 +115,10 @@ public class OrderService {
         return null;
     }
 
+    public List<CustomerOrder> getAllOrdersByCustomerEmail(String email) {
+        return orderRepository.findByEmail(email);
+    }
+
     public List<CustomerOrder> getAllOrdersByProducts(String product) {
         return null;
         //return orderRepository.findByProductName(product);

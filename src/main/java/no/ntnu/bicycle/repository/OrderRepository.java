@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<CustomerOrder, Integer> {
    // @Query(value = "SELECT * FROM public.order where firstname = :firstname", nativeQuery = true)
-   // List<CustomerOrder> findByCustomerName(String customer);
+   List<CustomerOrder> findByEmail(String email);
 
    // @Query(value = "SELECT * FROM public.order where productName = :productName", nativeQuery = true)
    // List<CustomerOrder> findByProductName(String product);
