@@ -191,4 +191,24 @@ public class OrderController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/addBicycleOrder")
+    public ResponseEntity<Integer> endBicycleOrder(@RequestBody String entity){
+
+        System.out.println(entity);
+
+        int id = Integer.parseInt(entity.split(",")[0]);
+        String endLocationLat = entity.split(",")[1];
+        String endLocationLon = entity.split(",")[2];
+
+        try{
+            BicycleRentalOrder order = bicycleRentalOrderService.findBicycleRentalOrderById(id);
+
+            int totalPrice = bicycleRentalOrderService.endBicycleRentalOrderAndReturnTotalPrice(order, endLocationLat, endLocationLon);
+
+            return new ResponseEntity<>(totalPrice,HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

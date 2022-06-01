@@ -52,10 +52,10 @@ function createCircle(position, radius, borderColor, fillColor){
 }
 
 
-
+const asyncRequest = new XMLHttpRequest();
 
 function getLocationFromServer(){
-    const asyncRequest = new XMLHttpRequest();
+
 
     //asyncRequest.addEventListener("load", setCoordinates);
 
@@ -80,5 +80,45 @@ function getLocationFromServer(){
     }
 
 }
+
+const endRentalBtn = document.getElementById("endRentalBtn");
+
+endRentalBtn.addEventListener("click", function (){
+    let currentLocation = "";
+
+    getLocation();
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            currentLocation = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position){
+        currentLocation = position.coords.latitude + "," + position.coords.longitude;
+
+        asyncRequest.open("POST", "/orders/addBicycleOrder");
+        asyncRequest.setRequestHeader("Accept", "application/json");
+        asyncRequest.setRequestHeader("Content-Type", "application/json");
+        asyncRequest.send(lastSegment + "," + currentLocation);
+
+        asyncRequest.onreadystatechange = function (){
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) { // handle success
+                    alert("Added to cart");
+                } else if (this.status === 401) {
+                    alert("Something went wrong");
+                }
+            }
+
+        };
+    }
+
+
+
+})
+
 getLocationFromServer();
 

@@ -5,6 +5,7 @@ import no.ntnu.bicycle.repository.BicycleRentalOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -49,5 +50,26 @@ public class BicycleRentalOrderService {
             bicycleRentalOrderRepository.save(bicycleRentalOrder);
             return true;
         }
+    }
+
+    public int endBicycleRentalOrderAndReturnTotalPrice(BicycleRentalOrder bicycleRentalOrder, String latEndlocation, String lonEndLocation) throws NoSuchElementException{
+        findBicycleRentalOrderById(bicycleRentalOrder.getId());
+
+        bicycleRentalOrder.setRentalEndTime(LocalDateTime.now());
+        double distance = bicycleRentalOrder.getDistanceBetweenStartAndEndLocation(Double.parseDouble(latEndlocation), Double.parseDouble(lonEndLocation));
+
+        long elapsedTimeInMinutes = bicycleRentalOrder.getElapsedTimeInMinutes();
+
+        long price = elapsedTimeInMinutes * bicycleRentalOrder.getPricePerMinute();
+
+        if (distance > 500){
+            bicycleRentalOrder.setTotalPrice(Integer.parseInt(String.valueOf(price + 500)));
+        }else{
+            bicycleRentalOrder.setTotalPrice(Integer.parseInt(String.valueOf(price)));
+        }
+
+        bicycleRentalOrderRepository.save(bicycleRentalOrder);
+
+        return bicycleRentalOrder.getTotalPrice();
     }
 }

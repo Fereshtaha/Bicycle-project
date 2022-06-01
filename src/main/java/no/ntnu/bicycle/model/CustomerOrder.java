@@ -38,6 +38,8 @@ public class CustomerOrder {
     public CustomerOrder(Customer customer,Product product) {
         this.customer = customer;
         this.product = product;
+        this.dateAndTime = LocalDateTime.now();
+        this.email = customer.getEmail();
     }
 
     /**
@@ -46,16 +48,6 @@ public class CustomerOrder {
     public CustomerOrder() {
     }
 
-    /**
-     * Constructor with id and email
-     * @param id id of the product
-     * @param email customers email
-     */
-    public CustomerOrder(Integer id, String email) {
-        this.dateAndTime = LocalDateTime.now();
-        this.id = id;
-        this.email = email;
-    }
 
     /**
      * Gets local date and time
