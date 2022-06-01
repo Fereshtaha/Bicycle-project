@@ -16,8 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.PostRemove;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
 /**
@@ -48,21 +47,21 @@ public class OrderController {
     /**
      * Get all orders
      * HTTP get to /orders
-     * @param customer Customer. When specified, get all orders from a customer including this substring, case-insensitive.
-     * @param product Product. When specified, get all orders with a product including this substring, case-insensitive.
+     * @param localDateTime Product. When specified, get all orders with a product including this substring, case-insensitive.
+     * @param email Customer. When specified, get all orders from a customer including this substring, case-insensitive.
      * @return List of all orders currently stored in the database.
      */
     @GetMapping
-    public List<CustomerOrder> getAllOrders(@RequestParam(required = false) String customer,
-                                            @RequestParam(required = false) String product) {
-        if (product != null && !"".equals(product)) {
-            if (customer != null && !"".equals(customer)) {
-                return orderService.getAllOrdersByCustomerAndProduct(customer, product);
+    public Object getAllOrders(@RequestParam(required = false) String email,
+                               @RequestParam(required = false) LocalDateTime localDateTime) {
+        if (localDateTime != null && !"".equals(localDateTime)) {
+            if (email != null && !"".equals(email)) {
+                return orderService.getAllOrdersByCustomerAndProduct(email, localDateTime);
             } else {
-                return orderService.getAllOrdersByCustomer(customer);
+                return orderService.getAllOrdersByDateAndTime(localDateTime);
             }
-        } else if(customer != null && !"".equals(customer)) {
-            return orderService.getAllOrdersByProducts(product);
+        } else if(email != null && !"".equals(email)) {
+            return orderService.getAllOrdersByEmail(email);
         } else {
             return orderService.getAll();
         }

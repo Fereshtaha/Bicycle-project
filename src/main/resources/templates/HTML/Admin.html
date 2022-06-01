@@ -22,13 +22,16 @@
 <header class="Header" id="header" th:replace="components/header :: header">
 </header>
 
-<section id="user-profile" th:if="${customer.getRole() == T(no.ntnu.bicycle.model.Role).ROLE_ADMIN}">
+<section id="user-profile">
     <div id="user-profile-nav">
         <h3>MY ACCOUNT</h3>
-        <div class="user-profile-nav-link"><a style="font-weight: bold" th:href="@{/account}">Account information</a></div>
-        <div class="user-profile-nav-link"><a th:href="@{/account/address}">Address</a></div>
+        <div class="admin-profile-nav-link"><a style="font-weight: bold" th:href="@{/account}">Account information</a></div>
+        <div class="admin-profile-nav-link"><a th:href="@{/account/address}">Address</a></div>
         <h3>ORDER INFORMATION</h3>
-        <div class="user-profile-nav-link"><a th:href="@{/account/orders}">Order history</a></div>
+        <div class="admin-profile-nav-link"><a th:href="@{/account/orders}">Order history</a></div>
+        <h3>ADMIN MODIFICATIONS</h3>
+        <div class="admin-profile-nav-link"><a th:href="@{/account/add-product}">Add product</a></div>
+        <div class="admin-profile-nav-link"><a th:href="@{/account/remove-product}">Remove product</a></div>
         <hr>
         <div id="user-profile-nav-link-logout"><a href="/logout">Logout</a></div>
     </div>
@@ -96,7 +99,6 @@
     </div>
 </section>
 
-
-    <footer class="section-p1" th:replace="components/footer :: footer"></footer>
+<footer class="section-p1" th:replace="components/footer :: footer"></footer>
 </body>
 </html>

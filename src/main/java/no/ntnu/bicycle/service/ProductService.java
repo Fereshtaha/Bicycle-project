@@ -49,5 +49,18 @@ public class ProductService {
     public Product findOrderById(Integer id) {
         return productRepository.findById(id).orElse(null);
     }
+
+    public List<Product> getAllProductsByCustomer(String customer) {
+        return productRepository.findByProductName(customer);
+    }
+
+    public List<Product> getAllProductsByOrder(String order) {
+        return null;
+    }
+
+    public List<Product> getAllProductsByCustomerAndOrder(String customer, String order) {
+        return null;
+    }
+
 }
 

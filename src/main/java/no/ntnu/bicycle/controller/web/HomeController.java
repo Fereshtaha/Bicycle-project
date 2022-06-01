@@ -31,13 +31,8 @@ public class HomeController {
         return "HTML/loginSuccessUser";
     }
 
-    /**
-     * Responds to HTTP get
-     * @return login successful for admin
-     */
     @GetMapping("/admin")
     public String getLoginSuccessAdmin() {
-
         return "HTML/loginSuccessAdmin";
     }
 }

@@ -5,19 +5,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<CustomerOrder, Integer> {
-   // @Query(value = "SELECT * FROM public.order where firstname = :firstname", nativeQuery = true)
-   // List<CustomerOrder> findByCustomerName(String customer);
+    @Query(value = "SELECT * FROM public.customer_order where date_and_time = :dateAndTime", nativeQuery = true)
+    Optional<CustomerOrder> findByDateAndTime(LocalDateTime dateAndTime);
 
-   // @Query(value = "SELECT * FROM public.order where productName = :productName", nativeQuery = true)
-   // List<CustomerOrder> findByProductName(String product);
-
-   /// @Query(value = "SELECT * ")
-   // List<CustomerOrder> findByCustomerNameAndProduct(String customer, String product);
-
-    //List<CustomerOrder> findAllByCustomer_ID(int customerId);
+    @Query(value = "SELECT * FROM public.customer_order where email = :email", nativeQuery = true)
+    Optional<CustomerOrder> findByEmail(String email);
 
 }

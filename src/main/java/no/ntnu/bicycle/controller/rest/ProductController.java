@@ -38,8 +38,19 @@ public class ProductController {
      * @return list of all products
      */
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<Product> getAllProducts(@RequestParam(required = false) String customer,
+                                        @RequestParam(required = false) String order) {
+        if (order != null && !"".equals(order)) {
+            if (customer != null && !"".equals(customer)) {
+                return productService.getAllProductsByCustomerAndOrder(customer, order);
+            } else {
+                return productService.getAllProductsByCustomer(customer);
+            }
+        } else if(customer != null && !"".equals(customer)) {
+            return productService.getAllProductsByOrder(order);
+        } else { return productService.getAllProducts();
+        }
+
     }
 
     /**

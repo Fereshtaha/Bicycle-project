@@ -24,4 +24,12 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     Optional<Customer> findByEmail(@Param("email") String email);
 
     Optional<Customer> findByEmailEqualsIgnoreCase(@NonNull String email);
+
+    @Query(value = "SELECT * FROM public.customer where last_name = :last_name", nativeQuery = true)
+    Optional<Customer> findByLastName(@Param("last_name") String lastName);
+
+    @Query(value = "SELECT * FROM public.customer where first_name = :first_name", nativeQuery = true)
+    Optional<Customer> findByFirstName(@Param("first_name") String firstName);
+
 }
+

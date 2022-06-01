@@ -6,7 +6,7 @@ public enum Role {
      */
     ROLE_ADMIN,
     /**
-     * Represents an user
+     * Represents a user
      */
     ROLE_USER
 }
