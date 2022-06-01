@@ -4,6 +4,7 @@ package no.ntnu.bicycle.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * The type customer order.
@@ -19,25 +20,24 @@ public class CustomerOrder {
     private String email;
     private LocalDateTime dateAndTime;
 
-    @ManyToOne(targetEntity = Customer.class)
-    @JoinColumn
-    @Transient
+    @ManyToOne(cascade = CascadeType.MERGE, fetch= FetchType.EAGER)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
 
-    //@ManyToOne
-    @Transient
-    private Product product;
+    @OneToMany(cascade = CascadeType.MERGE, fetch= FetchType.EAGER)
+    @JoinColumn(name = "product_id",referencedColumnName="id")
+    private List<Product> products;
 
 
     /**
      * Constructor with parameters.
      * @param customer the customer ordering
-     * @param product the product
+     * @param products the list of products
      */
-    public CustomerOrder(Customer customer,Product product) {
+    public CustomerOrder(Customer customer,List<Product> products) {
         this.customer = customer;
-        this.product = product;
+        this.products = products;
         this.dateAndTime = LocalDateTime.now();
         this.email = customer.getEmail();
     }
@@ -69,13 +69,9 @@ public class CustomerOrder {
      * Gets product
      * @return product
      */
-     public Product getProduct() {return product;}
+     public List<Product> getProducts() {return products;}
 
-    /**
-     * Sets product
-     * @param product product to be set
-     */
-    public void setProduct(Product product) {this.product = product;}
+
 
     /**
      * Gets id
@@ -93,5 +89,17 @@ public class CustomerOrder {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

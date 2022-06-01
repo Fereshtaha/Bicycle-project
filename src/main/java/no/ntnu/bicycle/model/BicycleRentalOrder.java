@@ -48,13 +48,12 @@ public class BicycleRentalOrder {
      *
      * @param bicycle    the bicycle
      * @param customer   the customer
-     * @param location   the location
      * @param pricePerMinute the price per minute
      */
-    public BicycleRentalOrder(Bicycle bicycle, Customer customer, String location, int pricePerMinute) {
+    public BicycleRentalOrder(Bicycle bicycle, Customer customer, int pricePerMinute) {
         this.bicycle = bicycle;
         this.customer = customer;
-        this.location = location;
+        this.location = bicycle.getLocation();
         this.rentalStartTime = LocalDateTime.now();
         this.rentalEndTime = null;
         this.pricePerMinute = pricePerMinute;
@@ -97,11 +96,9 @@ public class BicycleRentalOrder {
 
     /**
      * Sets location.
-     *
-     * @param location the location
      */
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocation() {
+        this.location = bicycle.getLocation();
     }
 
     /**
@@ -184,7 +181,7 @@ public class BicycleRentalOrder {
             dist = Math.acos(dist);
             dist = Math.toDegrees(dist);
             dist = dist * 60 * 1.1515;
-            dist = dist * 0.8684;
+            dist = (dist * 1.609344)*1000;
 
             return dist;
         }

@@ -52,15 +52,18 @@ public class BicycleRentalOrderService {
         }
     }
 
-    public int endBicycleRentalOrderAndReturnTotalPrice(BicycleRentalOrder bicycleRentalOrder, String latEndlocation, String lonEndLocation) throws NoSuchElementException{
+    public int endBicycleRentalOrderAndReturnTotalPrice(BicycleRentalOrder bicycleRentalOrder, String latEndLocation, String lonEndLocation) throws NoSuchElementException{
         findBicycleRentalOrderById(bicycleRentalOrder.getId());
 
         bicycleRentalOrder.setRentalEndTime(LocalDateTime.now());
-        double distance = bicycleRentalOrder.getDistanceBetweenStartAndEndLocation(Double.parseDouble(latEndlocation), Double.parseDouble(lonEndLocation));
+
+        double distance = bicycleRentalOrder.getDistanceBetweenStartAndEndLocation(Double.parseDouble(latEndLocation), Double.parseDouble(lonEndLocation));
+
 
         long elapsedTimeInMinutes = bicycleRentalOrder.getElapsedTimeInMinutes();
 
         long price = elapsedTimeInMinutes * bicycleRentalOrder.getPricePerMinute();
+
 
         if (distance > 500){
             bicycleRentalOrder.setTotalPrice(Integer.parseInt(String.valueOf(price + 500)));
@@ -71,5 +74,15 @@ public class BicycleRentalOrderService {
         bicycleRentalOrderRepository.save(bicycleRentalOrder);
 
         return bicycleRentalOrder.getTotalPrice();
+    }
+
+    public long getBicycleIdFromOrderId(int orderId) {
+        try{
+            BicycleRentalOrder bicycleRentalOrder = findBicycleRentalOrderById(orderId);
+
+            return bicycleRentalOrder.getBicycle().getId();
+        }catch (NoSuchElementException e){
+            return -1;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package no.ntnu.bicycle.controller.rest;
 
+import no.ntnu.bicycle.mail.EmailSenderService;
 import no.ntnu.bicycle.model.Bicycle;
 import no.ntnu.bicycle.model.BicycleRentalOrder;
 import no.ntnu.bicycle.model.Customer;
@@ -12,6 +13,7 @@ import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,9 @@ public class OrderController {
     private CustomerService customerService;
     private BicycleService bicycleService;
 
+
+    private EmailSenderService emailSenderService;
+
     /**
      * Constructor with parameters
      * @param orderService order service
@@ -37,11 +42,12 @@ public class OrderController {
      * @param customerService customer service
      * @param bicycleService bicycle service
      */
-    public OrderController(OrderService orderService, BicycleRentalOrderService bicycleRentalOrderService, CustomerService customerService, BicycleService bicycleService) {
+    public OrderController(OrderService orderService, BicycleRentalOrderService bicycleRentalOrderService, CustomerService customerService, BicycleService bicycleService, EmailSenderService emailSenderService) {
         this.orderService = orderService;
         this.bicycleRentalOrderService = bicycleRentalOrderService;
         this.customerService = customerService;
         this.bicycleService = bicycleService;
+        this.emailSenderService = emailSenderService;
     }
 
     /**
@@ -147,7 +153,6 @@ public class OrderController {
         JSONObject jsonObject = new JSONObject(entity.getBody());
 
         long id = Long.parseLong(jsonObject.getString("bikeId"));
-        String location = jsonObject.getString("location");
         int pricePerMinute = Integer.parseInt(jsonObject.getString("pricePerMinute"));
 
         ResponseEntity<Long> response;
@@ -158,13 +163,15 @@ public class OrderController {
             Customer customer = customerService.findCustomerByEmail(email);
             Bicycle bicycle = bicycleService.findBicycleById(id);
 
-            BicycleRentalOrder order = new BicycleRentalOrder(bicycle, customer, location, pricePerMinute);
+            BicycleRentalOrder order = new BicycleRentalOrder(bicycle, customer, pricePerMinute);
 
             bicycleRentalOrderService.addBicycleRentalOrder(order);
 
             bicycle.setStatusToRented();
 
             bicycleService.updateBicycle(bicycle);
+
+            emailSenderService.sendEmail(email, "Rental confirmation", "Follow this link to end your order: http://localhost:8080/rental/confirmation/" + order.getId());
 
             response = new ResponseEntity<>(order.getId(),HttpStatus.OK);
         }catch (NoSuchElementException e){
@@ -193,17 +200,19 @@ public class OrderController {
 
     @PostMapping("/addBicycleOrder")
     public ResponseEntity<Integer> endBicycleOrder(@RequestBody String entity){
-
-        System.out.println(entity);
-
         int id = Integer.parseInt(entity.split(",")[0]);
         String endLocationLat = entity.split(",")[1];
         String endLocationLon = entity.split(",")[2];
 
         try{
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String email = auth.getName();
+
             BicycleRentalOrder order = bicycleRentalOrderService.findBicycleRentalOrderById(id);
 
             int totalPrice = bicycleRentalOrderService.endBicycleRentalOrderAndReturnTotalPrice(order, endLocationLat, endLocationLon);
+
+            bicycleService.setStatusToAvailable(bicycleRentalOrderService.getBicycleIdFromOrderId(id));
 
             return new ResponseEntity<>(totalPrice,HttpStatus.OK);
         }catch (NoSuchElementException e){

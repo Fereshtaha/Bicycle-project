@@ -36,6 +36,17 @@ public class BicycleService {
         return bicycle.get();
     }
 
+    public void setStatusToAvailable(long id){
+        try {
+            Bicycle bicycle = findBicycleById(id);
+            bicycle.setStatusToAvailable();
+
+            bicycleRepository.save(bicycle);
+        } catch (NoSuchElementException e) {
+
+        }
+    }
+
     /**
      * Adds a biccycle to the application (database)
      * @param bicycle Bicycle
