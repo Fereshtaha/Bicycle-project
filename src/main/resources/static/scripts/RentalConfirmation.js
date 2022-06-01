@@ -107,7 +107,8 @@ endRentalBtn.addEventListener("click", function (){
         asyncRequest.onreadystatechange = function (){
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) { // handle success
-                    alert("Added to cart");
+                    alert("Order ended! Total cost is " + this.responseText + " NOK");
+                    window.location.href = "/rental"
                 } else if (this.status === 401) {
                     alert("Something went wrong");
                 }
