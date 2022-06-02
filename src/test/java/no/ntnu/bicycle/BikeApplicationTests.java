@@ -12,15 +12,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class BikeApplicationTests {
 
-	@Test
-	void test_findCustomerByEmail() {
-		Customer sebastian = new Customer("Sebastian", "Nilsen", "sebasn@stud.ntnu.no","2001-04-19",94658622,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_ADMIN);
-		assertEquals("sebasn@stud.ntnu.no", sebastian.getEmail());
-	}
+	//@Test
+	//void test_findCustomerByEmail() {
+	//	Customer sebastian = new Customer("Sebastian", "Nilsen", "sebasn@stud.ntnu.no","2001-04-19",94658622,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_ADMIN);
+	//	assertEquals("sebasn@stud.ntnu.no", sebastian.getEmail());
+	//}
 
 
-	@Test
-	void contextLoads() {
-	}
+	//@Test
+	//void contextLoads() {
+	//}
 
 }
