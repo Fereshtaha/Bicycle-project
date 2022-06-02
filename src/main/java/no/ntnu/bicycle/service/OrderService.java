@@ -2,11 +2,14 @@ package no.ntnu.bicycle.service;
 
 import no.ntnu.bicycle.model.CustomerOrder;
 import no.ntnu.bicycle.repository.OrderRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Business logic related to orders
@@ -110,22 +113,16 @@ public class OrderService {
         return errorMessage;
     }
 //!TODO what do we do about these?
-    public List<CustomerOrder> getAllOrdersByCustomer(String customer) {
-        //return orderRepository.findByCustomerName(customer);
-        return null;
+    public Optional<CustomerOrder> getAllOrdersByDateAndTime(LocalDateTime dateAndTime) {
+        return orderRepository.findByDateAndTime(dateAndTime);
     }
 
-    public List<CustomerOrder> getAllOrdersByCustomerEmail(String email) {
+    public Optional<CustomerOrder> getAllOrdersByEmail(String email) {
         return orderRepository.findByEmail(email);
     }
 
-    public List<CustomerOrder> getAllOrdersByProducts(String product) {
-        return null;
-        //return orderRepository.findByProductName(product);
-    }
 
-
-    public List<CustomerOrder> getAllOrdersByCustomerAndProduct(String customer, String product) {
+    public List<CustomerOrder> getAllOrdersByCustomerAndProduct(String customer, LocalDateTime product) {
       //  return orderRepository.findByCustomerNameAndProduct(customer,product);
         return null;
     }

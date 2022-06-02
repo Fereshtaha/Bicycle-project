@@ -18,7 +18,6 @@ public class AccountController {
      */
     @GetMapping()
     public String getAccount(Model model) {
-
         return "HTML/Account";
     }
 
@@ -36,7 +35,7 @@ public class AccountController {
      * Responds to HTTP get
      * @return account orders
      */
-    @GetMapping("orders")
+    @GetMapping("/orders")
     public String getAccountOrders(){
 
         return "HTML/Account-orders";

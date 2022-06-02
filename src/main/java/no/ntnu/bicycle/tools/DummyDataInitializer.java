@@ -94,8 +94,8 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     }
 
     /**
-     * Checking if data if imported
-     * @return true if data is imported, false if its not imported
+     * Checking if data is imported
+     * @return true if data is imported, false if it's not imported
      */
     private boolean isDataImported() {
         return (customerRepository.count() > 0);

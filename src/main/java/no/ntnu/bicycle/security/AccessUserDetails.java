@@ -32,6 +32,8 @@ public class AccessUserDetails implements UserDetails {
     }
 
 
+
+
     /**
      * Gets authorities
      * @return collection of granted authority
