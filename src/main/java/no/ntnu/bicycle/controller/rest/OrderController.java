@@ -170,7 +170,7 @@ public class OrderController {
 
             bicycle.setStatusToRented();
 
-            bicycleService.updateBicycle(1, bicycle);
+            bicycleService.updateBicycle(bicycle);
 
             emailSenderService.sendEmail(email, "Rental confirmation", "Follow this link to end your order: http://localhost:8080/rental/confirmation/" + order.getId());
 
