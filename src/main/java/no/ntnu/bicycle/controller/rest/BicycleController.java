@@ -7,6 +7,7 @@ import no.ntnu.bicycle.service.BicycleRentalOrderService;
 import no.ntnu.bicycle.service.BicycleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,4 +64,30 @@ public class BicycleController {
         }
         return response;
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteBicycle(@PathVariable Integer id) {
+        ResponseEntity<String> response;
+        if (bicycleService.deleteBicycle(id)) {
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+    @PutMapping()
+    public ResponseEntity<String> updateBicycle(@PathVariable int id,
+                                                @RequestBody Bicycle bicycle) {
+        String errorMessage = bicycleService.updateBicycle(id, bicycle);
+        ResponseEntity<String> response;
+        if (errorMessage == null) {
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
+
+
 }

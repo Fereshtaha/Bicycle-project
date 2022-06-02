@@ -110,9 +110,9 @@ public class BicycleService {
     }
 
     @Transactional
-    public void updateBicycle(Bicycle bicycle) {
+    public String updateBicycle(long id, Bicycle bicycle) {
         String errorMessage = null;
-        Bicycle existingBicycle = findBicycleById(bicycle.getId());
+        Bicycle existingBicycle = findBicycleById(id);
         if (existingBicycle == null) {
             errorMessage = "No customer with id " + bicycle.getId() + "exists";
         } else if (bicycle == null) {
@@ -120,5 +120,15 @@ public class BicycleService {
         } else if (bicycle.getId() != existingBicycle.getId()) {
             errorMessage = "Id does not match";
         }
+        if (errorMessage == null) {
+            bicycleRepository.save(bicycle);
+        } return errorMessage;
     }
+
+    public boolean deleteBicycle(int bicyleId) {
+        Optional<Bicycle> bicycle = bicycleRepository.findById((long) bicyleId);
+        bicycle.ifPresent(value -> bicycleRepository.delete(value));
+        return bicycle.isPresent();
+    }
+
 }
