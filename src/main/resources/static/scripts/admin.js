@@ -83,29 +83,51 @@ function getBikeInfoFromDB(){
                     selectTag.innerHTML =
                         '<option value="NEW" selected>NEW</option>'+
                         '<option value="AVAILABLE">AVAILABLE</option>'+
-                        '<option value="RENTED">RENTED</option>'
+                        '<option value="RENTED">RENTED</option>'+
+                        '<option value="DISABLED">DISABLED</option>'
                 }else if(status === "AVAILABLE"){
                     selectTag.innerHTML =
                         '<option value="NEW">NEW</option>'+
                         '<option value="AVAILABLE" selected>AVAILABLE</option>'+
-                        '<option value="RENTED">RENTED</option>'
+                        '<option value="RENTED">RENTED</option>'+
+                        '<option value="DISABLED">DISABLED</option>'
+                }if(status === "DISABLED"){
+                    selectTag.innerHTML =
+                        '<option value="NEW">NEW</option>'+
+                        '<option value="AVAILABLE">AVAILABLE</option>'+
+                        '<option value="RENTED">RENTED</option>'+
+                        '<option value="DISABLED" selected>DISABLED</option>'
                 }else{
                     selectTag.innerHTML =
                         '<option value="NEW">NEW</option>'+
                         '<option value="AVAILABLE" selected>AVAILABLE</option>'+
-                        '<option value="RENTED" selected>RENTED</option>'
+                        '<option value="RENTED" selected>RENTED</option>'+
+                        '<option value="DISABLED">DISABLED</option>'
                 }
 
 
                 tag.innerHTML =
                     '<form>' +
-                    '<label for="color">Color</label>' + '<input class="color" id="bikeColor'+ bikeId + '" type="text" value="'+ color +'">' +
+                    '<select id="bikeColor'+bikeId+'">' +
+                        '<option value="Brown">Brown</option>' +
+                        '<option value="Green">Green</option>' +
+                        '<option value="Yellow">Yellow</option>' +
+                    '</select> '+
                     '<label for="location">Location</label>' + '<input class="location" id="bikeLocation'+ bikeId + '" type="text" value="'+ location +'">' +
                     '<label for="pricePerMinute">Price per minute (latitude , longitude)</label>' + '<input id="bikePrice'+ bikeId + '" type="number" value="'+ pricePerMinute +'">' +
                     '<label for="status">Status</label>' +
                     '</form>'
 
                 let form = tag.firstChild;
+                let select = form.firstChild;
+
+                for (let i = 0; i < select.length; i++) {
+                    let tableChild = select[i];
+                    if (tableChild.value === color){
+                        select.selectedIndex = i;
+                    }
+                }
+
                 form.appendChild(selectTag);
 
                 const submitBtn = document.createElement("button");
