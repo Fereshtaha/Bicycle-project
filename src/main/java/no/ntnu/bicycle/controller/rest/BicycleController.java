@@ -19,8 +19,8 @@ import java.util.List;
 @RequestMapping("/api/bicycle")
 public class BicycleController {
 
-    BicycleService bicycleService;
-    BicycleRentalOrderService bicycleRentalOrderService;
+    private BicycleService bicycleService;
+    private BicycleRentalOrderService bicycleRentalOrderService;
 
     /**
      * Constructor with bicycle service
@@ -66,7 +66,7 @@ public class BicycleController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteBicycle(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteBicycle(@PathVariable int id) {
         ResponseEntity<String> response;
         if (bicycleService.deleteBicycle(id)) {
             response = new ResponseEntity<>(HttpStatus.OK);
