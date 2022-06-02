@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -217,15 +218,17 @@ public class OrderController {
         }
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<CustomerOrder>> getOrdersByCustomerEmail(){
+        ResponseEntity<List<CustomerOrder>> response;
         try{
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String email = auth.getName();
 
-            return new ResponseEntity<>(orderService.getAllOrdersByCustomerEmail(email),HttpStatus.OK);
+            response =  new ResponseEntity<>(orderService.getAllOrdersByCustomerEmail(email),HttpStatus.OK);
         }catch (NoSuchElementException e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            response =  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    }
+        return response;
+    }*/
 }
