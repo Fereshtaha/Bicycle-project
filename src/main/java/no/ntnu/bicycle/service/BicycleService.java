@@ -58,18 +58,12 @@ public class BicycleService {
             try {
                 findBicycleById(bicycle.getId());
             } catch (NoSuchElementException e ) {
+                bicycle.setStatusToNew();
                 bicycleRepository.save(bicycle);
                 added = true;
             }
         }
         return added;
-       /* try {
-            findBicycleById(bicycle.getId());
-            bicycleRepository.save(bicycle);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }*/
     }
 
     /**
@@ -109,16 +103,19 @@ public class BicycleService {
         }
     }
 
-    @Transactional
     public void updateBicycle(Bicycle bicycle) {
-        String errorMessage = null;
-        Bicycle existingBicycle = findBicycleById(bicycle.getId());
-        if (existingBicycle == null) {
-            errorMessage = "No customer with id " + bicycle.getId() + "exists";
-        } else if (bicycle == null) {
-            errorMessage = "Invalid data";
-        } else if (bicycle.getId() != existingBicycle.getId()) {
-            errorMessage = "Id does not match";
-        }
+        bicycleRepository.save(bicycle);
+
+    }
+
+    /**
+     * Deletes a bike
+     * @param bikeId int. Bicycle Id that gets deleted
+     * @return true if bike is deleted, and false if it does not exist
+     */
+    public boolean deleteBicycle(int bikeId) {
+        Optional<Bicycle> bicycle = bicycleRepository.findById((long) bikeId);
+        bicycle.ifPresent(value -> bicycleRepository.delete(value));
+        return bicycle.isPresent();
     }
 }

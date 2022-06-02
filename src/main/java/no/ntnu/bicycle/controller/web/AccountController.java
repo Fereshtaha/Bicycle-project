@@ -41,12 +41,6 @@ public class AccountController {
         return "HTML/Account-orders";
     }
 
-    @GetMapping("/all-users")
-    public String getUsers() {
-        return "HTML/Admin-users";
-    }
-
-
     @GetMapping("/all-products")
     public String getProducts() {
         return "HTML/Admin-products";

@@ -26,7 +26,7 @@
 <section id="user-profile">
     <div id="user-profile-nav" style="display: flex; flex-direction: column;">
         <p>ADMIN PAGES</p>
-        <a th:href="@{/account/all-users}">Edit users</a>
+        <a th:href="@{/admin}">Edit users</a>
         <a th:href="@{/account/all-bikes}">Edit bikes</a>
         <a th:href="@{/account/all-products}">Edit products</a>
     </div>
@@ -35,8 +35,8 @@
         <div class="row">
             <div class="row">
                 <select name="mobile-menu" id="mobile-menu-input" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                    <option selected value="/account">Account information</option>
-                    <option value="/account/address">Address</option>
+                    <option value="/account">Account information</option>
+                    <option selected value="/admin">Address</option>
                     <option value="/account/orders">Order history</option>
                     <option value="/logout">Logout</option>
                 </select>

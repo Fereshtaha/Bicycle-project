@@ -34,8 +34,14 @@ public class BicycleController {
      * @return list of all bicycles
      */
     @GetMapping
-    public List<Bicycle> getAllBicycles() {
-        return bicycleService.getAllBicycles();
+    public ResponseEntity<List<Bicycle>> getAllBicycles() {
+        ResponseEntity<List<Bicycle>> response;
+        try {
+            response = new ResponseEntity<>(bicycleService.getAllBicycles(), HttpStatus.OK) ;
+        }catch (Exception e){
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 
     /**
@@ -63,4 +69,31 @@ public class BicycleController {
         }
         return response;
     }
+
+    @PutMapping
+    public ResponseEntity<String> updateBicycle(@RequestBody Bicycle bicycle) {
+        ResponseEntity<String> response;
+        try{
+            bicycleService.findBicycleById(bicycle.getId());
+            bicycleService.updateBicycle(bicycle);
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e){
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteBicycle(@PathVariable("id") int bikeId) {
+        ResponseEntity<String> response;
+        if(bicycleService.deleteBicycle(bikeId)){
+            response = new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
+
+
 }

@@ -26,7 +26,7 @@
 <section id="user-profile">
     <div id="user-profile-nav" style="display: flex; flex-direction: column;">
         <p>ADMIN PAGES</p>
-        <a th:href="@{/account/all-users}">Edit users</a>
+        <a th:href="@{/admin}">Edit users</a>
         <a th:href="@{/account/all-bikes}">Edit bikes</a>
         <a th:href="@{/account/all-products}">Edit products</a>
     </div>
@@ -45,8 +45,6 @@
 
         <div id="buttons">
             <button id="add-user">Add bike</button>
-            <button id="edit-user">Edit bike</button>
-            <button id="remove-user">Remove bike</button>
         </div>
 
         <div id="users-to-be-filled-from-db"></div>

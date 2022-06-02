@@ -33,6 +33,6 @@ public class HomeController {
 
     @GetMapping("/admin")
     public String getLoginSuccessAdmin() {
-        return "HTML/loginSuccessAdmin";
+        return "HTML/Admin-users";
     }
 }

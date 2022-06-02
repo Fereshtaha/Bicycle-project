@@ -28,11 +28,11 @@ public class Bicycle {
      * @param location location of the bicycle
      * @param pricePerMinute price per minute for the bicycle
      */
-    public Bicycle(String color, String location, int pricePerMinute) {
+    public Bicycle(String color, String location, int pricePerMinute, String status) {
         this.color = color;
         this.pricePerMinute = pricePerMinute;
         this.location = location;
-        this.status = "NEW";
+        this.status = status;
     }
 
     /**
@@ -149,5 +149,9 @@ public class Bicycle {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setStatusToNew() {
+        this.status = "NEW";
     }
 }
