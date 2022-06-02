@@ -12,7 +12,7 @@ function createUser() {
         phone: document.getElementById("form-input-phone").value
     }
     let formData = JSON.stringify(data);
-    asyncRequest.open("POST", "http://localhost:8080/customers");
+    asyncRequest.open("POST", "/customers");
     asyncRequest.setRequestHeader("Accept", "application/json");
     asyncRequest.setRequestHeader("Content-Type", "application/json");
     asyncRequest.send(formData);

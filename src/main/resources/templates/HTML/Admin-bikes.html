@@ -31,7 +31,7 @@
         <a th:href="@{/account/all-products}">Edit products</a>
     </div>
     <div id="user-profile-info">
-        <h1 class="big-header">All users</h1>
+        <h1 class="big-header">All bikes</h1>
         <div class="row">
             <div class="row">
                 <select name="mobile-menu" id="mobile-menu-input" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
@@ -44,8 +44,9 @@
         </div>
 
         <div id="buttons">
-            <button id="edit-user">Edit user</button>
-            <button id="remove-user">Remove User</button>
+            <button id="add-user">Add bike</button>
+            <button id="edit-user">Edit bike</button>
+            <button id="remove-user">Remove bike</button>
         </div>
 
         <div id="users-to-be-filled-from-db"></div>

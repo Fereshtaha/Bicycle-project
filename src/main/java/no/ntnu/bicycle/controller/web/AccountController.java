@@ -56,4 +56,9 @@ public class AccountController {
     public String getOrders() {
         return "HTML/Admin-orders";
     }
+
+    @GetMapping("/all-bikes")
+    public String getBikes() {
+        return "HTML/Admin-bikes";
+    }
 }
