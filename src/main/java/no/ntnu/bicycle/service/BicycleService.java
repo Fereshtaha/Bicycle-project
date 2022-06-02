@@ -53,13 +53,23 @@ public class BicycleService {
      * @return true when bicycle added, false on error
      */
     public boolean addBicycle(Bicycle bicycle) {
-        try {
+        boolean added = false;
+        if (bicycle != null) {
+            try {
+                findBicycleById(bicycle.getId());
+            } catch (NoSuchElementException e ) {
+                bicycleRepository.save(bicycle);
+                added = true;
+            }
+        }
+        return added;
+       /* try {
             findBicycleById(bicycle.getId());
             bicycleRepository.save(bicycle);
             return true;
         } catch (NoSuchElementException e) {
             return false;
-        }
+        }*/
     }
 
     /**

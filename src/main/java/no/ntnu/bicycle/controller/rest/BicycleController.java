@@ -5,9 +5,9 @@ import no.ntnu.bicycle.model.BicycleRentalOrder;
 import no.ntnu.bicycle.model.Customer;
 import no.ntnu.bicycle.service.BicycleRentalOrderService;
 import no.ntnu.bicycle.service.BicycleService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,5 +46,21 @@ public class BicycleController {
     @RequestMapping("/available")
     public List<Bicycle> getAllAvailableBicycles() {
         return bicycleService.getAllAvailableBicycles();
+    }
+
+    /**
+     * Adds a bicycle
+     * @param bicycle Bicycle
+     * @return HTTP 200 OK if bicycle added, 400 if it does not get added
+     */
+    @PostMapping
+    public ResponseEntity<String> addBicycle(@RequestBody Bicycle bicycle) {
+        ResponseEntity<String> response;
+        if (bicycleService.addBicycle(bicycle)) {
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 }

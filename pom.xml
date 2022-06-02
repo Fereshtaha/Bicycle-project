@@ -14,6 +14,8 @@
 	<name>bike project</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
+		<package-name>no.ntnu.bicycle</package-name>
+		<main-class>BikeApplication</main-class>
 		<java.version>11</java.version>
 		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
