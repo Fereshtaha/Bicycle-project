@@ -51,7 +51,7 @@ public class ProductService {
     }
 
     public List<Product> getAllProductsByCustomer(String customer) {
-        return productRepository.findByProductName(customer);
+        return null;
     }
 
     public List<Product> getAllProductsByOrder(String order) {

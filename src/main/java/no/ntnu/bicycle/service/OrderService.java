@@ -114,7 +114,8 @@ public class OrderService {
     }
 //!TODO what do we do about these?
     public Optional<CustomerOrder> getAllOrdersByDateAndTime(LocalDateTime dateAndTime) {
-        return orderRepository.findByDateAndTime(dateAndTime);
+        return null;
+        //return orderRepository.findByDateAndTime(dateAndTime);
     }
 
     public Optional<CustomerOrder> getAllOrdersByEmail(String email) {

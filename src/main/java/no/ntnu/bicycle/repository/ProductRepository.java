@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {
-    @Query(value = "SELECT * FROM public.order where product_name = :product_name", nativeQuery = true)
-    List<Product> findByProductName(String product);
+    /*@Query(value = "SELECT * FROM public.order where product_name = :product_name", nativeQuery = true)
+    List<Product> findByProductName(String product);*/
 }

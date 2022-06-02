@@ -11,8 +11,10 @@ import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<CustomerOrder, Integer> {
+/*
     @Query(value = "SELECT * FROM public.customer_order where date_and_time = :dateAndTime", nativeQuery = true)
     Optional<CustomerOrder> findByDateAndTime(LocalDateTime dateAndTime);
+*/
 
     @Query(value = "SELECT * FROM public.customer_order where email = :email", nativeQuery = true)
     Optional<CustomerOrder> findByEmail(String email);

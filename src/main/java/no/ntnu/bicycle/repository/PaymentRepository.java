@@ -10,7 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
+/*
     @Query(value = "SELECT * FROM public.payment where customer_number = : customerNumber")
     Optional<Payment> findByCustomerNumber(@Param("customerNumber") String customerNumber);
+*/
 
 }
