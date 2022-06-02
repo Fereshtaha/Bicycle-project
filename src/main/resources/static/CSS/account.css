@@ -191,3 +191,17 @@ select{
     background-color: #ffcccb;
     border: 1px solid #ff726f;
 }
+
+.buttons{
+    margin-bottom: 7px;
+    border-radius: 4px;
+    text-align: center;
+    padding: 14px 25px 13px;
+    border: 0;
+    cursor: default;
+    text-transform: uppercase;
+    background-color: lightblue;
+    font-weight: bold;
+    font-size: .8125em;
+}
+

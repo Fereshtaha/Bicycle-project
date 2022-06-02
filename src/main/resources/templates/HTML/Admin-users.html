@@ -27,14 +27,16 @@
         <h3>MY ACCOUNT</h3>
         <div class="admin-profile-nav-link"><a style="font-weight: bold" th:href="@{/account}">Account information</a></div>
         <h3>USER</h3>
-        <div class="admin-profile-nav-link"><a th:href="@{/account/add-product}">All users</a></div>
+        <div class="admin-profile-nav-link"><a th:href="@{/account/all-users}">All users</a></div>
         <h3>PRODUCTS</h3>
-        <div class="admin-profile-nav-link"><a th:href="@{/account/add-product}">All products</a></div>
+        <div class="admin-profile-nav-link"><a th:href="@{/account/all-products}">All products</a></div>
+        <h3>ORDERS</h3>
+        <div class="admin-profile-nav-link"><a th:href="@{/account/all-orders}">All orders</a></div>
         <hr>
         <div id="user-profile-nav-link-logout"><a href="/logout">Logout</a></div>
     </div>
     <div id="user-profile-info">
-        <h1 class="big-header">Personal information</h1>
+        <h1 class="big-header">All users</h1>
         <div class="row">
             <div class="row">
                 <select name="mobile-menu" id="mobile-menu-input" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
@@ -45,54 +47,14 @@
                 </select>
             </div>
         </div>
-        <form action="">
-            <h2 class="small-header">Personal information</h2>
-            <div class="row">
-                <label>First name</label>
-                <input disabled="disabled" type="text" name="firstName" id="form-input-firstName" class="disabled">
-            </div>
-            <div class="row">
-                <label>Last name</label>
-                <input disabled="disabled" type="text" name="lastName" id="form-input-lastName" class="disabled">
-            </div>
-            <div class="row">
-                <label>Date of birth</label>
-                <input disabled="disabled" type="text" name="dob" id="form-input-dob" class="disabled">
-            </div>
-            <div class="row">
-                <label>Phone</label>
-                <input disabled="disabled" type="tel" name="phone" id="form-input-phone" class="disabled">
-            </div>
-            <h2 class="small-header">Login information</h2>
-            <div class="row">
-                <label>Email</label>
-                <input disabled="disabled" type="email" name="email" id="form-input-email" class="disabled">
-            </div>
-            <div class="row">
-                <label>Old password</label>
-                <input type="password" oninput="checkOldPassword()" name="password" id="form-input-oldPassword" required>
-                <small class="error" id="emptyOldPasswordFieldErrorText">Please fill out this field</small>
-                <small class="error" id="patternErrorTextOldPassword">Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</small>
-            </div>
-            <div class="row">
-                <label>New password</label>
-                <input type="password" oninput="checkNewPassword()" name="newPassword" id="form-input-newPassword" required>
-                <small class="error" id="emptyPasswordFieldErrorText">Please fill out this field</small>
-                <small class="error" id="newPasswordIsSameAsOld">New password cannot be the same as the old</small>
-                <small class="error" id="patternErrorTextNewPassword">Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</small>
-            </div>
-            <div class="row">
-                <label>Repeat password</label>
-                <input type="password" oninput="checkPasswordRepeat()" name="repeatPassword" id="form-input-repeatPassword" required>
-                <small class="error" id="noPasswordMatch">The passwords need to match</small>
-                <small class="error" id="emptyRepeatPasswordFieldErrorText">Please fill out this field</small>
-            </div>
-            <div class="row" id="updateAccountButton">
-                <button id="submitBtn" type="button" disabled onclick="updatePassword()">Update changes</button>
-            </div>
-            <div id="successMessageContainer" hidden>
-            </div>
-        </form>
+
+        <div id="buttons">
+            <button id="add-user">Add User</button>
+            <button id="edit-user">Edit user</button>
+            <button id="remove-user">Remove User</button>
+        </div>
+
+        <div id="users-to-be-filled-from-db"></div>
 
     </div>
 </section>
