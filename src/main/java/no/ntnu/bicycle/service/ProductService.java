@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ProductService {
     @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     /**
      * Constructor for product service
@@ -40,6 +40,54 @@ public class ProductService {
      * @return list of products
      */
     public List<Product> getAllProducts() {return iterableToList(productRepository.findAll());}
+
+
+    /**
+     * Adding a product
+     * @param product Product
+     * @return true if product added, false if not
+     */
+    public boolean addNewProduct(Product product) {
+        boolean added = false;
+        if (product != null) {
+            productRepository.save(product);
+            added = true;
+        }
+        return added;
+    }
+
+
+    /**
+     * Deleting product
+     * @param product Product
+     * @return true if deleted, false if not
+     */
+    public boolean deletingProduct(Product product) {
+        boolean deleted = false;
+        if (product != null) {
+            productRepository.delete(product);
+            deleted = true;
+        }
+        return deleted;
+    }
+
+    public String updateProduct(int id, Product product) {
+        Product existingProduct = findOrderById(id);
+        String errorMessage = null;
+        if (existingProduct == null) {
+            errorMessage = "No customerOrder with " + id + "found";
+        }
+        if (product == null) {
+            errorMessage = "Wrong data in request body";
+        } else if (product.getId() != id) {
+            errorMessage = "Wrong id, does not match";
+        }
+
+        if (errorMessage == null) {
+            productRepository.save(product);
+        }
+        return errorMessage;
+    }
 
     /**
      * Finds order by ID

@@ -18,8 +18,8 @@ import java.util.List;
 @RequestMapping("/api/bicycle")
 public class BicycleController {
 
-    BicycleService bicycleService;
-    BicycleRentalOrderService bicycleRentalOrderService;
+    private BicycleService bicycleService;
+    private BicycleRentalOrderService bicycleRentalOrderService;
 
     /**
      * Constructor with bicycle service

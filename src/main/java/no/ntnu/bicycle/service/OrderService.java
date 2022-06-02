@@ -69,7 +69,11 @@ public class OrderService {
         return added;
     }
 
-    //!TODO fix this
+    /**
+     * Checking if customer order is not null
+     * @param customerOrder CustomerOrder
+     * @return true if it´s not null, false if it is
+     */
     private boolean canBeAdded(CustomerOrder customerOrder) {
         return customerOrder != null;
 

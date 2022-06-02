@@ -26,7 +26,7 @@ import java.util.NoSuchElementException;
  * REST API controller for orders.
  */
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("api/orders")
 public class OrderController {
     private OrderService orderService;
     private BicycleRentalOrderService bicycleRentalOrderService;
@@ -170,7 +170,7 @@ public class OrderController {
 
             bicycle.setStatusToRented();
 
-            bicycleService.updateBicycle(bicycle);
+            bicycleService.updateBicycle(1, bicycle);
 
             emailSenderService.sendEmail(email, "Rental confirmation", "Follow this link to end your order: http://localhost:8080/rental/confirmation/" + order.getId());
 

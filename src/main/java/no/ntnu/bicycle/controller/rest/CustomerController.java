@@ -25,11 +25,11 @@ import java.util.*;
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
-    CustomerService customerService;
+    private final CustomerService customerService;
 
-    EmailSenderService emailSenderService;
+    private final EmailSenderService emailSenderService;
 
-    ProductService productService;
+    private final ProductService productService;
 
     /**
      * Constructor with parameters

@@ -58,12 +58,18 @@ public class BicycleService {
             try {
                 findBicycleById(bicycle.getId());
             } catch (NoSuchElementException e ) {
-                bicycle.setStatusToNew();
                 bicycleRepository.save(bicycle);
                 added = true;
             }
         }
         return added;
+       /* try {
+            findBicycleById(bicycle.getId());
+            bicycleRepository.save(bicycle);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }*/
     }
 
     /**
