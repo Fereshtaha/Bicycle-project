@@ -206,9 +206,6 @@ public class OrderController {
         String endLocationLon = entity.split(",")[2];
 
         try{
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String email = auth.getName();
-
             BicycleRentalOrder order = bicycleRentalOrderService.findBicycleRentalOrderById(id);
 
             int totalPrice = bicycleRentalOrderService.endBicycleRentalOrderAndReturnTotalPrice(order, endLocationLat, endLocationLon);
@@ -218,6 +215,18 @@ public class OrderController {
             return new ResponseEntity<>(totalPrice,HttpStatus.OK);
         }catch (NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CustomerOrder>> getOrdersByCustomerEmail(){
+        try{
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String email = auth.getName();
+
+            return new ResponseEntity<>(orderService.getAllOrdersByCustomerEmail(email),HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 }
