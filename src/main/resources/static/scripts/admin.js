@@ -1,10 +1,16 @@
+// the empty div to be filled in the html
 const divToBeFilled = document.getElementById("users-to-be-filled-from-db");
 
+// The server request
 const asyncRequest = new XMLHttpRequest();
 
+// the last part of the url
 const queryString = window.location.pathname;
 const lastSegment = queryString.split("/").pop();
 
+/*
+    checks the url and runs the correct methods according to the url
+ */
 if (lastSegment === "admin"){
     getUserInfoFromDB();
 }else if(lastSegment === "all-bikes"){
@@ -14,6 +20,9 @@ if (lastSegment === "admin"){
     divToBeFilled.innerText = "Not implemented yet."
 }
 
+/*
+    Sends a get request to the server and adds a new html div with info about the user, and appends it to the empty div
+ */
 function getUserInfoFromDB() {
     asyncRequest.addEventListener("load", fillFieldsWithResponse);
 
@@ -55,6 +64,9 @@ function getUserInfoFromDB() {
     }
 }
 
+/*
+    Sends a get request to the server and adds a new html div with info about the bike, and appends it to the empty div
+ */
 function getBikeInfoFromDB(){
     asyncRequest.addEventListener("load", fillFieldsWithResponse);
 
@@ -157,6 +169,9 @@ function getBikeInfoFromDB(){
     }
 }
 
+/*
+    logs the status from the get request
+ */
 function onResponseReceivedFromGET() {
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) { // handle success
@@ -168,6 +183,10 @@ function onResponseReceivedFromGET() {
     }
 }
 
+/*
+    Creates a html element form for a new bicycle
+    the button calls the sendBikeToServer() method
+ */
 function createNewBike(){
     let tag = document.createElement("div");
 
@@ -196,7 +215,9 @@ function createNewBike(){
 }
 
 
-
+/*
+    sends a post request to the server
+ */
 function sendBikeToServer(){
     const color = document.getElementById("newBikeColor");
     const location = document.getElementById("newBikeLocation");
@@ -232,7 +253,9 @@ function sendBikeToServer(){
     }
 }
 
-
+/*
+    sends a put request to the server
+ */
 function updateBikeInfo(bikeNo){
     const color = document.getElementById("bikeColor" + bikeNo).value;
     const location = document.getElementById("bikeLocation" + bikeNo).value;
@@ -256,6 +279,9 @@ function updateBikeInfo(bikeNo){
 
     asyncRequest.onreadystatechange = onResponseReceivedFromPOST;
 
+    /*
+        alerts the user with the reponse from server
+     */
     function onResponseReceivedFromPOST() {
         if (this.readyState === 4) {
             if (this.status === 200) { // handle success
@@ -271,6 +297,9 @@ function updateBikeInfo(bikeNo){
     }
 }
 
+/*
+    Sends a delete request to the server
+ */
 function deleteBike(bikeId){
     let confirmAction = confirm("Are you sure you want to delete this bike?");
     if (confirmAction) {
