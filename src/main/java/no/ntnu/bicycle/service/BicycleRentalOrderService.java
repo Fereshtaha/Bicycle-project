@@ -66,7 +66,7 @@ public class BicycleRentalOrderService {
 
 
         if (distance > 500){
-            bicycleRentalOrder.setTotalPrice(Integer.parseInt(String.valueOf(price + 500)));
+            bicycleRentalOrder.setTotalPrice(Integer.parseInt(String.valueOf(price + 100)));
         }else{
             bicycleRentalOrder.setTotalPrice(Integer.parseInt(String.valueOf(price)));
         }
