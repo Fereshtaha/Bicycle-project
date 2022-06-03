@@ -13,7 +13,7 @@ import javax.validation.Valid;
  * This is a REST API controller - part of the backend
  */
 @Controller
-@RequestMapping()
+@RequestMapping("/")
 public class AccountController {
     Customer customer = new Customer();
     /**
@@ -35,18 +35,22 @@ public class AccountController {
         return "HTML/Account-address";
     }
 
+    @GetMapping("/admin")
+    public String getLoginSuccessAdmin(Model model) {
+        return "HTML/Admin-users";
+    }
 
-    @GetMapping("/all-products")
+    @GetMapping("account/all-products")
     public String getProducts() {
         return "HTML/Admin-products";
     }
 
-    @GetMapping("/all-orders")
+    @GetMapping("account/all-orders")
     public String getOrders() {
         return "HTML/Admin-orders";
     }
 
-    @GetMapping("/all-bikes")
+    @GetMapping("account/all-bikes")
     public String getBikes() {
         return "HTML/Admin-bikes";
     }

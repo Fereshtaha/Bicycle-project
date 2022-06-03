@@ -34,9 +34,4 @@ public class HomeController {
 
         return "HTML/loginSuccessUser";
     }
-
-    @GetMapping("/admin")
-    public String getLoginSuccessAdmin(Model model) {
-        return "HTML/Admin-users";
-    }
 }
