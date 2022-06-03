@@ -42,6 +42,7 @@ function getUserInfoFromDB() {
                 let firstName = customerJson.firstName;
                 let email = customerJson.email;
                 let active = customerJson.active;
+                let role = customerJson.role;
 
                 let tag = document.createElement("div");
 
@@ -49,13 +50,16 @@ function getUserInfoFromDB() {
                     tag.innerHTML =
                         '<label for="firstName">Firstname</label>' + '<input class="firstName" type="text" value="'+ firstName +'">' +
                         '<label for="email">Email</label>' + '<input class="email" type="email" value="'+ email +'">' +
-                        '<label for="active">Active</label>' + '<input class="active" type="checkbox" checked>'
+                        '<label for="active">Active</label>' + '<input class="active" type="checkbox" checked>'+
+                        '<label for="email">Role</label>' + '<input class="email" type="email" value="'+ role +'">'
                 }else{
                     tag.innerHTML =
                         '<label for="firstName">Firstname</label>' + '<input class="firstName" type="text" value="'+ firstName +'">' +
                         '<label for="email">Email</label>' + '<input class="email" type="email" value="'+ email +'">' +
-                        '<label for="active">Active</label>' + '<input class="active" type="checkbox">'
+                        '<label for="active">Active</label>' + '<input class="active" type="checkbox">'+
+                        '<label for="email">Role</label>' + '<input class="email" type="email" value="'+ role +'">'
                 }
+
                 divToBeFilled.appendChild(tag);
             }
         }else{
