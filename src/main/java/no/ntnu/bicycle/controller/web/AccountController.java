@@ -26,12 +26,6 @@ public class AccountController {
         return "HTML/Account";
     }
 
-    @PostMapping("/account")
-    public String getAdmin(Model model, @Valid Customer customer) {
-        model.addAttribute("customer", customer);
-        return "HTML/Admin";
-    }
-
     /**
      * Respond to HTTP get
      * @return account address
@@ -41,14 +35,6 @@ public class AccountController {
         return "HTML/Account-address";
     }
 
-    /**
-     * Responds to HTTP get
-     * @return account orders
-     */
-    @GetMapping("/orders")
-    public String getAccountOrders(){
-        return "HTML/Account-orders";
-    }
 
     @GetMapping("/all-products")
     public String getProducts() {

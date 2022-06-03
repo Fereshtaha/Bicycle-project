@@ -17,7 +17,7 @@ import java.util.Objects;
  * REST API controller for product.
  */
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
     private ProductService productService;
