@@ -30,7 +30,7 @@ public class AccountController {
      * Respond to HTTP get
      * @return account address
      */
-    @GetMapping("/address")
+    @GetMapping("account/address")
     public String getAccountAddress(){
         return "HTML/Account-address";
     }

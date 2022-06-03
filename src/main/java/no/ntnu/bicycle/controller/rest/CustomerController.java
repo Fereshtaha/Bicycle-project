@@ -70,8 +70,7 @@ public class CustomerController {
     }
 
     /**
-     * !TODO check if this is correct
-     * Gets one customer by email
+     * Gets the customer that is logged in
      * @return Customer by email, 404 not found or 403 forbidden.
      */
     @GetMapping("/authenticated-customer")
@@ -272,6 +271,11 @@ public class CustomerController {
         return response;
     }
 
+    /**
+     * Deletes a product in the cart
+     * @param id the id of the product
+     * @return
+     */
     @DeleteMapping(value = "/deleteProductInCart")
     public ResponseEntity<String> deleteProductInCart(@RequestBody int id){
         ResponseEntity<String> response;
