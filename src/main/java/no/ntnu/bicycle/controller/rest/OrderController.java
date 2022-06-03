@@ -26,7 +26,7 @@ import java.util.NoSuchElementException;
  * REST API controller for orders.
  */
 @RestController
-@RequestMapping("api/orders")
+@RequestMapping("/orders")
 public class OrderController {
     private OrderService orderService;
     private BicycleRentalOrderService bicycleRentalOrderService;
@@ -142,9 +142,9 @@ public class OrderController {
     }
 
     /**
-     * !TODO document this
-     * @param entity
-     * @return
+     * Creating bike rental order
+     * @param entity HttpEntity<String>
+     * @return 200 OK if bike rental ordered, 400 bad request if not
      */
     @PostMapping(value = "/rental", consumes = "application/json")
     public ResponseEntity<Long> createBikeRentalOrder(HttpEntity<String> entity){
@@ -184,9 +184,9 @@ public class OrderController {
     }
 
     /**
-     * !TODO document this
-     * @param id
-     * @return
+     * Getting location from order
+     * @param id long
+     * @return 200 OK if location found, else 404 not found
      */
     @GetMapping(value = "/confirmation/{id}", consumes = "application/json")
     public ResponseEntity<String> getLocationFromOrder(@PathVariable("id")long id){
@@ -199,6 +199,11 @@ public class OrderController {
         }
     }
 
+    /**
+     * Ending bicycle order
+     * @param entity String
+     * @return HTTP 200 OK if order ended and total price, HTTP not found if order is not found
+     */
     @PostMapping("/addBicycleOrder")
     public ResponseEntity<Integer> endBicycleOrder(@RequestBody String entity){
         int id = Integer.parseInt(entity.split(",")[0]);

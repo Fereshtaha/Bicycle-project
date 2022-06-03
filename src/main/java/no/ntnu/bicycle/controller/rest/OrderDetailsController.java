@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * REST API controller for orders details.
  */
-@RestController("api/order-details")
+@RestController("/order-details")
 public class OrderDetailsController {
     OrderDetailsService orderDetailsService;
 

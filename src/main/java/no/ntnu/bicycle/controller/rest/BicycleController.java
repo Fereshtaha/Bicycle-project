@@ -7,6 +7,7 @@ import no.ntnu.bicycle.service.BicycleRentalOrderService;
 import no.ntnu.bicycle.service.BicycleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,6 +71,11 @@ public class BicycleController {
         return response;
     }
 
+    /**
+     * Deletes a bicycle
+     * @param bicycle Bicycle
+     * @return HTTP 200 OK if deleted, else not found
+     */
     @PutMapping
     public ResponseEntity<String> updateBicycle(@RequestBody Bicycle bicycle) {
         ResponseEntity<String> response;
@@ -84,6 +90,11 @@ public class BicycleController {
         return response;
     }
 
+    /**
+     * Updates a bicycle
+     * @param bikeId int
+     * @return HTTP 200 OK updated, 400 if not
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBicycle(@PathVariable("id") int bikeId) {
         ResponseEntity<String> response;

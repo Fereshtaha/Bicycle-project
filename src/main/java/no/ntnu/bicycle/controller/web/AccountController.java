@@ -1,24 +1,35 @@
 package no.ntnu.bicycle.controller.web;
 
+import no.ntnu.bicycle.model.Customer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 /**
  * This is a REST API controller - part of the backend
  */
 @Controller
-@RequestMapping("/account")
+@RequestMapping()
 public class AccountController {
+    Customer customer = new Customer();
     /**
      * Responds to HTTP get /
      *
      * @return Name of the template to render
      */
-    @GetMapping()
+    @GetMapping("/account")
     public String getAccount(Model model) {
         return "HTML/Account";
+    }
+
+    @PostMapping("/account")
+    public String getAdmin(Model model, @Valid Customer customer) {
+        model.addAttribute("customer", customer);
+        return "HTML/Admin";
     }
 
     /**
@@ -27,7 +38,6 @@ public class AccountController {
      */
     @GetMapping("/address")
     public String getAccountAddress(){
-
         return "HTML/Account-address";
     }
 
@@ -37,7 +47,6 @@ public class AccountController {
      */
     @GetMapping("/orders")
     public String getAccountOrders(){
-
         return "HTML/Account-orders";
     }
 

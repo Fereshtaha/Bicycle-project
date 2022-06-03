@@ -13,7 +13,7 @@ import java.util.List;
  * REST API controller for payment.
  */
 @RestController
-@RequestMapping("api/payments")
+@RequestMapping("/payments")
 public class PaymentController {
 
     private PaymentService paymentService;

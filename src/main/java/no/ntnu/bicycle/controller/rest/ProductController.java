@@ -17,7 +17,7 @@ import java.util.Objects;
  * REST API controller for product.
  */
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 public class ProductController {
 
     private ProductService productService;
@@ -72,8 +72,8 @@ public class ProductController {
 
     /**
      * Add product to cart
-     * @param idJsonObject String. !TODO explain this
-     * @return
+     * @param idJsonObject String
+     * @return 200 OK if product added to cart, 400 bad request if not
      */
     @PostMapping(value = "/addToCart", consumes = "application/json")
     public ResponseEntity<String> addProductToCart(@RequestBody String idJsonObject){
@@ -119,6 +119,26 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    /**
+     * Deletes product
+     * @param product Product
+     * @return HTTP 200 OK if product deleted, HTTP not found if it did not get deleted
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Product product) {
+        ResponseEntity<String> response;
+        if (productService.deletingProduct(product)) {
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+
+
 }
 
 

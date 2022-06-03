@@ -17,11 +17,11 @@ import java.util.Optional;
 @Service
 public class OrderService {
     @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     /**
      * Constructor for order repository
-     * @param orderRepository
+     * @param orderRepository OrderRepository
      */
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
