@@ -79,6 +79,8 @@ function getBikeInfoFromDB(){
                 let selectTag = document.createElement("select");
                 selectTag.id = "bikeStatus" +bikeId.toString();
 
+
+
                 if (status === "NEW"){
                     selectTag.innerHTML =
                         '<option value="NEW" selected>NEW</option>'+
@@ -91,17 +93,23 @@ function getBikeInfoFromDB(){
                         '<option value="AVAILABLE" selected>AVAILABLE</option>'+
                         '<option value="RENTED">RENTED</option>'+
                         '<option value="DISABLED">DISABLED</option>'
-                }if(status === "DISABLED"){
+                }else if(status === "DISABLED"){
                     selectTag.innerHTML =
                         '<option value="NEW">NEW</option>'+
                         '<option value="AVAILABLE">AVAILABLE</option>'+
                         '<option value="RENTED">RENTED</option>'+
                         '<option value="DISABLED" selected>DISABLED</option>'
+                }else if (status === "RENTED"){
+                    selectTag.innerHTML =
+                        '<option value="NEW">NEW</option>'+
+                        '<option value="AVAILABLE">AVAILABLE</option>'+
+                        '<option value="RENTED" selected>RENTED</option>'+
+                        '<option value="DISABLED">DISABLED</option>'
                 }else{
                     selectTag.innerHTML =
                         '<option value="NEW">NEW</option>'+
-                        '<option value="AVAILABLE" selected>AVAILABLE</option>'+
-                        '<option value="RENTED" selected>RENTED</option>'+
+                        '<option value="AVAILABLE">AVAILABLE</option>'+
+                        '<option value="RENTED">RENTED</option>'+
                         '<option value="DISABLED">DISABLED</option>'
                 }
 
@@ -199,7 +207,7 @@ function sendBikeToServer(){
         color : color.value,
         location : location.value,
         pricePerMinute : price.value,
-        status : status.value
+        status : status
     }
     let formData = JSON.stringify(data);
     asyncRequest.open("POST", "/api/bicycle");
