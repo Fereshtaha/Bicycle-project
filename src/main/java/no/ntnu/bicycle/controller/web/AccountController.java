@@ -35,6 +35,11 @@ public class AccountController {
         return "HTML/Account-address";
     }
 
+    @GetMapping("account/orders")
+    public String getAccountOrders(){
+        return "HTML/Account-orders";
+    }
+
     @GetMapping("/admin")
     public String getLoginSuccessAdmin(Model model) {
         return "HTML/Admin-users";
