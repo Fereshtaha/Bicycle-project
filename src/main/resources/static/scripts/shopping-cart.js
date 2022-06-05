@@ -71,7 +71,7 @@ function getInfoFromDB() {
             totalPriceTag.appendChild(purchaseBtn);
             elementToBeFilled.appendChild(totalPriceTag);
         }else{
-            elementToBeFilled.innerText = "No products in database";
+            elementToBeFilled.innerText = "No products in cart";
         }
     }
     function onResponseReceivedFromGET() {
