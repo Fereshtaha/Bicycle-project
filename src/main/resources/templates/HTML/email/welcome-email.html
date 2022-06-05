@@ -135,7 +135,7 @@
 
 <header id="header">
     <div id="logo-section">
-        <img id="LogoImage" src="http://localhost:8080/Images/Logo-white.png" alt="Rolling, Rolling, Rolling Logo">
+        <img id="LogoImage" src="" alt="Rolling, Rolling, Rolling Logo">
         <b>KRRR</b>
     </div>
     <hr>
@@ -145,29 +145,29 @@
 <section id="info-section-container">
     <h1 id="info-section-header">Before Starting Your Adventure</h1>
     <div class="info-section">
-        <img src="http://localhost:8080/Images/account-mail-image.png"  alt="Profile icon">
+        <img id="mailImage" src=""  alt="Profile icon">
         <div>
             <h1>Tell Us About Yourself</h1>
             <p>Complete your profile and add your shipping address for faster checkouts in the future.</p>
-            <a href="http://localhost:8080/account/address"><button>Complete Profile</button></a>
+            <a id="adressLink" href=""><button>Complete Profile</button></a>
         </div>
     </div>
     <hr>
     <div class="info-section">
-        <img src="http://localhost:8080/Images/bicycle-mail-image.png"  alt="Bike icon">
+        <img id="bicycleImage" src=""  alt="Bike icon">
         <div>
             <h1>Rent a bike now</h1>
             <p>Check out our wide selection of bikes for rental. Helmets are included when you rent a bike today.</p>
-            <a href="http://localhost:8080/rental"><button>Rent Now</button></a>
+            <a id="rentalLink" href=""><button>Rent Now</button></a>
         </div>
     </div>
     <hr>
     <div class="info-section">
-        <img src="http://localhost:8080/Images/bag-mail-image.png"  alt="Textile bag icon">
+        <img id="bagImage" src=""  alt="Textile bag icon">
         <div>
             <h1>Save the planet</h1>
             <p>Buy our eco-friendly textile bags today and get a free pair of sunglasses! Our textile bag are fair trade approved. </p>
-            <a href="http://localhost:8080/products"><button>Buy Now</button></a>
+            <a id="productLink" href=""><button>Buy Now</button></a>
         </div>
     </div>
 </section>
@@ -176,4 +176,22 @@
     <em>The KRRR Team</em>
 </p>
 </body>
+<script defer>
+    let url = window.location.origin;
+
+    const logoImage = document.getElementById("LogoImage");
+    logoImage.src = url + "/Images/account-mail-image.png";
+    const mailImage = document.getElementById("mailImage");
+    mailImage.src = url + "/Images/account-mail-image.png";
+    const addressLink = document.getElementById("adressLink");
+    addressLink.href = url + "/account/address";
+    const bicycleImage = document.getElementById("bicycleImage");
+    bicycleImage.src = url + "Images/bicycle-mail-image.png";
+    const rentalLink = document.getElementById("rentalLink");
+    rentalLink.href = url + "/rental";
+    const bagImage = document.getElementById("bagImage");
+    bagImage.src = url + "/Images/bag-mail-image.png";
+    const productLink = document.getElementById("productLink");
+    productLink.href = url + "/products";
+</script>
 </html>
