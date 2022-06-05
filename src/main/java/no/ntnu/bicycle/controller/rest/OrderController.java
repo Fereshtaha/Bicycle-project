@@ -172,7 +172,7 @@ public class OrderController {
 
             bicycleService.updateBicycle(bicycle);
 
-            emailSenderService.sendEmail(email, "Rental confirmation", "Follow this link to end your order: http://localhost:8080/rental/confirmation/" + order.getId());
+            emailSenderService.sendEmail(email, "Rental confirmation", "Follow this link to end your order: https://gr16.appdev.cloudns.ph/rental/confirmation/" + order.getId());
 
             response = new ResponseEntity<>(order.getId(),HttpStatus.OK);
         }catch (NoSuchElementException e){
