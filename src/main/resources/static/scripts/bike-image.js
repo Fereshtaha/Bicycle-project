@@ -21,6 +21,10 @@ function createEventsForColorButton(buttonType, imageType){
     }
 }
 
+function showMethodNotImplemented(){
+    alert("method not implemented");
+}
+
 createEventsForColorButton(document.querySelectorAll(".color-button-base"),document.getElementById("bike-base"));
 createEventsForColorButton(document.querySelectorAll(".color-button-seat"),document.getElementById("bike-seat"));
 createEventsForColorButton(document.querySelectorAll(".color-button-wheel"),document.getElementById("bike-wheels"));
