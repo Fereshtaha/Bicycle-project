@@ -106,6 +106,7 @@ body{
     .map-flex{
         width: 100%;
         height: calc(50vh - 84px);
+        animation: none;
     }
 
     .info-flex{
@@ -113,6 +114,7 @@ body{
         text-align: center;
         margin-bottom: 100px;
         width: 100%;
+        animation: none;
     }
 
     .info-flex img{

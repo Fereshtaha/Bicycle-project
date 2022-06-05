@@ -122,7 +122,7 @@ function addToCart(){
             if (this.status === 200) { // handle success
                 alert("Added to cart");
             } else if(this.status === 401){
-                alert("Not logged in products added to localstorage");
+                alert("Added to cart");
                 let products = [];
 
                 if(localStorage.getItem('products')){
