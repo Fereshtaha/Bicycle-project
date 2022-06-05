@@ -202,7 +202,7 @@ function showInfoOnClick(e) {
             "<br>" +
             "<h1>Bicycle rent</h1>" +
             "<ul>" +
-            "<img id='bicycle-image' src='/images/bike-image" + e.target.bikeColor + ".jpg' alt='Image of bicyce product'>" +
+            "<img id='bicycle-image' src='/Images/bike-image" + e.target.bikeColor + ".jpg' alt='Image of bicyce product'>" +
             "<li>Classy bike from 80s</li>" +
             "<li>Color: " + e.target.bikeColor + "</li>" +
             "<li>Customizable seat height</li>" +
