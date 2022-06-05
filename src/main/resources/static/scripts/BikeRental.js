@@ -185,12 +185,17 @@ function showInfoOnClick(e) {
         mapContainer.classList.add("active");
         mapDiv.classList.add("map-flex");
         infoDiv.classList.add("info-flex");
+        infoDiv.classList.remove("hidden");
         setTimeout(function () {
             map.setView(new L.LatLng(lat, lng), 16);
             map.invalidateSize(true);
         }, 400);
         createHTML(e.target.bikeColor);
     } else {
+        mapContainer.classList.add("active");
+        mapDiv.classList.add("map-flex");
+        infoDiv.classList.add("info-flex");
+        infoDiv.classList.remove("hidden");
         map.setView(new L.LatLng(lat, lng), 16);
         map.invalidateSize(true);
         createHTML(e.target.bikeColor);
@@ -198,7 +203,7 @@ function showInfoOnClick(e) {
 
     function createHTML() {
         return infoDiv.innerHTML = "" +
-            "<button onclick='hideInfoDiv()'>X</button> " +
+            "<button id='cross-btn' onclick='hideInfoDiv()'>X</button> " +
             "<br>" +
             "<h1>Bicycle rent</h1>" +
             "<ul>" +
@@ -259,6 +264,7 @@ function hideInfoDiv(){
     mapContainer.classList.remove("active");
     mapDiv.classList.remove("map-flex");
     infoDiv.classList.remove("info-flex");
+    infoDiv.classList.add("hidden");
 
     map.invalidateSize(true);
 }

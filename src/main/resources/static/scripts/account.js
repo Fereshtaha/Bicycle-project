@@ -72,6 +72,7 @@ function updatePassword() {
             let responseMessage = document.getElementById("successMessageContainer");
             if (this.status === 200) { // handle success
                 responseMessage.classList.add("successResponse");
+                responseMessage.classList.remove("errorResponse");
                 responseMessage.removeAttribute("hidden");
                 responseMessage.innerHTML = "<p id='successMessageText'>Password updated.</p>";
             } else if (this.status === 401){

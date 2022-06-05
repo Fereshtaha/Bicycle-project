@@ -12,9 +12,9 @@ function createHtml(productId, productName, imageUrl, price) {
                         <img src="Images/${imageUrl}">
                         <div>
                             <p>${productName}</p>
-                            <p>${productId}</p>
+                            <p>id : ${productId}</p>
                         </div>
-                        <div>
+                        <div style="text-align: right">
                             <a onclick="removeProductFromCart(${productId})" href="">X</a>
                             <p>${price} NOK</p>
                         </div>
@@ -57,9 +57,10 @@ function getInfoFromDB() {
 
                 elementToBeFilled.appendChild(tag);
             }
-            let totalPriceTag = document.createElement("b");
-            totalPriceTag.innerText = "Total: " + totalPriceCounter.toString() + " NOK";
-            elementToBeFilled.appendChild(totalPriceTag);
+            let totalPriceTag = document.createElement("div");
+            totalPriceTag.innerHTML = "<b>Total: " + totalPriceCounter.toString() + " NOK</b>";
+            totalPriceTag.id = "cartPriceSection";
+
 
             let purchaseBtn = document.createElement("button");
             purchaseBtn.innerText = "Order now";
@@ -67,7 +68,8 @@ function getInfoFromDB() {
 
             purchaseBtn.addEventListener("click", sendOrder)
 
-            elementToBeFilled.appendChild(purchaseBtn);
+            totalPriceTag.appendChild(purchaseBtn);
+            elementToBeFilled.appendChild(totalPriceTag);
         }else{
             elementToBeFilled.innerText = "No products in database";
         }
@@ -147,8 +149,7 @@ function removeProductFromCart(productID){
 
 function sendOrder(){
     if (loggedIn){
-
-        alert("Order sent");
+        alert("Backend not implemented yet");
     }else{
         alert("You need to log in to send an order");
     }
