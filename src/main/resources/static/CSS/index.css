@@ -273,6 +273,17 @@ p{
     text-decoration: none;
 }
 
+.product-preview div{
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.product-preview div img{
+    width: 100%;
+}
+
 @media screen and (max-width: 650px) {
     #product-preview-second-element {
         display: none;
