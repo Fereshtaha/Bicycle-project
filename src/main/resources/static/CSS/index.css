@@ -160,7 +160,7 @@ p{
 
 .product-preview{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
     width: 70%;
     margin: 20px auto auto;
@@ -251,7 +251,7 @@ p{
     }
 
     .product-preview{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
 
     }
 
@@ -264,6 +264,13 @@ p{
     text-align: center;
     grid-column-start: 1;
     grid-column-end: 4;
+}
+
+.product-preview div a{
+    padding: 20px;
+    border: solid black 1px;
+    text-align: center;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 650px) {
