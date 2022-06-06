@@ -168,7 +168,6 @@ p{
 
 .product-preview-image{
     width: 100%;
-    height: 15rem;
     object-fit: cover;
 }
 
@@ -272,6 +271,8 @@ p{
     text-align: center;
     text-decoration: none;
     display: block;
+    color: black;
+    background-color: #ADD8E6;
 }
 
 .product-preview div{
