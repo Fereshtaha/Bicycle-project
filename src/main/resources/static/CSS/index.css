@@ -271,6 +271,7 @@ p{
     border: solid black 1px;
     text-align: center;
     text-decoration: none;
+    display: block;
 }
 
 .product-preview div{
@@ -282,6 +283,7 @@ p{
 
 .product-preview div img{
     width: 100%;
+    display: block;
 }
 
 @media screen and (max-width: 650px) {
