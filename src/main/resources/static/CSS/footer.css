@@ -89,6 +89,18 @@ footer .follow i:hover, footer a:hover{
     color: #088178;
 }
 
+.new-york-times-logo {
+    height: 50px;
+}
+
+.CNN-logo {
+    height: 40px;
+}
+
+.mtv3-logo {
+    height: 60px;
+}
+
 .copyright{
     width: 100%;
     text-align: center;

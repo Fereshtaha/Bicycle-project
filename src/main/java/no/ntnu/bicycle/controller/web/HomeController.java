@@ -1,10 +1,6 @@
 package no.ntnu.bicycle.controller.web;
 
-import javax.validation.Valid;
-import no.ntnu.bicycle.model.Customer;
-import no.ntnu.bicycle.model.Role;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 

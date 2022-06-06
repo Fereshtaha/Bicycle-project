@@ -30,9 +30,7 @@ public class AccessUserDetails implements UserDetails {
         Role role = customer.getRole();
         authorities.add(new SimpleGrantedAuthority(role.toString()));
     }
-
-
-
+    
 
     /**
      * Gets authorities
