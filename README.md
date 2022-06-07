@@ -20,21 +20,25 @@ Here is the content overview:
 
 ## Preparation
 1. Install PostgreSQL (optional)
+
+
 2. Edit the `application.properties` file if you are planning on using another database than PostgreSQL (would recommend to go through either ways) :
-    1. change the `server port` to whatever you want.
+
+
+3. change the `server port` to whatever you want. (recommended: 8443 for https)
 ```
 server.port=
 ```
-2. Change the `url`.
+4. Change the `url` to the desired database.
 ```
 spring.datasource.url=jdbc:postgresql://localhost:5432/bikeshop
 ```
-3. Change the `username` and `password`.
+5. Change the `username` and `password` for the selcted database(may not be required for some databases).
 ```
 spring.datasource.username=
 spring.datasource.password=
 ```
-4. Change the dialect.
+6. Change the dialect to the selected database type.
 ```
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 ```
@@ -46,6 +50,8 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 2. Open the project in your selected text editor.
 3. Execute `mvn spring-boot:run` in the root of this project, or run the main method in the BikeApplication.
 4. If you see the project running and "Importing test data..." in the console, congrats!
+5. open https://localhost:8443/ or change host/port depending on settings in application.properties file. 
+6. Enjoy our website!
 ---
 
 ## User accounts
