@@ -1,12 +1,10 @@
 # Bicycle-project
 
-## Monolith project with frontend and backend
+## Full stack bicycle project
 
 - This is a project in the course Application Development at NTNU Ålesund. 
-- Our goal is to make a functional backend with
-all the things needed. This includes general things like handling customers, products and orders. 
-- This project taught us how to make a backend for a website. 
-- There is still room for improvement, but we now have a backend with different functionalities and a good security.
+- Our goal is to make a functional fullstack application for renting bikes in ålesund. 
+- This project taught us how to make both frontend and backend for a website. 
 
 ---
 ## Table of Contents
@@ -15,6 +13,7 @@ Here is the content overview:
 
 - [Preparation](#preparation)
 - [Installation and running the project](#installation-and-running-the-project)
+- [User accounts](#user-accounts)
 - [Credits](#credits)
 - [License](#license)
 ---
@@ -48,6 +47,21 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 3. Execute `mvn spring-boot:run` in the root of this project, or run the main method in the BikeApplication.
 4. If you see the project running and "Importing test data..." in the console, congrats!
 ---
+
+## User accounts
+To log into the website you can create a new user at "url/create-user" or login with the user credentials below. And to access the admin pages please login with the admin credentials below
+
+Admin details:
+- Email: admin@sensor.no
+- Password: Passord1
+
+User details:
+- Email: user@sensor.no
+- Password: Passord1
+
+
+
+
 
 ## Credits
 
