@@ -43,7 +43,8 @@
 
 
 .another-section {
-    padding: 80px;
+    width: 80%;
+    margin: auto;
     text-align: left;
     line-height: 30px;
     font-size: 15px;
@@ -162,6 +163,10 @@
         padding: 100px 40px;
     }
     .inner-section-2{
+        width: 100%;
+    }
+
+    .another-section{
         width: 100%;
     }
 

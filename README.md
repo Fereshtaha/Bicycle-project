@@ -65,6 +65,8 @@ User details:
 - Email: user@sensor.no
 - Password: Passord1
 
+To access the admin pages, please open https://localhost:8443/admin or change host/port depending on settings in application.properties file.
+
 
 
 
