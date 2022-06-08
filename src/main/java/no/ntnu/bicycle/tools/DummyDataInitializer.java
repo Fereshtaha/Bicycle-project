@@ -72,12 +72,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         Product whiteHelmet = new Product("White helmet","white","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
         Product blueHelmet1 = new Product("Blue bag","blue","blue-bag.png","Eco-cotton, Fairtrade and Impress your friends. Buy today and get sunglasses for free. Pick up when renting a bike",250);
         Product whiteHelmet1 = new Product("White bag","white","white-bag.png","Eco-cotton, Fairtrade and Impress your friends. Buy today and get sunglasses for free. Pick up when renting a bike",250);
-        Product blueHelmet2 = new Product("Blue helmet","blue","blue-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
-        Product whiteHelmet2 = new Product("White helmet","white","white-helmet.png","Save my Brain er en rimelig hjelm som også har godkjenning CE 1078. Hjelmen tilpasses enkelt til justeringsskruen i nakken og passer dermed til flere forskjellige barn eller for barnets utvikling.",199);
 
 
 
-        productRepository.saveAll(List.of(blueHelmet,whiteHelmet,blueHelmet1,whiteHelmet1,blueHelmet2,whiteHelmet2));
+        productRepository.saveAll(List.of(blueHelmet,whiteHelmet,blueHelmet1,whiteHelmet1));
 
 
         CustomerOrder order1 = new CustomerOrder(sebastian,List.of(blueHelmet,whiteHelmet));
