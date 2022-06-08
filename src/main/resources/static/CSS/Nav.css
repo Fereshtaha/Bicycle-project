@@ -39,6 +39,10 @@ button{
   background-size: 42px 42px;
 }
 
+.accountButton{
+color: red;
+}
+
 .header_right_icons{
   display: flex;
   align-items: center;
@@ -61,12 +65,6 @@ button{
   text-decoration: none;
   color: black;
 }
-
-
-/*.Header a:hover{
-  color: #717171;
-}*/
-
 
 #Logo{
   width: 200px;
@@ -141,7 +139,7 @@ a {
 }
 
 /* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover ,.Header a:hover{
+.navbar a:hover, .dropdown:hover, .Header a:hover{
   color: #717171;
 }
 

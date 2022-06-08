@@ -241,6 +241,10 @@ p{
     color: black;
 }
 
+#hero-cta:hover {
+    opacity: 95%;
+}
+
 @media screen and (max-width: 992px) {
     .helmet-grid {
         display: block;
@@ -274,6 +278,11 @@ p{
     color: black;
     background-color: #ADD8E6;
 }
+
+.product-preview div a:hover {
+    opacity:85%;
+}
+
 
 .product-preview div{
     display: flex;

@@ -97,8 +97,18 @@ form input{
 
 .login a{
     color:  #565656;
-    font-size: 14px;
+    font-size: 15px;
 }
+
+.login a u:hover{
+    color: #0080FF;
+}
+
+.small-link:hover {
+    color: #0080FF;
+}
+
+
 
 .errorResponse{
     background-color: #ffcccb;
