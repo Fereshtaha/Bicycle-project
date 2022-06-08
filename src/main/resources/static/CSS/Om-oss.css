@@ -55,7 +55,6 @@
 }
 .section1 {
     padding: 30px;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +87,6 @@
 }
 
 .section2{
-    min-height: 100vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;
