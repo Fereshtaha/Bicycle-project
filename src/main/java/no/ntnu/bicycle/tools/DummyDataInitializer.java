@@ -59,10 +59,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         }
 
         logger.info("Importing test data...");
-        Customer sebastian = new Customer("Sebastian", "Nilsen", "sebasn@stud.ntnu.no","2001-04-19",94198166,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_ADMIN);
-        Customer anne = new Customer("Anne", "Ruud", "anneruud@mail.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa",Role.ROLE_USER);
+        Customer sebastian = new Customer("Ola", "Halvorsen", "admin@sensor.no","2001-04-19",94198176,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa", Role.ROLE_ADMIN);
+        Customer anne = new Customer("Anne", "Ruud", "user@sensor.no","1994-06-04",94198782,"$2a$12$QjPXqckLsFqDDRxrEfboC.0WYcUSP5wMhuOftGkcnpA9vI1sUOiWa",Role.ROLE_USER);
 
-        BillingAndShippingAddress adresse1 = new BillingAndShippingAddress("Sebastian","Nilsen","Fiolveien 1b","Norway","1395","Hvalstad");
+        BillingAndShippingAddress adresse1 = new BillingAndShippingAddress("Ola","Halvorsen","Vaagavegen 39","Norway","6005","Oslo");
 
         sebastian.setAddress(adresse1);
 
